@@ -1,0 +1,39 @@
+[submodule "packages/Font-Awesome"]
+	path = packages/Font-Awesome
+	url = https://github.com/FortAwesome/Font-Awesome
+[submodule "packages/ionic"]
+	path = packages/ionic
+	url = https://github.com/ionic-team/ionicons
+[submodule ".\\packages\\typeicons"]
+	path = .\\packages\\typeicons
+	url = https://github.com/stephenhutchings/typicons.font
+[submodule ".\\packages\\octicons"]
+	path = .\\packages\\octicons
+	url = https://github.com/primer/octicons
+[submodule ".\\packages\\feather"]
+	path = .\\packages\\feather
+	url = https://github.com/feathericons/feather
+[submodule ".\\packages\\game-icons"]
+	path = .\\packages\\game-icons
+	url = https://github.com/game-icons/icons
+[submodule ".\\packages\\bootstrap-icons"]
+	path = .\\packages\\bootstrap-icons
+	url = https://github.com/twbs/icons
+[submodule "packages/flag-icons"]
+	path = packages/flag-icons
+	url = https://github.com/lipis/flag-icons
+[submodule "packages/hero-icons"]
+	path = packages/hero-icons
+	url = https://github.com/tailwindlabs/heroicons
+[submodule "packages/line-awesome"]
+	path = packages/line-awesome
+	url = https://github.com/icons8/line-awesome
+[submodule "packages/remix-icon"]
+	path = packages/remix-icon
+	url = https://github.com/Remix-Design/RemixIcon
+[submodule "packages/vscode-icons"]
+	path = packages/vscode-icons
+	url = https://github.com/vscode-icons/vscode-icons
+[submodule ".\\packages\\themify-icons"]
+	path = .\\packages\\themify-icons
+	url = https://github.com/kalimah-apps/Themify-Icons
