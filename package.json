@@ -1,0 +1,37 @@
+{
+	"name": "@kalimahapps/vue-icons",
+	"version": "0.0.1",
+	"description": "",
+	"exports": {
+		".": "./index.js",
+		"./all": "./icons/all.js",
+		"./bs": "./icons/bs/index.js",
+		"./fa": "./icons/fa/index.js",
+		"./fe": "./icons/fe/index.js",
+		"./hi": "./icons/hi/index.js",
+		"./io": "./icons/io/index.js",
+		"./la": "./icons/la/index.js",
+		"./oc": "./icons/oc/index.js",
+		"./re": "./icons/re/index.js",
+		"./th": "./icons/th/index.js",
+		"./ti": "./icons/ti/index.js",
+		"./vs": "./icons/vs/index.js",
+		"./content": "./icons/content.js"
+	},
+	"workspaces": [
+		"./src/packages/*"
+	],
+	"author": "khr2003",
+	"license": "MIT",
+	"devDependencies": {
+		"change-case": "^4.1.2",
+		"eslint": "^8.10.0",
+		"eslint-plugin-vue": "^8.5.0",
+		"fast-glob": "^3.2.11",
+		"fs-extra": "^10.0.1",
+		"svgson": "^5.2.1"
+	},
+	"peerDependencies": {
+		"vue": "^3.2.31"
+	}
+}
