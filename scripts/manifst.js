@@ -26,21 +26,21 @@ module.exports = [
 		version: '6',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/Font-Awesome/svgs/regular/*.svg'),
+				path: path.resolve(__dirname, '../packages/font-awesome/svgs/regular/*.svg'),
 				formatter: name => `fa-reg-${name}`,
 				attributes: {
 					fill: 'currentColor'
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/Font-Awesome/svgs/brands/*.svg'),
+				path: path.resolve(__dirname, '../packages/font-awesome/svgs/brands/*.svg'),
 				formatter: name => `fa-bands-${name}`,
 				attributes: {
 					fill: 'currentColor'
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/Font-Awesome/svgs/solid/*.svg'),
+				path: path.resolve(__dirname, '../packages/font-awesome/svgs/solid/*.svg'),
 				formatter: name => `fa-${name}`,
 				attributes: {
 					fill: 'currentColor'
@@ -73,13 +73,13 @@ module.exports = [
 		repo: 'https://github.com/tailwindlabs/heroicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/hero-icons/src/outline/*.svg'),
+				path: path.resolve(__dirname, '../packages/hero/src/outline/*.svg'),
 				formatter: name => {
 					return `hi-${name}`;
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/hero-icons/src/solid/*.svg'),
+				path: path.resolve(__dirname, '../packages/hero/src/solid/*.svg'),
 				formatter: name => {
 					return `hi-solid-${name}`;
 				}
@@ -95,7 +95,7 @@ module.exports = [
 		license: 'MIT',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/ionic/src/svg/*-sharp.svg'),
+				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-sharp.svg'),
 				formatter: name => {
 					return 'io-sharp-' + name.replace('-sharp', '');
 				},
@@ -104,7 +104,7 @@ module.exports = [
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ionic/src/svg/*-outline.svg'),
+				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-outline.svg'),
 				formatter: name => {
 					return 'io-outline-' + name.replace('-outline', '');
 				},
@@ -113,7 +113,7 @@ module.exports = [
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ionic/src/svg/!(*-outline|*-sharp).svg'),
+				path: path.resolve(__dirname, '../packages/ionicons/src/svg/!(*-outline|*-sharp).svg'),
 				formatter: name => {
 					return `io-${name}`;
 				},
@@ -170,7 +170,7 @@ module.exports = [
 		repo: 'https://github.com/Remix-Design/RemixIcon',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/remix-icon/icons/**/*.svg'),
+				path: path.resolve(__dirname, '../packages/remix/icons/**/*.svg'),
 				formatter: name => {
 					return `re-${name}`;
 				},
@@ -189,7 +189,7 @@ module.exports = [
 		repo: 'https://github.com/kalimah-apps/Themify-Icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/themify-icons/svg/*.svg'),
+				path: path.resolve(__dirname, '../packages/themify/svg/*.svg'),
 				formatter: name => {
 					return `th-${name}`;
 				},
@@ -208,7 +208,7 @@ module.exports = [
 		url: 'https://www.s-ings.com/typicons/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/typeicons/src/svg/*-outline.svg'),
+				path: path.resolve(__dirname, '../packages/typicons/src/svg/*-outline.svg'),
 				formatter: name => {
 					return `ti-outline-${name.replace('-outline', '')}`;
 				},
@@ -217,7 +217,7 @@ module.exports = [
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/typeicons/src/svg/!(*-outline).svg'),
+				path: path.resolve(__dirname, '../packages/typicons/src/svg/!(*-outline).svg'),
 				formatter: name => {
 					return `ti-${name}`;
 				},
@@ -236,7 +236,7 @@ module.exports = [
 		repo: 'https://github.com/vscode-icons/vscode-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/vscode-icons/icons/*.svg'),
+				path: path.resolve(__dirname, '../packages/vscode/icons/*.svg'),
 				formatter: name => {
 					return `vs-${name}`;
 				},

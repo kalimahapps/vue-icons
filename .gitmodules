@@ -1,39 +1,33 @@
-[submodule "packages/Font-Awesome"]
-	path = packages/Font-Awesome
+[submodule "packages/font-awesome"]
+	path = packages/font-awesome
 	url = https://github.com/FortAwesome/Font-Awesome
-[submodule "packages/ionic"]
-	path = packages/ionic
+[submodule "packages/ionicons"]
+	path = packages/ionicons
 	url = https://github.com/ionic-team/ionicons
-[submodule ".\\packages\\typeicons"]
-	path = .\\packages\\typeicons
+[submodule "packages/typicons"]
+	path = packages/typicons
 	url = https://github.com/stephenhutchings/typicons.font
-[submodule ".\\packages\\octicons"]
-	path = .\\packages\\octicons
+[submodule "packages/octicons"]
+	path = packages/octicons
 	url = https://github.com/primer/octicons
-[submodule ".\\packages\\feather"]
-	path = .\\packages\\feather
+[submodule "packages/feather"]
+	path = packages/feather
 	url = https://github.com/feathericons/feather
-[submodule ".\\packages\\game-icons"]
-	path = .\\packages\\game-icons
-	url = https://github.com/game-icons/icons
-[submodule ".\\packages\\bootstrap-icons"]
-	path = .\\packages\\bootstrap-icons
+[submodule "packages/bootstrap-icons"]
+	path = packages/bootstrap-icons
 	url = https://github.com/twbs/icons
-[submodule "packages/flag-icons"]
-	path = packages/flag-icons
-	url = https://github.com/lipis/flag-icons
-[submodule "packages/hero-icons"]
-	path = packages/hero-icons
+[submodule "packages/hero"]
+	path = packages/hero
 	url = https://github.com/tailwindlabs/heroicons
 [submodule "packages/line-awesome"]
 	path = packages/line-awesome
 	url = https://github.com/icons8/line-awesome
-[submodule "packages/remix-icon"]
-	path = packages/remix-icon
+[submodule "packages/remix"]
+	path = packages/remix
 	url = https://github.com/Remix-Design/RemixIcon
-[submodule "packages/vscode-icons"]
-	path = packages/vscode-icons
+[submodule "packages/vscode"]
+	path = packages/vscode
 	url = https://github.com/vscode-icons/vscode-icons
-[submodule ".\\packages\\themify-icons"]
-	path = .\\packages\\themify-icons
+[submodule "packages/themify"]
+	path = packages/themify
 	url = https://github.com/kalimah-apps/Themify-Icons
