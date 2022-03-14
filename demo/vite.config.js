@@ -13,5 +13,6 @@ export default defineConfig({
 			}
 		]
 	},
+	base: '/vue-icons/',
 	plugins: [vue(), svgLoader()]
 });

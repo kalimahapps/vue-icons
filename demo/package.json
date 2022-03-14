@@ -7,7 +7,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@kalimahapps/vue-icons": "file:../icons",
+		"@kalimahapps/vue-icons": "file:..",
 		"@vueuse/core": "^8.0.0",
 		"copy-text-to-clipboard": "^3.0.1",
 		"sass": "^1.49.9",
