@@ -11,8 +11,16 @@ const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,${content})\n`;
 };
 
-const isObject = function (obj) {
-	return obj != null && obj.constructor.name === 'Object';
+const iconDataToString = function (data) {
+	let iconData = `[${data.name}](${data.url})|${data.prefix}|${data.license}|${data.version}|${data.count}`;
+	return iconData;
+};
+
+const generateReadmeFile = function (data) {
+	let readmeTemplate = fs.readFileSync(path.resolve(__dirname, `./readme-template.txt`), 'utf8');
+	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', data.join('\n'));
+
+	fse.outputFileSync(path.resolve(__dirname, `../README.md`), readmeTemplate);
 };
 
 const getFilesContent = function (iconsInfo) {
@@ -65,8 +73,20 @@ const buildIcons = async function () {
 	// Hold export content
 	let allIconsExport = '';
 
+	// Hold icon set version, prefix, count, license ..etc
+	let iconData = [];
+
 	manifst.forEach(iconsGroup => {
-		const { name, group } = iconsGroup;
+		const { name, group, url, version, license } = iconsGroup;
+		const iconSetData = {
+			name,
+			url,
+			prefix: group,
+			license,
+			version,
+			count: 0
+		};
+
 		const iconsContent = { name, icons: [] };
 		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
 		iconsGroup.icons.forEach(iconsInfo => {
@@ -86,6 +106,9 @@ const buildIcons = async function () {
 
 		fullContent.push(iconsContent);
 
+		iconSetData.count += iconsContent.icons.length;
+		iconData.push(iconDataToString(iconSetData));
+
 		allIconsExport += `export * from './${group}/index';\n`;
 	});
 
@@ -97,5 +120,7 @@ const buildIcons = async function () {
 
 	// Create all icons file
 	fse.outputFileSync(path.resolve(__dirname, `../icons/all.js`), allIconsExport);
+
+	generateReadmeFile(iconData);
 };
 buildIcons();
