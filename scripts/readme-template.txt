@@ -1,4 +1,4 @@
-<img src="https://rawgit.com/kalimah-apps/vue-icons/master/logo.svg" width="120" alt="Vue Icons">
+<img src="https://raw.githubusercontent.com/kalimah-apps/vue-icons/master/logo.svg" width="120" alt="Vue Icons">
 
 # [Vue Icons](https://kalimah-apps.github.io/vue-icons/)
 
