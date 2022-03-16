@@ -19,6 +19,8 @@ const showColorPicker = ref(false);
 const colorPickerElement = ref(null);
 const currentIconElement = ref(null);
 const iconElement = ref(null);
+const gettingStartedEl = ref(null);
+const showGettingStarted = ref(false);
 
 const colors = [
 	'#2ecc71',
@@ -56,6 +58,7 @@ const totalPages = computed(() => {
 // 	ignore: [currentIconElement]
 // });
 onClickOutside(colorPickerElement, event => (showColorPicker.value = false));
+onClickOutside(gettingStartedEl, event => (showGettingStarted.value = false));
 
 const searchWrapper = ref(null);
 const isSticky = ref(false);
@@ -171,9 +174,9 @@ onMounted(() => {
 			<nav class="navbar" id="navmenu">
 				<div class="container">
 					<div class="navbar-brand mr-5">
-						<a class="navbar-item">
+						<span class="navbar-item">
 							<logo class="logo" />
-						</a>
+						</span>
 						<span class="navbar-burger" data-target="navmenu">
 							<span></span>
 							<span></span>
@@ -182,9 +185,9 @@ onMounted(() => {
 					</div>
 					<div class="navbar-menu">
 						<a class="navbar-item is-active">Icons</a>
-						<a class="navbar-item"> Getting Started </a>
+						<a class="navbar-item" @click="showGettingStarted = true"> Getting Started </a>
 						<div class="navbar-end">
-							<a class="navbar-item is-flex">
+							<a class="navbar-item is-flex" href="https://github.com/kalimah-apps/vue-icons">
 								<span class="icon">
 									<component :is="AllIcons['BsGithub']" />
 								</span>
@@ -332,6 +335,36 @@ onMounted(() => {
 				</div>
 			</div>
 		</section>
+	</div>
+	<div class="modal" :class="showGettingStarted === true ? 'is-active' : ''">
+		<div class="modal-background"></div>
+
+		<div class="modal-content" ref="gettingStartedEl">
+			<div class="box">
+				<h2 class="title">Getting started</h2>
+				<p>To install run <pre>npm install @kalimahapps/vue-icons</pre></p>
+				<h3 class="title is-4 mt-5">Example</h3>
+				<pre>
+{{`<template>
+	<div class="button"><BsCalendar4Range /> Select Date</div>
+</template>
+<script>
+	import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
+	export default {
+		components: {
+			BsAlarmFill
+		}
+	};
+</script>
+<style></style>`}}
+				</pre>
+				<h3 class="title is-4 mt-5">More Info</h3>
+				<a class="button is-link" href="https://github.com/kalimah-apps/vue-icons">GitHub</a>
+				
+			</div>
+		</div>
+
+		<button class="modal-close is-large" aria-label="close"></button>
 	</div>
 </template>
 
