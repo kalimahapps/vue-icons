@@ -20,7 +20,7 @@ npm install @kalimahapps/vue-icons
 import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
 export default {
 	components: {
-		BsAlarmFill
+		BsCalendar4Range 
 	}
 };
 </script>

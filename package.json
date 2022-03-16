@@ -1,6 +1,6 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"sideEffects": false,
 	"repository": {
@@ -42,5 +42,22 @@
 	},
 	"peerDependencies": {
 		"vue": "^3.2.31"
-	}
+	},
+	"keywords": [
+		"icons",
+		"vue",
+		"vue3",
+		"font awesome",
+		"line awesome",
+		"feather icons",
+		"remix icon",
+		"bootstrap icons",
+		"line awesome",
+		"octicons",
+		"heroicons",
+		"ionicons",
+		"typeicons",
+		"themify icons",
+		"vscode icons"
+	]
 }
