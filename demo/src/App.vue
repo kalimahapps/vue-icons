@@ -187,7 +187,13 @@ onMounted(() => {
 						<a class="navbar-item is-active">Icons</a>
 						<a class="navbar-item" @click="showGettingStarted = true"> Getting Started </a>
 						<div class="navbar-end">
-							<a class="navbar-item is-flex" href="https://github.com/kalimah-apps/vue-icons">
+							<a class="navbar-item is-flex" href="https://www.npmjs.com/package/@kalimahapps/vue-icons" target="_blank">
+								<span class="icon">
+									<component :is="AllIcons['ReNpmjsFill']" />
+								</span>
+								<span>NPM</span>
+							</a>
+							<a class="navbar-item is-flex" href="https://github.com/kalimah-apps/vue-icons" target="_blank">
 								<span class="icon">
 									<component :is="AllIcons['BsGithub']" />
 								</span>
