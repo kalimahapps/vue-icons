@@ -41,18 +41,17 @@
 		"svgson": "^5.2.1"
 	},
 	"peerDependencies": {
-		"vue": "^3.2.31"
+		"vue": "^3.0.0"
 	},
 	"keywords": [
 		"icons",
 		"vue",
 		"vue3",
-		"font awesome",
-		"line awesome",
+		"font-awesome",
+		"line-awesome",
 		"feather icons",
 		"remix icon",
 		"bootstrap icons",
-		"line awesome",
 		"octicons",
 		"heroicons",
 		"ionicons",
