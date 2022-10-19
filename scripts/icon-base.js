@@ -10,7 +10,7 @@ export default function (props, svgJson) {
 
 	/**
 	 * Convert a style string to an object. Also, replace
-	 * strok and fill color with currentColor if they are
+	 * stroke and fill color with currentColor if they are
 	 * set
 	 *
 	 * @param {string} styleString Style string to convert to an object

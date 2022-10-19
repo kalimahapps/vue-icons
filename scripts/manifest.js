@@ -5,7 +5,6 @@ module.exports = [
 		group: 'bs',
 		name: 'Bootstrap Icons',
 		license: 'MIT',
-		version: '1.8.0',
 		url: 'https://icons.getbootstrap.com/',
 		repo: 'https://github.com/twbs/icons',
 		icons: [
@@ -23,7 +22,6 @@ module.exports = [
 		url: 'https://fontawesome.com/',
 		repo: 'https://github.com/FortAwesome/Font-Awesome',
 		license: 'CC BY 4.0 License',
-		version: '6',
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/font-awesome/svgs/regular/*.svg'),
@@ -52,7 +50,6 @@ module.exports = [
 		group: 'fe',
 		name: 'Feather',
 		license: 'MIT',
-		version: '4.28.0',
 		repo: 'https://github.com/feathericons/feather',
 		url: 'https://feathericons.com/',
 		icons: [
@@ -68,7 +65,6 @@ module.exports = [
 		group: 'hi',
 		name: 'Hero',
 		license: 'MIT',
-		version: '1.0.6',
 		url: 'https://heroicons.com/',
 		repo: 'https://github.com/tailwindlabs/heroicons',
 		icons: [
@@ -89,7 +85,6 @@ module.exports = [
 	{
 		group: 'io',
 		name: 'IonIcons',
-		version: '5.5.2',
 		repo: 'https://github.com/ionic-team/ionicons',
 		url: 'https://ionic.io/ionicons',
 		license: 'MIT',
@@ -127,7 +122,6 @@ module.exports = [
 		group: 'la',
 		name: 'Line Awesome',
 		license: 'MIT',
-		version: '1.2.1',
 		url: 'https://icons8.com/line-awesome',
 		repo: 'https://github.com/icons8/line-awesome',
 		icons: [
@@ -146,7 +140,6 @@ module.exports = [
 		group: 'oc',
 		name: 'Octicons',
 		license: 'MIT',
-		version: '17.0.0',
 		repo: 'https://github.com/primer/octicons',
 		url: 'https://github.com/primer/octicons',
 		icons: [
@@ -165,7 +158,6 @@ module.exports = [
 		group: 're',
 		name: 'Remix',
 		license: 'Apache 2.0',
-		version: '2.5.0',
 		url: 'https://remixicon.com/',
 		repo: 'https://github.com/Remix-Design/RemixIcon',
 		icons: [
@@ -203,7 +195,6 @@ module.exports = [
 		group: 'ti',
 		name: 'Typeicons',
 		license: 'CC BY-SA 4.0',
-		version: '2.1.1',
 		repo: 'https://github.com/stephenhutchings/typicons.font',
 		url: 'https://www.s-ings.com/typicons/',
 		icons: [
@@ -231,7 +222,6 @@ module.exports = [
 		group: 'vs',
 		name: 'VSCode',
 		license: 'MIT',
-		version: '11.10.0',
 		url: 'https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons',
 		repo: 'https://github.com/vscode-icons/vscode-icons',
 		icons: [

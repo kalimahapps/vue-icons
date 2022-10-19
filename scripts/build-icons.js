@@ -1,4 +1,4 @@
-const manifst = require('./manifst.js');
+const manifest = require('./manifest.js');
 const fs = require('fs');
 const fse = require('fs-extra');
 const fg = require('fast-glob');
@@ -6,6 +6,8 @@ const path = require('path');
 const changeCase = require('change-case');
 const { pascalCase, pascalCaseTransformMerge } = changeCase;
 const { parseSync } = require('svgson');
+const { Octokit } = require("octokit");
+const config = require('../config.js');
 
 const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,${content})\n`;
@@ -35,7 +37,7 @@ const getFilesContent = function (iconsInfo) {
 	// Get files list
 	const files = fg.sync([iconsPath], options);
 
-	files.forEach(async filePath => {
+	files.forEach(filePath => {
 		const fileName = path.basename(filePath, path.extname(filePath));
 		const formattedFileName = formatter(fileName);
 		const varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
@@ -64,7 +66,7 @@ const getFilesContent = function (iconsInfo) {
  * and extract svg files, then write it to icons directory.
  */
 const buildIcons = async function () {
-	// Empty directy first
+	// Empty directory first
 	await fse.emptyDir(path.resolve(__dirname, '../icons'));
 
 	// Hold all icons info in this array
@@ -76,8 +78,10 @@ const buildIcons = async function () {
 	// Hold icon set version, prefix, count, license ..etc
 	let iconData = [];
 
-	manifst.forEach(iconsGroup => {
-		const { name, group, url, version, license } = iconsGroup;
+	await manifest.reduce(async (prevPromise, iconsGroup) => {
+		await prevPromise;
+
+		const { name, group, url, version, license, repo: repoUrl } = iconsGroup;
 		const iconSetData = {
 			name,
 			url,
@@ -86,6 +90,31 @@ const buildIcons = async function () {
 			version,
 			count: 0
 		};
+
+		if (version === undefined) {
+			try {
+				console.log(`Getting version for ${name}...`);
+				const repoLinkData = repoUrl.split('/');
+
+				// Get owner
+				const owner = repoLinkData.slice(-2)[0];
+
+				// Get repo name
+				const repo = repoLinkData.slice(-1)[0];
+				const octokit = new Octokit({
+					auth: config.access_token
+				});
+
+				const versionDetails = await octokit.request("GET /repos/{owner}/{repo}/releases/latest", {
+					owner,
+					repo,
+				});
+
+				iconSetData.version = versionDetails.data.tag_name.replace('v', '');
+			} catch (e) {
+				console.log("Error getting the details", e.message);
+			}
+		}
 
 		const iconsContent = { name, icons: [] };
 		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
@@ -100,7 +129,7 @@ const buildIcons = async function () {
 			fileContent
 		);
 
-		// Sort icons alphabitcally
+		// Sort icons alphabetically
 		iconsContent.icons.sort((a, b) => a.localeCompare(b));
 		iconsContent.group = group;
 
@@ -110,7 +139,9 @@ const buildIcons = async function () {
 		iconData.push(iconDataToString(iconSetData));
 
 		allIconsExport += `export * from './${group}/index';\n`;
-	});
+
+
+	}, Promise.resolve([]));
 
 	// Create icon data file
 	fse.outputFileSync(
