@@ -37,11 +37,11 @@ To view the full list of icons, search and copy the import statement, check the 
 ## Icons
 
 Icon Set|Prefix|License|Version|Count
----|---|---|---
+---|---|---|---|---
 [[:icons-list:]]
 
 ## Version History
-- 0.0.6
+- 0.0.7
   - Update icons set
   
 - 0.0.2
