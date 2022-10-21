@@ -69,13 +69,13 @@ module.exports = [
 		repo: 'https://github.com/tailwindlabs/heroicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/hero/src/outline/*.svg'),
+				path: path.resolve(__dirname, '../packages/hero/src/24/outline/*.svg'),
 				formatter: name => {
 					return `hi-${name}`;
 				}
 			},
 			{
-				path: path.resolve(__dirname, '../packages/hero/src/solid/*.svg'),
+				path: path.resolve(__dirname, '../packages/hero/src/24/solid/*.svg'),
 				formatter: name => {
 					return `hi-solid-${name}`;
 				}
