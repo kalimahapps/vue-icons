@@ -66,6 +66,13 @@ export default function (props, svgJson) {
 		}
 
 		if (Array.isArray(children)) {
+
+			// If node name is title then skip looping over children
+			// as this will cause to display invalid vnode error
+			if (name === 'title') {
+				return h(name, element.attributes);
+			}
+
 			return h(name, element.attributes, children.map(createElement));
 		}
 		return h(name, element.attributes);
