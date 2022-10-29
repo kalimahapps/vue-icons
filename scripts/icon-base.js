@@ -65,6 +65,10 @@ export default function (props, svgJson) {
 			element.attributes = updateStyle(attributes);
 		}
 
+		if (name === 'svg' || name === 'path') {
+			element.type = 'element';
+		}
+
 		if (Array.isArray(children)) {
 
 			// If node name is title then skip looping over children
