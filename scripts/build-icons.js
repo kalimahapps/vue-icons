@@ -9,13 +9,14 @@ const { parseSync } = require('svgson');
 const { Octokit } = require("octokit");
 const config = require('../config.js');
 
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
 const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,${content})\n`;
 };
 
-const iconDataToString = function (data) {
-	let iconData = `[${data.name}](${data.url})|${data.prefix}|${data.license}|${data.version}|${data.count}`;
-	return iconData;
+const iconStatToString = function (data) {
+	return `[${data.name}](${data.url})|${data.prefix}|${data.license}|${data.version}|${data.count}`;
 };
 
 const generateReadmeFile = function (data) {
@@ -25,13 +26,14 @@ const generateReadmeFile = function (data) {
 	fse.outputFileSync(path.resolve(__dirname, `../README.md`), readmeTemplate);
 };
 
-const getFilesContent = function (iconsInfo) {
+const getFilesContent = function (iconsInfo, group) {
 	let { path: iconsPath, formatter, options = {}, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
+	let csvArray = [];
 
-	// Hold file names to get prevent duplicate names
+	// Hold a list of icons name
 	const uniqueFileNames = [];
 
 	// Get files list
@@ -45,19 +47,79 @@ const getFilesContent = function (iconsInfo) {
 		if (uniqueFileNames.includes(varName)) {
 			return;
 		}
-		uniqueFileNames.push(varName);
 
 		const svgString = fs.readFileSync(filePath, 'utf8');
-		const fileData = parseSync(svgString);
+		let fileData = parseSync(svgString);
 		delete fileData.attributes.xmlns;
+
+		// Check for empty children array and remove it
+		fileData = cleanUpSvg(fileData);
+
 		fileData.attributes = { ...fileData.attributes, ...attributes };
+
+		// Add name and data
+		uniqueFileNames.push(varName);
 
 		const getTemplate = svgTemplate(varName, JSON.stringify(fileData));
 		fileContent += getTemplate;
+
+		// Write to csv
+		csvArray.push({
+			name: varName,
+			set: group,
+			svg: JSON.stringify(fileData)
+		});
 	});
 
-	return { content: fileContent, names: uniqueFileNames };
+
+	return { content: fileContent, uniqueFileNames, csv: csvArray };
 };
+
+/**
+ * This function removes empty children array and empty attributes.
+ * It also removes common properties like element which will be
+ * later added by iconBase component
+ * 
+ * @param {object|array} data SVG data to clean
+ * @returns {object|array} Cleaned SVG data
+ */
+const cleanUpSvg = function (data) {
+
+	// Handle array data
+	if (Array.isArray(data)) {
+		return data.reduce((acc, item) => {
+			const cleanedItem = cleanUpSvg(item);
+			acc.push(cleanedItem);
+			return acc;
+		}, []);
+	}
+
+
+	// Handle object data
+	return Object.keys(data).reduce((acc, key) => {
+
+		// Delete empty children array
+		if (key === 'children' && data[key].length === 0) {
+			delete data[key];
+		}
+
+		// Delete empty value attribute
+		if (key === "value" && data[key] === "") {
+			delete data[key];
+		}
+
+		// Delete type attributes
+		if (key === "name" && (data.name === "svg" || data.name === 'path')) {
+			delete data.type;
+		}
+
+
+		// Push to accumulator
+		acc[key] = (key === 'children' && data[key] !== undefined) ? cleanUpSvg(data[key]) : data[key];
+
+		return acc;
+	}, {});
+}
 
 /**
  * Entry function to build icons.
@@ -76,7 +138,7 @@ const buildIcons = async function () {
 	let allIconsExport = '';
 
 	// Hold icon set version, prefix, count, license ..etc
-	let iconData = [];
+	let iconsStat = [];
 
 	await manifest.reduce(async (prevPromise, iconsGroup) => {
 		await prevPromise;
@@ -91,9 +153,10 @@ const buildIcons = async function () {
 			count: 0
 		};
 
+		console.log(`-- Processing ${name}...`);
 		if (version === undefined) {
 			try {
-				console.log(`Getting version for ${name}...`);
+				console.log(`Getting version number...`);
 				const repoLinkData = repoUrl.split('/');
 
 				// Get owner
@@ -116,13 +179,25 @@ const buildIcons = async function () {
 			}
 		}
 
+		const csvWriter = createCsvWriter({
+			path: path.resolve(__dirname, `../csv/${iconsGroup.group}.csv`),
+			header: ['name', 'set', 'svg']
+		});
+
+
 		const iconsContent = { name, icons: [] };
 		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
-		iconsGroup.icons.forEach(iconsInfo => {
-			const { names, content } = getFilesContent(iconsInfo);
-			iconsContent.icons = [...iconsContent.icons, ...names];
+		await iconsGroup.icons.reduce(async (prevPromise, iconsInfo) => {
+			await prevPromise;
+
+			const { uniqueFileNames, content, csv } = getFilesContent(iconsInfo, iconsGroup.group);
+
+			iconsContent.icons = [...iconsContent.icons, ...uniqueFileNames];
 			fileContent += content;
-		});
+
+			// await csvWriter.writeRecords(csv);
+
+		}, Promise.resolve());
 
 		fse.outputFileSync(
 			path.resolve(__dirname, `../icons/${iconsGroup.group}/index.js`),
@@ -136,7 +211,7 @@ const buildIcons = async function () {
 		fullContent.push(iconsContent);
 
 		iconSetData.count += iconsContent.icons.length;
-		iconData.push(iconDataToString(iconSetData));
+		iconsStat.push(iconStatToString(iconSetData));
 
 		allIconsExport += `export * from './${group}/index';\n`;
 
@@ -152,6 +227,6 @@ const buildIcons = async function () {
 	// Create all icons file
 	fse.outputFileSync(path.resolve(__dirname, `../icons/all.js`), allIconsExport);
 
-	generateReadmeFile(iconData);
+	generateReadmeFile(iconsStat);
 };
 buildIcons();
