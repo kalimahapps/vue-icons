@@ -34,15 +34,20 @@
 	"license": "MIT",
 	"devDependencies": {
 		"change-case": "^4.1.2",
+		"csv-writer": "^1.6.0",
 		"eslint": "^8.25.0",
 		"eslint-plugin-vue": "^9.6.0",
 		"fast-glob": "^3.2.12",
 		"fs-extra": "^10.1.0",
-		"svgson": "^5.2.1",
-		"octokit": "^2.0.9"
+		"octokit": "^2.0.9",
+		"svgson": "^5.2.1"
 	},
 	"peerDependencies": {
 		"vue": "^3.0.0"
+	},
+	"scripts": {
+		"build-icons": "node ./scripts/build-icons.js",
+		"update-submodules": "git submodule update --init --recursive"
 	},
 	"keywords": [
 		"icons",

@@ -5,6 +5,8 @@
 [![npm](https://img.shields.io/npm/dt/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons)
 ![vue-3](https://img.shields.io/badge/vue-3-%2342b883)
 
+![Twitter Follow](https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge)
+
 Thousands of SVG icons of popular icon sets that you can add seamlessly to your vue projects
 
 ### Installing
