@@ -1,5 +1,9 @@
 import { h } from 'vue';
-export default function (props, svgJson) {
+import { parseSync as svgToJson } from 'svgson';
+
+export default function (props, svg) {
+	const svgJson = svgToJson(svg);
+
 	svgJson.attributes.width = '1em';
 	svgJson.attributes.height = '1em';
 	svgJson.attributes.xmlns = 'http://www.w3.org/2000/svg';

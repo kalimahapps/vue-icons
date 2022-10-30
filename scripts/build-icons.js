@@ -5,14 +5,25 @@ const fg = require('fast-glob');
 const path = require('path');
 const changeCase = require('change-case');
 const { pascalCase, pascalCaseTransformMerge } = changeCase;
-const { parseSync } = require('svgson');
+const cliProgress = require('cli-progress');
+const colors = require('ansi-colors');
 const { Octokit } = require("octokit");
 const config = require('../config.js');
+const svgo = require('svgo');
+const svgoSettings = require('./svgo-settings.js');
 
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
+// create progress bar defaults
+const progressBar = new cliProgress.SingleBar({
+	format: `${colors.cyanBright('{bar}')}    ${colors.magenta('{percentage}%')}    ({value}/{total})`,
+	barCompleteChar: '>',
+	barIncompleteChar: '-',
+	hideCursor: true
+});
+
 const svgTemplate = function (fileName, content) {
-	return `export const ${fileName}=props=>iconBase(props,${content})\n`;
+	return `export const ${fileName}=props=>iconBase(props,\`${content}\`)\n`;
 };
 
 const iconStatToString = function (data) {
@@ -39,9 +50,24 @@ const getFilesContent = function (iconsInfo, group) {
 	// Get files list
 	const files = fg.sync([iconsPath], options);
 
+
+	// Show progress bar
+	progressBar.start(files.length, 0);
+
+
 	files.forEach(filePath => {
+
+		// update progress bar
+		progressBar.increment();
+
+		// Ignore files that are bigger than 80kb
+		const fileSize = fs.statSync(filePath).size / 1024;
+		if (fileSize > 80) {
+			return;
+		}
+
 		const fileName = path.basename(filePath, path.extname(filePath));
-		const formattedFileName = formatter(fileName);
+		const formattedFileName = (formatter) ? formatter(fileName, filePath) : fileName;
 		const varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
 
 		if (uniqueFileNames.includes(varName)) {
@@ -49,77 +75,26 @@ const getFilesContent = function (iconsInfo, group) {
 		}
 
 		const svgString = fs.readFileSync(filePath, 'utf8');
-		let fileData = parseSync(svgString);
-		delete fileData.attributes.xmlns;
-
-		// Check for empty children array and remove it
-		fileData = cleanUpSvg(fileData);
-
-		fileData.attributes = { ...fileData.attributes, ...attributes };
+		const svgStr = svgo.optimize(svgString, svgoSettings(attributes));
 
 		// Add name and data
 		uniqueFileNames.push(varName);
-
-		const getTemplate = svgTemplate(varName, JSON.stringify(fileData));
+		const getTemplate = svgTemplate(varName, svgStr.data);
 		fileContent += getTemplate;
 
 		// Write to csv
 		csvArray.push({
 			name: varName,
 			set: group,
-			svg: JSON.stringify(fileData)
+			svg: svgStr.data
 		});
 	});
 
+	// Stop progress bar
+	progressBar.stop();
 
 	return { content: fileContent, uniqueFileNames, csv: csvArray };
 };
-
-/**
- * This function removes empty children array and empty attributes.
- * It also removes common properties like element which will be
- * later added by iconBase component
- * 
- * @param {object|array} data SVG data to clean
- * @returns {object|array} Cleaned SVG data
- */
-const cleanUpSvg = function (data) {
-
-	// Handle array data
-	if (Array.isArray(data)) {
-		return data.reduce((acc, item) => {
-			const cleanedItem = cleanUpSvg(item);
-			acc.push(cleanedItem);
-			return acc;
-		}, []);
-	}
-
-
-	// Handle object data
-	return Object.keys(data).reduce((acc, key) => {
-
-		// Delete empty children array
-		if (key === 'children' && data[key].length === 0) {
-			delete data[key];
-		}
-
-		// Delete empty value attribute
-		if (key === "value" && data[key] === "") {
-			delete data[key];
-		}
-
-		// Delete type attributes
-		if (key === "name" && (data.name === "svg" || data.name === 'path')) {
-			delete data.type;
-		}
-
-
-		// Push to accumulator
-		acc[key] = (key === 'children' && data[key] !== undefined) ? cleanUpSvg(data[key]) : data[key];
-
-		return acc;
-	}, {});
-}
 
 /**
  * Entry function to build icons.
@@ -130,6 +105,7 @@ const cleanUpSvg = function (data) {
 const buildIcons = async function () {
 	// Empty directory first
 	await fse.emptyDir(path.resolve(__dirname, '../icons'));
+	await fse.emptyDir(path.resolve(__dirname, '../csv'));
 
 	// Hold all icons info in this array
 	let fullContent = [];
@@ -153,10 +129,13 @@ const buildIcons = async function () {
 			count: 0
 		};
 
-		console.log(`-- Processing ${name}...`);
+		console.log('');
+		console.log('');
+		console.log('');
+		console.log('');
+		console.log(`Processing ${name} ...`);
 		if (version === undefined) {
 			try {
-				console.log(`Getting version number...`);
 				const repoLinkData = repoUrl.split('/');
 
 				// Get owner
@@ -175,10 +154,11 @@ const buildIcons = async function () {
 
 				iconSetData.version = versionDetails.data.tag_name.replace('v', '');
 			} catch (e) {
-				console.log("Error getting the details", e.message);
+				console.log(`Unable to get version for ${name}`, e.message);
 			}
 		}
 
+		// Create csv write
 		const csvWriter = createCsvWriter({
 			path: path.resolve(__dirname, `../csv/${iconsGroup.group}.csv`),
 			header: ['name', 'set', 'svg']
@@ -195,7 +175,7 @@ const buildIcons = async function () {
 			iconsContent.icons = [...iconsContent.icons, ...uniqueFileNames];
 			fileContent += content;
 
-			// await csvWriter.writeRecords(csv);
+			await csvWriter.writeRecords(csv);
 
 		}, Promise.resolve());
 
@@ -214,7 +194,6 @@ const buildIcons = async function () {
 		iconsStat.push(iconStatToString(iconSetData));
 
 		allIconsExport += `export * from './${group}/index';\n`;
-
 
 	}, Promise.resolve([]));
 
