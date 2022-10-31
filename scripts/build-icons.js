@@ -38,7 +38,7 @@ const generateReadmeFile = function (data) {
 };
 
 const getFilesContent = function (iconsInfo, group) {
-	let { path: iconsPath, formatter, options = {}, attributes = {} } = iconsInfo;
+	let { path: iconsPath, formatter, options = {}, filesFilter, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
@@ -48,8 +48,12 @@ const getFilesContent = function (iconsInfo, group) {
 	const uniqueFileNames = [];
 
 	// Get files list
-	const files = fg.sync([iconsPath], options);
+	let files = fg.sync([iconsPath], options);
 
+	// Do postprocessing on files
+	if (filesFilter) {
+		files = filesFilter(files);
+	}
 
 	// Show progress bar
 	progressBar.start(files.length, 0);
@@ -165,14 +169,15 @@ const buildIcons = async function () {
 		});
 
 
-		const iconsContent = { name, icons: [] };
+		const iconsContent = { name, count: 0 };
 		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
 		await iconsGroup.icons.reduce(async (prevPromise, iconsInfo) => {
 			await prevPromise;
 
 			const { uniqueFileNames, content, csv } = getFilesContent(iconsInfo, iconsGroup.group);
 
-			iconsContent.icons = [...iconsContent.icons, ...uniqueFileNames];
+			iconsContent.count += uniqueFileNames.length;
+			// iconsContent.icons = [...iconsContent.icons, ...uniqueFileNames];
 			fileContent += content;
 
 			await csvWriter.writeRecords(csv);
@@ -184,13 +189,11 @@ const buildIcons = async function () {
 			fileContent
 		);
 
-		// Sort icons alphabetically
-		iconsContent.icons.sort((a, b) => a.localeCompare(b));
 		iconsContent.group = group;
 
 		fullContent.push(iconsContent);
 
-		iconSetData.count += iconsContent.icons.length;
+		iconSetData.count += iconsContent.count;
 		iconsStat.push(iconStatToString(iconSetData));
 
 		allIconsExport += `export * from './${group}/index';\n`;
