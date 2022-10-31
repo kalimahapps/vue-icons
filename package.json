@@ -1,7 +1,7 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "0.0.9",
-	"description": "SVG icons of popular icon sets that you can add seamlessly to vue projects",
+	"version": "1.0.0",
+	"description": "50,000+ SVG icons of popular icon sets that you can add seamlessly to vue+vite projects",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
@@ -14,17 +14,40 @@
 	"exports": {
 		".": "./index.js",
 		"./all": "./icons/all.js",
+		"./ai": "./icons/ai/index.js",
+		"./an": "./icons/an/index.js",
 		"./bs": "./icons/bs/index.js",
+		"./bx": "./icons/bx/index.js",
+		"./ca": "./icons/ca/index.js",
+		"./cg": "./icons/cg/index.js",
+		"./ci": "./icons/ci/index.js",
+		"./co": "./icons/co/index.js",
+		"./de": "./icons/de/index.js",
 		"./fa": "./icons/fa/index.js",
 		"./fe": "./icons/fe/index.js",
+		"./fl": "./icons/fl/index.js",
+		"./gv": "./icons/gv/index.js",
 		"./hi": "./icons/hi/index.js",
 		"./io": "./icons/io/index.js",
+		"./ja": "./icons/ja/index.js",
 		"./la": "./icons/la/index.js",
+		"./li": "./icons/li/index.js",
+		"./ma": "./icons/ma/index.js",
+		"./md": "./icons/md/index.js",
 		"./oc": "./icons/oc/index.js",
+		"./ow": "./icons/ow/index.js",
+		"./ph": "./icons/ph/index.js",
+		"./pr": "./icons/pr/index.js",
+		"./px": "./icons/px/index.js",
 		"./re": "./icons/re/index.js",
+		"./si": "./icons/si/index.js",
+		"./ta": "./icons/ta/index.js",
 		"./th": "./icons/th/index.js",
 		"./ti": "./icons/ti/index.js",
+		"./ui": "./icons/ui/index.js",
+		"./un": "./icons/un/index.js",
 		"./vs": "./icons/vs/index.js",
+		"./wi": "./icons/wi/index.js",
 		"./content": "./icons/content.js"
 	},
 	"workspaces": [
@@ -43,7 +66,8 @@
 		"fs-extra": "^10.1.0",
 		"octokit": "^2.0.9",
 		"svgo": "^3.0.0",
-		"svgson": "^5.2.1"
+		"svgson": "^5.2.1",
+		"vue": "^3.2.41"
 	},
 	"peerDependencies": {
 		"vue": "^3.0.0"
@@ -56,6 +80,7 @@
 		"icons",
 		"vue",
 		"vue3",
+		"vite",
 		"font-awesome",
 		"line-awesome",
 		"feather icons",
@@ -66,6 +91,16 @@
 		"ionicons",
 		"typeicons",
 		"themify icons",
-		"vscode icons"
+		"vscode icons",
+		"ant design",
+		"material design",
+		"jamicons",
+		"tabler icons",
+		"boxicons",
+		"simple icons",
+		"fluent ui system",
+		"phosphor icons",
+		"carbon icons",
+		"weather icons"
 	]
 }
