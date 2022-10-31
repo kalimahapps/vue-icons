@@ -1,13 +1,13 @@
 <img src="https://raw.githubusercontent.com/kalimah-apps/vue-icons/master/logo.svg" width="120" alt="Vue Icons">
 
-# [Vue Icons](https://kalimah-apps.github.io/vue-icons/)
+# [Vue Icons](https://vue-icons.kalimah-apps.com/)
 [![npm](https://img.shields.io/npm/v/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons) 
 [![npm](https://img.shields.io/npm/dt/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons)
 ![vue-3](https://img.shields.io/badge/vue-3-%2342b883)
 
 ![Twitter Follow](https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge)
 
-Thousands of SVG icons of popular icon sets that you can add seamlessly to your vue projects
+50,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 
 ### Installing
 
@@ -40,24 +40,60 @@ To view the full list of icons, search and copy the import statement, check the 
 
 | Icon Set                                                                                     | Prefix | License                     | Version | Count |
 | -------------------------------------------------------------------------------------------- | ------ | --------------------------- | ------- | ----- |
-| [Bootstrap Icons](https://icons.getbootstrap.com/)                                           | bs     | MIT                         | 1.9.1   | 1811  |
-| [Font Awesome](https://fontawesome.com/)                                                     | fa     | CC BY 4.0 License           | 6.2.0   | 2016  |
+| [Academicons](https://jpswalsh.github.io/academicons/)                                       | ai     | SIL OFL 1.1                 | 1.9.2   | 149   |
+| [Ant Design](https://ant.design/components/icon/)                                            | an     | MIT                         | 4.2.1   | 789   |
+| [Bootstrap Icons](https://icons.getbootstrap.com/)                                           | bs     | MIT                         | 1.9.1   | 1851  |
+| [Boxicons](https://boxicons.com/)                                                            | bx     | CC 4.0                      | 2.1.4   | 1634  |
+| [Carbon](https://carbondesignsystem.com/)                                                    | ca     | Apache-2.0                  | 11.16.0 | 1849  |
+| [Circum](https://circumicons.com/)                                                           | ci     | MPL-2.0                     | 2.0.0   | 285   |
+| [Core UI Icons](https://coreui.io/icons/)                                                    | co     | CC 4.0                      | 2.0.1   | 1569  |
+| [css.gg](https://css.gg/)                                                                    | cg     | MIT                         | 2.0.0   | 704   |
+| [Devicons](https://devicon.dev/)                                                             | de     | MIT                         | 2.15.1  | 784   |
+| [FluentUI System](https://github.com/microsoft/fluentui-system-icons)                        | fl     | MIT                         | 1.1.186 | 4235  |
+| [Font Awesome](https://fontawesome.com/)                                                     | fa     | CC BY 4.0                   | 6.2.0   | 2016  |
 | [Feather](https://feathericons.com/)                                                         | fe     | MIT                         | 4.29.0  | 287   |
+| [Govicons](http://govicons.io/)                                                              | gv     | SIL OFL 1.1                 | 1.6.0   | 136   |
 | [Hero](https://heroicons.com/)                                                               | hi     | MIT                         | 2.0.12  | 584   |
+| [Jamicons](https://jam-icons.com/)                                                           | ja     | MIT                         | 3.1.0   | 940   |
 | [IonIcons](https://ionic.io/ionicons)                                                        | io     | MIT                         | 6.0.3   | 1332  |
 | [Line Awesome](https://icons8.com/line-awesome)                                              | la     | MIT                         | 1.2.1   | 1544  |
-| [Octicons](https://github.com/primer/octicons)                                               | oc     | MIT                         | 17.8.0  | 239   |
+| [Linearicons](https://linearicons.com/free)                                                  | li     | CC BY-SA 4.0                | -       | 170   |
+| [Maki](https://labs.mapbox.com/maki-icons)                                                   | ma     | CC0 1.0 Universal           | 8.0.0   | 211   |
+| [Material Design](https://fonts.google.com/icons)                                            | md     | Apache-2.0                  | 4.0.0   | 10750 |
+| [Octicons](https://github.com/primer/octicons)                                               | oc     | MIT                         | 17.8.0  | 241   |
+| [OpenWeb](https://pfefferle.dev/openwebicons/)                                               | ow     | SIL Open Font License       | 1.6.3   | 115   |
+| [Phosphor](https://phosphoricons.com/)                                                       | ph     | MIT                         | 1.4.1   | 6282  |
+| [Pixelarticons](https://pixelarticons.com/)                                                  | px     | MIT                         | 1.7.0   | 480   |
+| [Prime Icons](https://github.com/primefaces/primeicons)                                      | pr     | MIT                         | 6.0.1   | 260   |
 | [Remix](https://remixicon.com/)                                                              | re     | Apache 2.0                  | 2.5.0   | 2271  |
+| [Simple Icons](https://simpleicons.org/)                                                     | si     | CC0 1.0                     | 7.18.0  | 2402  |
+| [Tabler](https://tabler-icons.io/)                                                           | ta     | MIT                         | 1.108.0 | 2907  |
 | [Themify](https://themify.me/themify-icons)                                                  | th     | SIL Open Font License (OFL) | 1.0.1   | 352   |
-| [Typeicons](https://www.s-ings.com/typicons/)                                                | ti     | CC BY-SA 4.0                | 2.1.2   | 336   |
-| [VSCode](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) | vs     | MIT                         | 12.0.1  | 1186  |
+| [Typicons](https://www.s-ings.com/typicons/)                                                 | ti     | CC BY-SA 4.0                | 2.1.2   | 336   |
+| [Unicons](https://iconscout.com/unicons/explore/line)                                        | un     | IconScout Simple License    | 3.0.0   | 1206  |
+| [uiw icons](https://uiwjs.github.io/icons/)                                                  | ui     | MIT                         | 2.6.7   | 214   |
+| [VSCode](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons) | vs     | MIT                         | 12.0.1  | 1180  |
+| [Weather Icons](https://erikflowers.github.io/weather-icons/)                                | wi     | SIL OFL 1.1                 | 2.0.10  | 219   |
 
 ## Version History
+- 1.0.0
+  - Added 23 icon sets
+  - Export format is changed to SVG to decrease package size
+  - Updated demo UI and search
+
 - 0.0.7
   - Update icons set
   
 - 0.0.2
   - Initial Release
+
+## Other projects
+### [Vue Popper](https://www.npmjs.com/package/@kalimahapps/vue-popper)
+A Vue 3 component that uses popper.js to position elements
+
+### [Vite inherit attrs](https://www.npmjs.com/package/vite-plugin-vue-setup-inherit-attrs)
+A vite plugin that adds support for inheritAttrs in vue-setup
+
 
 ## License
 
