@@ -2,6 +2,50 @@ const path = require('path');
 
 module.exports = [
 	{
+		group: 'ai',
+		name: 'Academicons',
+		license: 'SIL OFL 1.1',
+		url: 'https://jpswalsh.github.io/academicons/',
+		repo: 'https://github.com/jpswalsh/academicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/academicons/svg/*.svg'),
+				formatter: fileName => `ai-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'an',
+		name: 'Ant Design',
+		license: 'MIT',
+		version: "4.2.1",
+		url: 'https://ant.design/components/icon/',
+		repo: 'https://github.com/ant-design/ant-design-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/filled/*.svg'),
+				formatter: fileName => `an-filled-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/outlined/*.svg'),
+				formatter: fileName => `an-outlined-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
+				formatter: fileName => `an-twotone-${fileName}`
+			}
+		]
+	},
+	{
 		group: 'bs',
 		name: 'Bootstrap Icons',
 		license: 'MIT',
@@ -17,11 +61,219 @@ module.exports = [
 		]
 	},
 	{
+		group: 'bx',
+		name: 'Boxicons',
+		license: 'CC 4.0',
+		url: 'https://boxicons.com/',
+		repo: 'https://github.com/atisawd/boxicons',
+		version: '2.1.4',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/boxicons/svg/logos/*.svg'),
+				formatter: fileName => `bx-${fileName.replace('bxl-', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/boxicons/svg/regular/*.svg'),
+				formatter: fileName => `bx-${fileName.replace('bx-', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/boxicons/svg/solid/*.svg'),
+				formatter: fileName => `bx-solid-${fileName.replace('bxs-', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+		]
+	},
+	{
+		group: 'ca',
+		name: 'Carbon',
+		license: 'Apache-2.0',
+		url: 'https://carbondesignsystem.com/',
+		repo: 'https://github.com/carbon-design-system/carbon',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/carbon/packages/icons/src/svg/32/*.svg'),
+				formatter: fileName => {
+					// Remove double dashes
+					fileName = fileName.replace(/--/g, '-');
+					return `ca-${fileName}`;
+				},
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'ci',
+		name: 'Circum',
+		version: "2.0.0",
+		license: 'MPL-2.0',
+		url: 'https://circumicons.com/',
+		repo: 'https://github.com/Klarr-Agency/Circum-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/circum/svg/*.svg'),
+				formatter: fileName => `ci-${fileName.replaceAll('_', '-')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'co',
+		name: 'Core UI Icons',
+		license: 'CC 4.0',
+		url: 'https://coreui.io/icons/',
+		repo: 'https://github.com/coreui/coreui-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/coreui/svg/brand/*.svg'),
+				formatter: fileName => `co-brand-${fileName.replace('cib-', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/coreui/svg/flag/*.svg'),
+				formatter: fileName => `co-flag-${fileName.replace('cif-', '')}`,
+				attributes: {
+					multicolor: true
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/coreui/svg/free/*.svg'),
+				formatter: fileName => `co-${fileName.replace('cil-', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+		]
+	},
+	{
+		group: 'cg',
+		name: 'css.gg',
+		license: 'MIT',
+		url: 'https://css.gg/',
+		repo: 'https://github.com/astrit/css.gg',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/css-gg/icons/svg/*.svg'),
+				formatter: fileName => `cg-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'de',
+		name: 'Devicons',
+		license: 'MIT',
+		url: 'https://devicon.dev/',
+		repo: 'https://github.com/devicons/devicon',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/devicons/icons/**/*.svg'),
+				formatter: fileName => `de-${fileName}`,
+				attributes: {
+					multicolor: true
+				}
+			},
+		]
+	},
+	{
+		group: 'fl',
+		name: 'FluentUI System',
+		license: 'MIT',
+		version: "1.1.186",
+		repo: 'https://github.com/microsoft/fluentui-system-icons',
+		url: 'https://github.com/microsoft/fluentui-system-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/fluentui-system/assets/*/SVG/*.svg'),
+				formatter: fileName => {
+					return fileName.replace(/ic_fluent_(.+)_([0-9]+)_(.+)/g, (match, name, size, type) => {
+						const cleanName = name.replaceAll(/_/g, '-');
+						if (type.toLowerCase() === 'regular') {
+							return `fl-${cleanName}`;
+						}
+						return `fl-${type}-${cleanName}`;
+					});
+				},
+				attributes: {
+					pathfill: 'currentColor'
+				},
+				filesFilter: (filesList) => {
+					// Filter files list to get the highest resolution from each icon folder
+
+
+					// Group files based on parent folder name
+					const groupedFiles = filesList.reduce((acc, filePath) => {
+						const folderName = path.basename(path.join(filePath, '..', '..'));
+
+						// Clean up folder name
+						const cleanedFolderName = folderName.replace("/\s/g", '-').toLowerCase();
+						if (!acc[cleanedFolderName]) {
+							acc[cleanedFolderName] = [];
+						}
+
+						acc[cleanedFolderName].push(filePath);
+						return acc;
+					}, {});
+
+					const sizes = ['48', '32', '24', '20', '16'];
+
+					// Loop through each group and return the file with the highest resolution
+					const finalFilesList = Object.keys(groupedFiles).reduce((acc, groupName) => {
+						let files = groupedFiles[groupName];
+
+						let sizeFound = 0;
+
+						// Sort files in reverse alphabetically 
+						files = files.sort((a, b) => b.localeCompare(a));
+
+						// Find the highest resolution inside the group
+						for (let i = 0; i < sizes.length; i++) {
+							const size = sizes[i];
+							const file = files.find(file => file.includes(size));
+							if (file) {
+								sizeFound = size;
+								break;
+							}
+						}
+
+						// Get the file with the highest resolution
+						files.forEach(filePath => {
+							const fileName = path.basename(filePath);
+							if (!fileName.includes(`_${sizeFound}_`)) {
+								return;
+							}
+							acc.push(filePath);
+						});
+						return acc;
+					}, []);
+
+
+					return finalFilesList;
+				}
+			}
+		]
+	},
+	{
 		group: 'fa',
 		name: 'Font Awesome',
 		url: 'https://fontawesome.com/',
 		repo: 'https://github.com/FortAwesome/Font-Awesome',
-		license: 'CC BY 4.0 License',
+		license: 'CC BY 4.0',
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/font-awesome/svgs/regular/*.svg'),
@@ -62,6 +314,22 @@ module.exports = [
 		]
 	},
 	{
+		group: 'gv',
+		name: 'Govicons',
+		license: 'SIL OFL 1.1',
+		repo: 'https://github.com/540co/govicons',
+		url: 'http://govicons.io/',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/govicons/raw-svg/*.svg'),
+				formatter: fileName => `gv-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
 		group: 'hi',
 		name: 'Hero',
 		license: 'MIT',
@@ -79,6 +347,26 @@ module.exports = [
 				formatter: name => {
 					return `hi-solid-${name}`;
 				}
+			}
+		]
+	},
+	{
+		group: 'ja',
+		name: 'Jamicons',
+		license: 'MIT',
+		url: 'https://jam-icons.com/',
+		repo: 'https://github.com/michaelampr/jam',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/jamicons/icons/*-f.svg'),
+				formatter: fileName => `ja-fill-${fileName.replace('-f', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/jamicons/icons/!(*-f).svg'),
+				formatter: fileName => `ja-${fileName}`
 			}
 		]
 	},
@@ -137,6 +425,68 @@ module.exports = [
 		]
 	},
 	{
+		group: 'li',
+		name: 'Linearicons',
+		license: 'CC BY-SA 4.0',
+		version: "-",
+		url: 'https://linearicons.com/free',
+		repo: 'https://github.com/cjpatoilo/linearicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/linearicons/dist/svg/*.svg'),
+				formatter: fileName => `li-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'ma',
+		name: 'Maki',
+		license: 'CC0 1.0 Universal',
+		url: 'https://labs.mapbox.com/maki-icons',
+		repo: 'https://github.com/mapbox/maki',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/maki-icons/icons/*.svg'),
+				formatter: fileName => `ma-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'md',
+		name: 'Material Design',
+		license: 'Apache-2.0',
+		url: 'https://fonts.google.com/icons',
+		repo: 'https://github.com/google/material-design-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/material-design/src/**/**/24px.svg'),
+				formatter: (fileName, filePath) => {
+					// Get two levels up from the file path using node
+					const twoLevelsUp = path.basename(path.join(filePath, '..', '..'));
+					const iconTypeFolder = path.basename(path.dirname(filePath));
+
+					// Replace underscore to dash
+					const iconName = twoLevelsUp.replace(/_/g, '-');
+					const iconType = iconTypeFolder.replace('materialicons', '');
+
+					if (iconType.length === 0) {
+						return `md-${iconName}`;
+					}
+					return `md-${iconType}-${iconName}`;
+				},
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
 		group: 'oc',
 		name: 'Octicons',
 		license: 'MIT',
@@ -155,6 +505,99 @@ module.exports = [
 		]
 	},
 	{
+		group: 'ow',
+		name: 'OpenWeb',
+		license: 'SIL Open Font License',
+		url: 'https://pfefferle.dev/openwebicons/',
+		repo: 'https://github.com/pfefferle/openwebicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/openwebicons/svg/*.svg'),
+				formatter: fileName => `ow-${fileName}`,
+			}
+		]
+	},
+	{
+		group: 'ph',
+		name: 'Phosphor',
+		license: 'MIT',
+		url: 'https://phosphoricons.com/',
+		repo: 'https://github.com/phosphor-icons/phosphor-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/regular/*.svg'),
+				formatter: fileName => `ph-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/bold/*.svg'),
+				formatter: fileName => `ph-bold-${fileName.replace('-bold', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/duotone/*.svg'),
+				formatter: fileName => `ph-duotone-${fileName.replace('-duotone', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/fill/*.svg'),
+				formatter: fileName => `ph-fill-${fileName.replace('-fill', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/light/*.svg'),
+				formatter: fileName => `ph-light-${fileName.replace('-light', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/phosphor/assets/thin/*.svg'),
+				formatter: fileName => `ph-thin-${fileName.replace('-thin', '')}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			},
+		]
+	},
+	{
+		group: 'px',
+		name: 'Pixelarticons',
+		license: 'MIT',
+		url: 'https://pixelarticons.com/',
+		repo: 'https://github.com/halfmage/pixelarticons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/pixelarticons/svg/*.svg'),
+				formatter: fileName => `px-${fileName}`
+			}
+		]
+	},
+	{
+		group: 'pr',
+		name: 'Prime Icons',
+		license: 'MIT',
+		url: 'https://github.com/primefaces/primeicons',
+		repo: 'https://github.com/primefaces/primeicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/primeicons/raw-svg/*.svg'),
+				formatter: fileName => `pr-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
 		group: 're',
 		name: 'Remix',
 		license: 'Apache 2.0',
@@ -166,6 +609,38 @@ module.exports = [
 				formatter: name => {
 					return `re-${name}`;
 				},
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'si',
+		name: 'Simple Icons',
+		license: 'CC0 1.0',
+		url: 'https://simpleicons.org/',
+		repo: 'https://github.com/simple-icons/simple-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/simple-icons/icons/*.svg'),
+				formatter: fileName => `si-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'ta',
+		name: 'Tabler',
+		license: 'MIT',
+		url: 'https://tabler-icons.io/',
+		repo: 'https://github.com/tabler/tabler-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/tabler/icons/*.svg'),
+				formatter: fileName => `ta-${fileName}`,
 				attributes: {
 					fill: 'currentColor'
 				}
@@ -193,7 +668,7 @@ module.exports = [
 	},
 	{
 		group: 'ti',
-		name: 'Typeicons',
+		name: 'Typicons',
 		license: 'CC BY-SA 4.0',
 		repo: 'https://github.com/stephenhutchings/typicons.font',
 		url: 'https://www.s-ings.com/typicons/',
@@ -219,6 +694,35 @@ module.exports = [
 		]
 	},
 	{
+		group: 'un',
+		name: 'Unicons',
+		license: 'IconScout Simple License',
+		url: 'https://iconscout.com/unicons/explore/line',
+		repo: 'https://github.com/Iconscout/unicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/unicons/svg/line/*.svg'),
+				formatter: fileName => `un-${fileName}`,
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
+		group: 'ui',
+		name: 'uiw icons',
+		license: 'MIT',
+		url: 'https://uiwjs.github.io/icons/',
+		repo: 'https://github.com/uiwjs/icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/uiw-icons/icon/*.svg'),
+				formatter: fileName => `ui-${fileName}`
+			}
+		]
+	},
+	{
 		group: 'vs',
 		name: 'VSCode',
 		license: 'MIT',
@@ -232,6 +736,21 @@ module.exports = [
 				},
 				attributes: {
 					multicolor: true
+				}
+			}
+		]
+	},
+	{
+		group: 'wi',
+		name: 'Weather Icons',
+		license: 'SIL OFL 1.1',
+		url: 'https://erikflowers.github.io/weather-icons/',
+		repo: 'https://github.com/erikflowers/weather-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/weather-icons/svg/*.svg'),
+				attributes: {
+					fill: 'currentColor'
 				}
 			}
 		]

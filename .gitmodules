@@ -31,3 +31,72 @@
 [submodule "packages/themify"]
 	path = packages/themify
 	url = https://github.com/kalimah-apps/Themify-Icons
+[submodule "packages/academicons"]
+	path = packages/academicons
+	url = https://github.com/jpswalsh/academicons.git
+[submodule "packages/boxicons"]
+	path = packages/boxicons
+	url = https://github.com/atisawd/boxicons.git
+[submodule "packages/coreui"]
+	path = packages/coreui
+	url = https://github.com/coreui/coreui-icons.git
+[submodule "packages/devicons"]
+	path = packages/devicons
+	url = https://github.com/devicons/devicon
+[submodule "packages/govicons"]
+	path = packages/govicons
+	url = https://github.com/540co/govicons.git
+[submodule "packages/jamicons"]
+	path = packages/jamicons
+	url = https://github.com/michaelampr/jam.git
+[submodule "packages/linearicons"]
+	path = packages/linearicons
+	url = https://github.com/cjpatoilo/linearicons.git
+[submodule "packages/primeicons"]
+	path = packages/primeicons
+	url = https://github.com/primefaces/primeicons.git
+[submodule "packages/pixelarticons"]
+	path = packages/pixelarticons
+	url = https://github.com/halfmage/pixelarticons.git
+[submodule "packages/simple-icons"]
+	path = packages/simple-icons
+	url = https://github.com/simple-icons/simple-icons.git
+[submodule "packages/weather-icons"]
+	path = packages/weather-icons
+	url = https://github.com/erikflowers/weather-icons.git
+[submodule "packages/maki-icons"]
+	path = packages/maki-icons
+	url = https://github.com/mapbox/maki.git
+[submodule "packages/openwebicons"]
+	path = packages/openwebicons
+	url = https://github.com/pfefferle/openwebicons.git
+[submodule "packages/uiw-icons"]
+	path = packages/uiw-icons
+	url = https://github.com/uiwjs/icons.git
+[submodule "packages/unicons"]
+	path = packages/unicons
+	url = https://github.com/Iconscout/unicons.git
+[submodule "packages/material-design"]
+	path = packages/material-design
+	url = https://github.com/google/material-design-icons.git
+[submodule "packages/tabler"]
+	path = packages/tabler
+	url = https://github.com/tabler/tabler-icons.git
+[submodule "packages/ant-design"]
+	path = packages/ant-design
+	url = https://github.com/ant-design/ant-design-icons.git
+[submodule "packages/carbon"]
+	path = packages/carbon
+	url = https://github.com/carbon-design-system/carbon.git
+[submodule "packages/fluentui-system"]
+	path = packages/fluentui-system
+	url = https://github.com/microsoft/fluentui-system-icons.git
+[submodule "packages/circum"]
+	path = packages/circum
+	url = https://github.com/Klarr-Agency/Circum-Icons.git
+[submodule "packages/phosphor"]
+	path = packages/phosphor
+	url = https://github.com/phosphor-icons/phosphor-icons.git
+[submodule "packages/css-gg"]
+	path = packages/css-gg
+	url = https://github.com/astrit/css.gg.git
