@@ -5,7 +5,9 @@ module.exports = (attributes) => {
 			params: {
 				overrides: {
 					removeViewBox: false,
-
+					inlineStyles: {
+						onlyMatchedOnce: false,
+					},
 				}
 			}
 		},
