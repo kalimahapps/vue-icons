@@ -1,17 +1,14 @@
 import { h } from 'vue';
 import { parseSync as svgToJson } from 'svgson';
 
-export default function (props, svg) {
-	const svgJson = svgToJson(svg);
+export default function (svg, props = {}) {
+	const svgJsonParsed = svgToJson(svg);
 
-	svgJson.attributes.width = '1em';
-	svgJson.attributes.height = '1em';
-	svgJson.attributes.xmlns = 'http://www.w3.org/2000/svg';
+	svgJsonParsed.attributes.width = '1em';
+	svgJsonParsed.attributes.height = '1em';
+	svgJsonParsed.attributes.xmlns = 'http://www.w3.org/2000/svg';
 
-	svgJson.attributes = { ...svgJson.attributes, ...props };
-
-	const { multicolor } = svgJson.attributes;
-
+	const { multicolor, pathfill } = svgJsonParsed.attributes;
 	/**
 	 * Convert a style string to an object. Also, replace
 	 * stroke and fill color with currentColor if they are
@@ -40,7 +37,7 @@ export default function (props, svg) {
 	const updateStyle = function (attributes) {
 		const { fill, stroke } = attributes;
 
-		if (typeof fill !== 'undefined' && fill !== 'none') {
+		if ((typeof fill !== 'undefined' && fill !== 'none') || pathfill !== undefined) {
 			attributes.fill = typeof props.color !== 'undefined' ? props.color : 'currentColor';
 		}
 
@@ -65,16 +62,11 @@ export default function (props, svg) {
 	const createElement = function (element) {
 		const { name, attributes, children } = element;
 
-		if (multicolor === 'undefined' || multicolor !== true) {
+		if (multicolor !== true) {
 			element.attributes = updateStyle(attributes);
 		}
 
-		if (name === 'svg' || name === 'path') {
-			element.type = 'element';
-		}
-
 		if (Array.isArray(children)) {
-
 			// If node name is title then skip looping over children
 			// as this will cause to display invalid vnode error
 			if (name === 'title') {
@@ -87,5 +79,5 @@ export default function (props, svg) {
 	};
 
 	// use an array to return multiple root nodes
-	return createElement(svgJson);
+	return createElement(svgJsonParsed);
 }
