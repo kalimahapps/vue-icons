@@ -1,6 +1,6 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "50,000+ SVG icons of popular icon sets that you can add seamlessly to vue+vite projects",
 	"sideEffects": false,
 	"repository": {
@@ -12,7 +12,7 @@
 	},
 	"homepage": "https://github.com/kalimah-apps/vue-icons#readme",
 	"exports": {
-		".": "./index.js",
+		"./resolver": "./helpers/resolver.js",
 		"./all": "./icons/all.js",
 		"./ai": "./icons/ai/index.js",
 		"./an": "./icons/an/index.js",

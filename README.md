@@ -32,6 +32,27 @@ export default {
 <style></style>
 ```
 
+## Using resolvers with [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+vue-icons provides a resolver that can be used with unplugin-vue-components so you don't have to add `import IconName from '@kalimahapps/vue-icons/iconSet'` for every icon you want to use. 
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import VueIconsResolver from '@kalimahapps/vue-icons/resolver';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components({
+      resolvers: [
+        VueIconsResolver(),
+      ],
+    })
+  ],
+});
+```
+
 ## Demo
 
 To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
@@ -67,7 +88,7 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Prime Icons](https://github.com/primefaces/primeicons)                                      | pr     | MIT                         | 6.0.1   | 260   |
 | [Remix](https://remixicon.com/)                                                              | re     | Apache 2.0                  | 2.5.0   | 2271  |
 | [Simple Icons](https://simpleicons.org/)                                                     | si     | CC0 1.0                     | 7.18.0  | 2402  |
-| [Tabler](https://tabler-icons.io/)                                                           | ta     | MIT                         | 1.108.0 | 2907  |
+| [Tabler](https://tabler-icons.io/)                                                           | ta     | MIT                         | 1.109.0 | 2907  |
 | [Themify](https://themify.me/themify-icons)                                                  | th     | SIL Open Font License (OFL) | 1.0.1   | 352   |
 | [Typicons](https://www.s-ings.com/typicons/)                                                 | ti     | CC BY-SA 4.0                | 2.1.2   | 336   |
 | [Unicons](https://iconscout.com/unicons/explore/line)                                        | un     | IconScout Simple License    | 3.0.0   | 1206  |
@@ -76,6 +97,9 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Weather Icons](https://erikflowers.github.io/weather-icons/)                                | wi     | SIL OFL 1.1                 | 2.0.10  | 219   |
 
 ## Version History
+- 1.0.1
+  - Added icons resolver
+
 - 1.0.0
   - Added 23 icon sets
   - Export format is changed to SVG to decrease package size

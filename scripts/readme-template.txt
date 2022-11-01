@@ -32,6 +32,27 @@ export default {
 <style></style>
 ```
 
+## Using resolvers with [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+vue-icons provides a resolver that can be used with unplugin-vue-components so you don't have to add `import IconName from '@kalimahapps/vue-icons/iconSet'` for every icon you want to use. 
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import VueIconsResolver from '@kalimahapps/vue-icons/resolver';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components({
+      resolvers: [
+        VueIconsResolver(),
+      ],
+    })
+  ],
+});
+```
+
 ## Demo
 
 To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
@@ -43,6 +64,9 @@ Icon Set|Prefix|License|Version|Count
 [[:icons-list:]]
 
 ## Version History
+- 1.0.1
+  - Added icons resolver
+
 - 1.0.0
   - Added 23 icon sets
   - Export format is changed to SVG to decrease package size
