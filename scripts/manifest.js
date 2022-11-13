@@ -41,7 +41,10 @@ module.exports = [
 			},
 			{
 				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
-				formatter: fileName => `an-twotone-${fileName}`
+				formatter: fileName => `an-twotone-${fileName}`,
+				attributes: {
+					twotone: true
+				}
 			}
 		]
 	},
@@ -330,6 +333,93 @@ module.exports = [
 		]
 	},
 	{
+		group: 'he',
+		name: 'Healthicons',
+		license: 'MIT',
+		version: "0.1.0",
+		repo: 'https://github.com/resolvetosavelives/healthicons',
+		url: 'https://healthicons.org/',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/healthicons/public/icons/svg/outline/**/*.svg'),
+				formatter: (fileName, filePath) => {
+					const folderName = path.basename(path.dirname(filePath));
+
+					if (folderName !== 'blood') {
+						return `he-outline-${fileName.replaceAll("_", "-")}`;
+					}
+
+					const abbreviationToFull = {
+						'a_n': 'a-negative',
+						'a_p': 'a-positive',
+						'ab_n': 'ab-negative',
+						'ab_p': 'ab-positive',
+						'b_n': 'b-negative',
+						'b_p': 'b-positive',
+						'o_n': 'o-negative',
+						'o_p': 'o-positive',
+						'rh_n': 'rh-negative',
+						'rh_p': 'rh-positive'
+					}
+
+					// Replace blood group abbreviations with full names using an array
+					const abbr = Object.keys(abbreviationToFull).find(abbreviation => {
+						return fileName.endsWith(abbreviation);
+					});
+
+					if (abbr === undefined) {
+						return `he-outline-${fileName.replaceAll("_", "-")}`;
+					}
+
+					const full = abbreviationToFull[abbr];
+					const newFileName = fileName.replace(abbr, full).replaceAll("_", "-");
+
+					return `he-outline-${newFileName}`;
+				}
+			},
+			{
+				path: path.resolve(__dirname, '../packages/healthicons/public/icons/svg/filled/**/*.svg'),
+				formatter: (fileName, filePath) => {
+					const folderName = path.basename(path.dirname(filePath));
+
+					if (folderName !== 'blood') {
+						return `he-filled-${fileName.replaceAll("_", "-")}`;
+					}
+
+					const abbreviationToFull = {
+						'a_n': 'a-negative',
+						'a_p': 'a-positive',
+						'ab_n': 'ab-negative',
+						'ab_p': 'ab-positive',
+						'b_n': 'b-negative',
+						'b_p': 'b-positive',
+						'o_n': 'o-negative',
+						'o_p': 'o-positive',
+						'rh_n': 'rh-negative',
+						'rh_p': 'rh-positive'
+					}
+
+					// Replace blood group abbreviations with full names using an array
+					const abbr = Object.keys(abbreviationToFull).find(abbreviation => {
+						return fileName.endsWith(abbreviation);
+					});
+
+					if (abbr === undefined) {
+						return `he-filled-${fileName.replaceAll("_", "-")}`;
+					}
+
+					const full = abbreviationToFull[abbr];
+					const newFileName = fileName.replace(abbr, full).replaceAll("_", "-");
+
+					return `he-filled-${newFileName}`;
+				},
+				attributes: {
+					fill: 'currentColor'
+				}
+			}
+		]
+	},
+	{
 		group: 'hi',
 		name: 'Hero',
 		license: 'MIT',
@@ -367,6 +457,19 @@ module.exports = [
 			{
 				path: path.resolve(__dirname, '../packages/jamicons/icons/!(*-f).svg'),
 				formatter: fileName => `ja-${fileName}`
+			}
+		]
+	},
+	{
+		group: 'ic',
+		name: 'Iconoir',
+		license: 'MIT',
+		repo: 'https://github.com/iconoir-icons/iconoir',
+		url: 'https://iconoir.com/',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/iconoir/icons/*.svg'),
+				formatter: fileName => `ic-${fileName}`
 			}
 		]
 	},
@@ -483,6 +586,19 @@ module.exports = [
 				attributes: {
 					fill: 'currentColor'
 				}
+			}
+		]
+	},
+	{
+		group: 'mc',
+		name: 'MingCute',
+		license: 'Apache-2.0',
+		repo: 'https://github.com/Richard9394/MingCute',
+		url: 'https://www.mingcute.com/',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/mingcute/svg/**/*.svg'),
+				formatter: fileName => `mc-${fileName.replaceAll('_', '-')}`,
 			}
 		]
 	},
