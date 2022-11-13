@@ -8,7 +8,7 @@ export default function (props, svg) {
 	svgJsonParsed.attributes.height = '1em';
 	svgJsonParsed.attributes.xmlns = 'http://www.w3.org/2000/svg';
 
-	const { multicolor, pathfill } = svgJsonParsed.attributes;
+	const { multicolor, pathfill, twotone } = svgJsonParsed.attributes;
 	/**
 	 * Convert a style string to an object. Also, replace
 	 * stroke and fill color with currentColor if they are
@@ -37,7 +37,12 @@ export default function (props, svg) {
 	const updateStyle = function (attributes) {
 		const { fill, stroke } = attributes;
 
-		if ((typeof fill !== 'undefined' && fill !== 'none') || pathfill !== undefined) {
+		const canFill = !twotone && fill && ['none', 'white', '#fff'].includes(fill) === false;
+
+		if (twotone === 'true' && fill === undefined) {
+			attributes.fill = 'currentColor';
+		}
+		else if (canFill || pathfill !== undefined) {
 			attributes.fill = typeof props.color !== 'undefined' ? props.color : 'currentColor';
 		}
 
@@ -62,7 +67,7 @@ export default function (props, svg) {
 	const createElement = function (element) {
 		const { name, attributes, children } = element;
 
-		if (multicolor !== true) {
+		if (multicolor !== 'true') {
 			element.attributes = updateStyle(attributes);
 		}
 
