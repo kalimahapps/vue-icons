@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/dt/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons)
 ![vue-3](https://img.shields.io/badge/vue-3-%2342b883)
 
-![Twitter Follow](https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge)
+[![Twitter Follow](https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge)](https://twitter.com/KalimahApps)
 
 50,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 
@@ -63,9 +63,9 @@ To view the full list of icons, search and copy the import statement, check the 
 | -------------------------------------------------------------------------------------------- | ------ | --------------------------- | ------- | ----- |
 | [Academicons](https://jpswalsh.github.io/academicons/)                                       | ai     | SIL OFL 1.1                 | 1.9.2   | 149   |
 | [Ant Design](https://ant.design/components/icon/)                                            | an     | MIT                         | 4.2.1   | 789   |
-| [Bootstrap Icons](https://icons.getbootstrap.com/)                                           | bs     | MIT                         | 1.9.1   | 1851  |
+| [Bootstrap Icons](https://icons.getbootstrap.com/)                                           | bs     | MIT                         | 1.10.1  | 1851  |
 | [Boxicons](https://boxicons.com/)                                                            | bx     | CC 4.0                      | 2.1.4   | 1634  |
-| [Carbon](https://carbondesignsystem.com/)                                                    | ca     | Apache-2.0                  | 11.16.0 | 1849  |
+| [Carbon](https://carbondesignsystem.com/)                                                    | ca     | Apache-2.0                  | 11.17.0 | 1849  |
 | [Circum](https://circumicons.com/)                                                           | ci     | MPL-2.0                     | 2.0.0   | 285   |
 | [Core UI Icons](https://coreui.io/icons/)                                                    | co     | CC 4.0                      | 2.0.1   | 1569  |
 | [css.gg](https://css.gg/)                                                                    | cg     | MIT                         | 2.0.0   | 704   |
@@ -74,21 +74,24 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Font Awesome](https://fontawesome.com/)                                                     | fa     | CC BY 4.0                   | 6.2.0   | 2016  |
 | [Feather](https://feathericons.com/)                                                         | fe     | MIT                         | 4.29.0  | 287   |
 | [Govicons](http://govicons.io/)                                                              | gv     | SIL OFL 1.1                 | 1.6.0   | 136   |
-| [Hero](https://heroicons.com/)                                                               | hi     | MIT                         | 2.0.12  | 584   |
+| [Healthicons](https://healthicons.org/)                                                      | he     | MIT                         | 0.1.0   | 1154  |
+| [Hero](https://heroicons.com/)                                                               | hi     | MIT                         | 2.0.13  | 584   |
 | [Jamicons](https://jam-icons.com/)                                                           | ja     | MIT                         | 3.1.0   | 940   |
-| [IonIcons](https://ionic.io/ionicons)                                                        | io     | MIT                         | 6.0.3   | 1332  |
+| [Iconoir](https://iconoir.com/)                                                              | ic     | MIT                         | 5.4     | 1209  |
+| [IonIcons](https://ionic.io/ionicons)                                                        | io     | MIT                         | 6.0.4   | 1332  |
 | [Line Awesome](https://icons8.com/line-awesome)                                              | la     | MIT                         | 1.2.1   | 1544  |
 | [Linearicons](https://linearicons.com/free)                                                  | li     | CC BY-SA 4.0                | -       | 170   |
 | [Maki](https://labs.mapbox.com/maki-icons)                                                   | ma     | CC0 1.0 Universal           | 8.0.0   | 211   |
 | [Material Design](https://fonts.google.com/icons)                                            | md     | Apache-2.0                  | 4.0.0   | 10750 |
-| [Octicons](https://github.com/primer/octicons)                                               | oc     | MIT                         | 17.8.0  | 241   |
+| [MingCute](https://www.mingcute.com/)                                                        | mc     | Apache-2.0                  | 2.4     | 1346  |
+| [Octicons](https://github.com/primer/octicons)                                               | oc     | MIT                         | 17.9.0  | 241   |
 | [OpenWeb](https://pfefferle.dev/openwebicons/)                                               | ow     | SIL Open Font License       | 1.6.3   | 115   |
 | [Phosphor](https://phosphoricons.com/)                                                       | ph     | MIT                         | 1.4.1   | 6282  |
 | [Pixelarticons](https://pixelarticons.com/)                                                  | px     | MIT                         | 1.7.0   | 480   |
 | [Prime Icons](https://github.com/primefaces/primeicons)                                      | pr     | MIT                         | 6.0.1   | 260   |
 | [Remix](https://remixicon.com/)                                                              | re     | Apache 2.0                  | 2.5.0   | 2271  |
-| [Simple Icons](https://simpleicons.org/)                                                     | si     | CC0 1.0                     | 7.18.0  | 2402  |
-| [Tabler](https://tabler-icons.io/)                                                           | ta     | MIT                         | 1.109.0 | 2907  |
+| [Simple Icons](https://simpleicons.org/)                                                     | si     | CC0 1.0                     | 7.19.0  | 2402  |
+| [Tabler](https://tabler-icons.io/)                                                           | ta     | MIT                         | 1.111.0 | 2907  |
 | [Themify](https://themify.me/themify-icons)                                                  | th     | SIL Open Font License (OFL) | 1.0.1   | 352   |
 | [Typicons](https://www.s-ings.com/typicons/)                                                 | ti     | CC BY-SA 4.0                | 2.1.2   | 336   |
 | [Unicons](https://iconscout.com/unicons/explore/line)                                        | un     | IconScout Simple License    | 3.0.0   | 1206  |
@@ -97,6 +100,11 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Weather Icons](https://erikflowers.github.io/weather-icons/)                                | wi     | SIL OFL 1.1                 | 2.0.10  | 219   |
 
 ## Version History
+- 1.0.3
+  - Added three icon sets
+  - Updated icon packages
+  - Fixed minor bugs
+
 - 1.0.1
   - Added icons resolver
 

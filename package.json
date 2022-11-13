@@ -1,7 +1,7 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "1.0.2",
-	"description": "50,000+ SVG icons of popular icon sets that you can add seamlessly to vue+vite projects",
+	"version": "1.0.3",
+	"description": "50,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
@@ -103,6 +103,9 @@
 		"fluent ui system",
 		"phosphor icons",
 		"carbon icons",
-		"weather icons"
+		"weather icons",
+		"mingcute icons",
+		"iconoir",
+		"medical icons"
 	]
 }
