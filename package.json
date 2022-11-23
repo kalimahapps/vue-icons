@@ -1,7 +1,7 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "1.0.3",
-	"description": "50,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
+	"version": "1.0.4",
+	"description": "53,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
