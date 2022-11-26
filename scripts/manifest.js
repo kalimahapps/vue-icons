@@ -115,6 +115,19 @@ module.exports = [
 		]
 	},
 	{
+		group: 'by',
+		name: 'Bytesize',
+		license: 'MIT',
+		url: 'https://danklammer.com/bytesize-icons/',
+		repo: 'https://github.com/danklammer/bytesize-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/bytesize/dist/icons/*.svg'),
+				formatter: fileName => `by-${fileName}`
+			}
+		]
+	},
+	{
 		group: 'ci',
 		name: 'Circum',
 		version: "2.0.0",
@@ -128,6 +141,19 @@ module.exports = [
 				attributes: {
 					fill: 'currentColor'
 				}
+			}
+		]
+	},
+	{
+		group: 'cd',
+		name: 'Codicons',
+		license: 'MIT',
+		url: 'https://microsoft.github.io/vscode-codicons/dist/codicon.html',
+		repo: 'https://github.com/microsoft/vscode-codicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/codicons/src/icons/*.svg'),
+				formatter: fileName => `co-${fileName}`,
 			}
 		]
 	},
@@ -203,9 +229,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/fluentui-system/assets/*/SVG/*.svg'),
-				formatter: fileName => {
-					return fileName.replace(/ic_fluent_(.+)_([0-9]+)_(.+)/g, (match, name, size, type) => {
-						const cleanName = name.replaceAll(/_/g, '-');
+				formatter: (fileName, filePath) => {
+					const folderName = path.basename(path.join(filePath, '..', '..'));
+
+					return fileName.replace(/ic_fluent_(.+)_(12|16|20|24|28|32|48)_(.+)/g, (match, name, size, type) => {
+						// const cleanName = name.replaceAll(/_/g, '-');
+						const cleanName = folderName.replaceAll(/\s/g, '-');
 						if (type.toLowerCase() === 'regular') {
 							return `fl-${cleanName}`;
 						}
@@ -217,7 +246,6 @@ module.exports = [
 				},
 				filesFilter: (filesList) => {
 					// Filter files list to get the highest resolution from each icon folder
-
 
 					// Group files based on parent folder name
 					const groupedFiles = filesList.reduce((acc, filePath) => {
@@ -233,7 +261,7 @@ module.exports = [
 						return acc;
 					}, {});
 
-					const sizes = ['48', '32', '24', '20', '16'];
+					const sizes = ['48', '32', '24', '20', '16', '12'];
 
 					// Loop through each group and return the file with the highest resolution
 					const finalFilesList = Object.keys(groupedFiles).reduce((acc, groupName) => {

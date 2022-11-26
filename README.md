@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-54,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+55,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 </p>
 
 <p align="center">
@@ -30,11 +30,13 @@
 ## ✨ Features
 - Tree-shaking. Only the icons you use will be included in your bundle
 - Easy to use. No need for import statement if used through resolvers with vite.
-- 54,000+ icons from popular icon sets
+- 55,000+ icons from popular icon sets
 - Stylable. You can change color and size of the icons
 - Built for vue3
 - Optimized with SVGO
 
+<br>
+<br>
 
 ## 💽 Installation
 ### NPM
@@ -86,6 +88,8 @@ export default defineConfig({
   ],
 });
 ```
+<br>
+<br>
 
 ## 📚 Demo
 To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
@@ -100,17 +104,19 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Academicons](https://jpswalsh.github.io/academicons/)                                       | ai     | SIL OFL 1.1                 | 1.9.2   | 149   |
 | [Ant Design](https://ant.design/components/icon/)                                            | an     | MIT                         | 4.2.1   | 789   |
 | [Bootstrap Icons](https://icons.getbootstrap.com/)                                           | bs     | MIT                         | 1.10.2  | 1851  |
-| [Boxicons](https://boxicons.com/)                                                            | bx     | CC 4.0                      | 2.1.4   | 1634  |
+| [Boxicons](https://boxicons.com/)                                                            | bx     | CC 4.0                      | 2.1.4   | 1632  |
 | [Carbon](https://carbondesignsystem.com/)                                                    | ca     | Apache-2.0                  | 11.17.0 | 1849  |
+| [Bytesize](https://danklammer.com/bytesize-icons/)                                           | by     | MIT                         | 1.4     | 101   |
 | [Circum](https://circumicons.com/)                                                           | ci     | MPL-2.0                     | 2.0.0   | 285   |
+| [Codicons](https://microsoft.github.io/vscode-codicons/dist/codicon.html)                    | cd     | MIT                         | 0.0.32  | 422   |
 | [Core UI Icons](https://coreui.io/icons/)                                                    | co     | CC 4.0                      | 2.0.1   | 1569  |
 | [css.gg](https://css.gg/)                                                                    | cg     | MIT                         | 2.0.0   | 704   |
 | [Devicons](https://devicon.dev/)                                                             | de     | MIT                         | 2.15.1  | 784   |
-| [FluentUI System](https://github.com/microsoft/fluentui-system-icons)                        | fl     | MIT                         | 1.1.186 | 4261  |
+| [FluentUI System](https://github.com/microsoft/fluentui-system-icons)                        | fl     | MIT                         | 1.1.186 | 4285  |
 | [Font Awesome](https://fontawesome.com/)                                                     | fa     | CC BY 4.0                   | 6.2.1   | 2016  |
 | [Feather](https://feathericons.com/)                                                         | fe     | MIT                         | 4.29.0  | 287   |
 | [Govicons](http://govicons.io/)                                                              | gv     | SIL OFL 1.1                 | 1.6.0   | 136   |
-| [Healthicons](https://healthicons.org/)                                                      | he     | MIT                         | 0.1.0   | 1166  |
+| [Healthicons](https://healthicons.org/)                                                      | he     | MIT                         | 0.1.0   | 1154  |
 | [Hero](https://heroicons.com/)                                                               | hi     | MIT                         | 2.0.13  | 584   |
 | [Jamicons](https://jam-icons.com/)                                                           | ja     | MIT                         | 3.1.0   | 940   |
 | [Iconoir](https://iconoir.com/)                                                              | ic     | MIT                         | 5.4.1   | 1209  |
@@ -119,7 +125,7 @@ To view the full list of icons, search and copy the import statement, check the 
 | [Linearicons](https://linearicons.com/free)                                                  | li     | CC BY-SA 4.0                | -       | 170   |
 | [Majesticons](https://www.majesticons.com/)                                                  | mi     | MIT                         | 2.1.2   | 760   |
 | [Maki](https://labs.mapbox.com/maki-icons)                                                   | ma     | CC0 1.0 Universal           | 8.0.0   | 211   |
-| [Material Design](https://fonts.google.com/icons)                                            | md     | Apache-2.0                  | 4.0.0   | 10751 |
+| [Material Design](https://fonts.google.com/icons)                                            | md     | Apache-2.0                  | 4.0.0   | 10750 |
 | [MingCute](https://www.mingcute.com/)                                                        | mc     | Apache-2.0                  | 2.4     | 1346  |
 | [Octicons](https://github.com/primer/octicons)                                               | oc     | MIT                         | 17.9.0  | 241   |
 | [OpenWeb](https://pfefferle.dev/openwebicons/)                                               | ow     | SIL Open Font License       | 1.6.3   | 115   |
@@ -140,6 +146,10 @@ To view the full list of icons, search and copy the import statement, check the 
 <br>
 
 ## 🧮 Version History
+- 1.0.6
+  - Fixed bugs
+  - Add 2 icon sets (bytesize, codicons)
+
 - 1.0.5
   - Fixed bugs
   - Added a new icon set (majesticons)

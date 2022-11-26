@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-54,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+55,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 </p>
 
 <p align="center">
@@ -30,11 +30,13 @@
 ## ✨ Features
 - Tree-shaking. Only the icons you use will be included in your bundle
 - Easy to use. No need for import statement if used through resolvers with vite.
-- 54,000+ icons from popular icon sets
+- 55,000+ icons from popular icon sets
 - Stylable. You can change color and size of the icons
 - Built for vue3
 - Optimized with SVGO
 
+<br>
+<br>
 
 ## 💽 Installation
 ### NPM
@@ -86,6 +88,8 @@ export default defineConfig({
   ],
 });
 ```
+<br>
+<br>
 
 ## 📚 Demo
 To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
@@ -103,6 +107,10 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.0.6
+  - Fixed bugs
+  - Add 2 icon sets (bytesize, codicons)
+
 - 1.0.5
   - Fixed bugs
   - Added a new icon set (majesticons)

@@ -112,3 +112,9 @@
 [submodule "packages/majesticons"]
 	path = packages/majesticons
 	url = git@github.com:halfmage/majesticons.git
+[submodule "packages/bytesize"]
+	path = packages/bytesize
+	url = git@github.com:danklammer/bytesize-icons.git
+[submodule "packages/codicons"]
+	path = packages/codicons
+	url = git@github.com:microsoft/vscode-codicons.git

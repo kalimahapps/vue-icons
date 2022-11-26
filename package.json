@@ -1,6 +1,6 @@
 {
 	"name": "@kalimahapps/vue-icons",
-	"version": "1.0.6",
+	"version": "1.0.8",
 	"description": "54,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"sideEffects": false,
 	"repository": {
@@ -18,6 +18,8 @@
 		"./an": "./icons/an/index.js",
 		"./bs": "./icons/bs/index.js",
 		"./bx": "./icons/bx/index.js",
+		"./bp": "./icons/bp/index.js",
+		"./by": "./icons/by/index.js",
 		"./ca": "./icons/ca/index.js",
 		"./cg": "./icons/cg/index.js",
 		"./ci": "./icons/ci/index.js",

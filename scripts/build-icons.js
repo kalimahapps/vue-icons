@@ -75,12 +75,13 @@ const getFilesContent = function (iconsInfo, group) {
 
 		const fileName = path.basename(filePath, path.extname(filePath));
 		const formattedFileName = (formatter) ? formatter(fileName, filePath) : fileName;
-		let varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		const varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		let varNameKey = varName
 		let occurrence = 0;
 
 		if (Object.keys(uniqueFileNames).includes(varName)) {
 			occurrence = uniqueFileNames[varName] + 1;
-			varName = `${varName}${occurrence}`;
+			varNameKey = `${varName}${occurrence}`;
 		}
 
 		const svgString = fs.readFileSync(filePath, 'utf8');
@@ -89,12 +90,12 @@ const getFilesContent = function (iconsInfo, group) {
 		// Add name and data
 		uniqueFileNames[varName] = occurrence;
 
-		const getTemplate = svgTemplate(varName, svgStr.data);
+		const getTemplate = svgTemplate(varNameKey, svgStr.data);
 		fileContent += getTemplate;
 
 		// Write to csv
 		csvArray.push({
-			name: varName,
+			name: varNameKey,
 			set: group,
 			svg: svgStr.data
 		});
