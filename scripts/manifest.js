@@ -545,6 +545,23 @@ module.exports = [
 		]
 	},
 	{
+		group: 'mi',
+		name: 'Majesticons',
+		license: 'MIT',
+		url: 'https://www.majesticons.com/',
+		repo: 'https://github.com/halfmage/majesticons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/majesticons/line/*.svg'),
+				formatter: fileName => `mi-${fileName.replace('-line', '')}`,
+			},
+			{
+				path: path.resolve(__dirname, '../packages/majesticons/solid/*.svg'),
+				formatter: fileName => `mi-solid-${fileName}`,
+			}
+		]
+	},
+	{
 		group: 'ma',
 		name: 'Maki',
 		license: 'CC0 1.0 Universal',

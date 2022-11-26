@@ -100,8 +100,8 @@
 [submodule "packages/css-gg"]
 	path = packages/css-gg
 	url = https://github.com/astrit/css.gg.git
-[submodule ".\\packages\\healthicons"]
-	path = .\\packages\\healthicons
+[submodule "packages/healthicons"]
+	path = packages/healthicons
 	url = git@github.com:resolvetosavelives/healthicons.git
 [submodule "packages/mingcute"]
 	path = packages/mingcute
@@ -109,3 +109,6 @@
 [submodule "packages/iconoir"]
 	path = packages/iconoir
 	url = git@github.com:iconoir-icons/iconoir.git
+[submodule "packages/majesticons"]
+	path = packages/majesticons
+	url = git@github.com:halfmage/majesticons.git

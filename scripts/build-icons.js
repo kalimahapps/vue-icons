@@ -37,15 +37,18 @@ const generateReadmeFile = function (data) {
 	fse.outputFileSync(path.resolve(__dirname, `../README.md`), readmeTemplate);
 };
 
+/**
+ * Hold an object with all icons and their occurrences
+ * to ensure that we don't have duplicate icons
+ */
+let uniqueFileNames = {};
+
 const getFilesContent = function (iconsInfo, group) {
 	let { path: iconsPath, formatter, options = {}, filesFilter, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
 	let csvArray = [];
-
-	// Hold a list of icons name
-	const uniqueFileNames = [];
 
 	// Get files list
 	let files = fg.sync([iconsPath], options);
@@ -72,17 +75,20 @@ const getFilesContent = function (iconsInfo, group) {
 
 		const fileName = path.basename(filePath, path.extname(filePath));
 		const formattedFileName = (formatter) ? formatter(fileName, filePath) : fileName;
-		const varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		let varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		let occurrence = 0;
 
-		if (uniqueFileNames.includes(varName)) {
-			return;
+		if (Object.keys(uniqueFileNames).includes(varName)) {
+			occurrence = uniqueFileNames[varName] + 1;
+			varName = `${varName}${occurrence}`;
 		}
 
 		const svgString = fs.readFileSync(filePath, 'utf8');
 		const svgStr = svgo.optimize(svgString, svgoSettings(attributes));
 
 		// Add name and data
-		uniqueFileNames.push(varName);
+		uniqueFileNames[varName] = occurrence;
+
 		const getTemplate = svgTemplate(varName, svgStr.data);
 		fileContent += getTemplate;
 
@@ -97,7 +103,7 @@ const getFilesContent = function (iconsInfo, group) {
 	// Stop progress bar
 	progressBar.stop();
 
-	return { content: fileContent, uniqueFileNames, csv: csvArray };
+	return { content: fileContent, csv: csvArray };
 };
 
 /**
@@ -133,11 +139,7 @@ const buildIcons = async function () {
 			count: 0
 		};
 
-		console.log('');
-		console.log('');
-		console.log('');
-		console.log('');
-		console.log(`Processing ${name} ...`);
+		console.log('\n\n\n', `Processing ${name} ...`);
 		if (version === undefined) {
 			try {
 				const repoLinkData = repoUrl.split('/');
@@ -169,15 +171,14 @@ const buildIcons = async function () {
 		});
 
 
+		uniqueFileNames = {};
 		const iconsContent = { name, count: 0 };
 		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
 		await iconsGroup.icons.reduce(async (prevPromise, iconsInfo) => {
 			await prevPromise;
+			const { content, csv } = getFilesContent(iconsInfo, iconsGroup.group);
 
-			const { uniqueFileNames, content, csv } = getFilesContent(iconsInfo, iconsGroup.group);
 
-			iconsContent.count += uniqueFileNames.length;
-			// iconsContent.icons = [...iconsContent.icons, ...uniqueFileNames];
 			fileContent += content;
 
 			await csvWriter.writeRecords(csv);
@@ -189,6 +190,7 @@ const buildIcons = async function () {
 			fileContent
 		);
 
+		iconsContent.count += Object.keys(uniqueFileNames).length;
 		iconsContent.group = group;
 
 		fullContent.push(iconsContent);

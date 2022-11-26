@@ -1,21 +1,52 @@
+<p align="center">
 <img src="https://raw.githubusercontent.com/kalimah-apps/vue-icons/master/logo.svg" width="120" alt="Vue Icons">
 
-# [Vue Icons](https://vue-icons.kalimah-apps.com/)
-[![npm](https://img.shields.io/npm/v/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons) 
-[![npm](https://img.shields.io/npm/dt/@kalimahapps/vue-icons.svg)](https://www.npmjs.com/package/@kalimahapps/vue-icons)
-![vue-3](https://img.shields.io/badge/vue-3-%2342b883)
+<a href="https://vue-icons.kalimah-apps.com">
+<h2 align="center">VueIcons</h2>
+</a>
+</p>
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge)](https://twitter.com/KalimahApps)
+<p align="center">
+54,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+</p>
 
-50,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+<p align="center">
+<a target="_blank" href="https://www.npmjs.com/package/@kalimahapps/vue-icons">
+  <img src="https://img.shields.io/npm/v/@kalimahapps/vue-icons.svg">
+</a>
+<a target="_blank" href="https://www.npmjs.com/package/@kalimahapps/vue-icons">
+  <img src="https://img.shields.io/npm/dt/@kalimahapps/vue-icons.svg">
+</a>
+<img src="https://img.shields.io/badge/vue-3-%2342b883">
+</p>
+<p align="center">
+<a target=_blank href="https://twitter.com/KalimahApps">
+  <img src="https://img.shields.io/twitter/follow/KalimahApps?style=for-the-badge">
+</a>
+</p>
+<br>
 
-### Installing
 
+## ✨ Features
+- Tree-shaking. Only the icons you use will be included in your bundle
+- Easy to use. No need for import statement if used through resolvers with vite.
+- 54,000+ icons from popular icon sets
+- Stylable. You can change color and size of the icons
+- Built for vue3
+- Optimized with SVGO
+
+
+## 💽 Installation
+### NPM
 ```bash
 npm install @kalimahapps/vue-icons
 ```
+### PNPM
+```bash
+pnpm add @kalimahapps/vue-icons
+```
 
-### Example
+## 🔧 Usage
 
 ```vue
 <template>
@@ -31,6 +62,9 @@ export default {
 </script>
 <style></style>
 ```
+
+<br>
+<br>
 
 ## Using resolvers with [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
 vue-icons provides a resolver that can be used with unplugin-vue-components so you don't have to add `import IconName from '@kalimahapps/vue-icons/iconSet'` for every icon you want to use. 
@@ -53,17 +87,26 @@ export default defineConfig({
 });
 ```
 
-## Demo
-
+## 📚 Demo
 To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
 
-## Icons
+<br>
+<br>
+
+## 📦 Icon Sets
 
 Icon Set|Prefix|License|Version|Count
 ---|---|---|---|---
 [[:icons-list:]]
 
-## Version History
+<br>
+<br>
+
+## 🧮 Version History
+- 1.0.5
+  - Fixed bugs
+  - Added a new icon set (majesticons)
+
 - 1.0.3
   - Added three icon sets
   - Updated icon packages
@@ -83,19 +126,29 @@ Icon Set|Prefix|License|Version|Count
 - 0.0.2
   - Initial Release
 
-## Other projects
+<br>
+<br>
+
+## 🏗️ Other projects
 ### [Vue Popper](https://www.npmjs.com/package/@kalimahapps/vue-popper)
-A Vue 3 component that uses popper.js to position elements
+A Vue 3 tooltip component using popper.js
 
 ### [Vite inherit attrs](https://www.npmjs.com/package/vite-plugin-vue-setup-inherit-attrs)
 A vite plugin that adds support for inheritAttrs in vue-setup
 
 
-## License
+<br>
+<br>
+
+## ⚖️ License
 
 This project is licensed under the MIT License
 For each icons set, please check the icon project licenses accordingly.
 
-## Acknowledgments
+<br>
+<br>
+
+## 🙏 Acknowledgement
+
 
 This project was inspired by the [React Icons](https://react-icons.github.io/react-icons/) package.
