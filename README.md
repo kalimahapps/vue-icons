@@ -179,7 +179,8 @@ To view the full list of icons, search and copy the import statement, check the 
 ## 🏗️ Other projects
 ### [Vue Popper](https://www.npmjs.com/package/@kalimahapps/vue-popper)
 A Vue 3 tooltip component using popper.js
-
+### [KalimahApps Eslint Config](https://www.npmjs.com/package/@kalimahapps/eslint-config)
+Comprehensive eslint rules for vue projects with typescript
 ### [Vite inherit attrs](https://www.npmjs.com/package/vite-plugin-vue-setup-inherit-attrs)
 A vite plugin that adds support for inheritAttrs in vue-setup
 
