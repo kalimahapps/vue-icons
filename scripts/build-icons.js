@@ -1,25 +1,24 @@
-const manifest = require('./manifest.js');
-const fs = require('fs');
-const fse = require('fs-extra');
+const fs = require('node:fs');
+const path = require('node:path');
 const fg = require('fast-glob');
-const path = require('path');
+const fse = require('fs-extra');
 const changeCase = require('change-case');
 const { pascalCase, pascalCaseTransformMerge } = changeCase;
 const cliProgress = require('cli-progress');
 const colors = require('ansi-colors');
-const { Octokit } = require("octokit");
-const config = require('../config.js');
+const { Octokit } = require('octokit');
 const svgo = require('svgo');
-const svgoSettings = require('./svgo-settings.js');
-
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const config = require('../config.js');
+const manifest = require('./manifest.js');
+const svgoSettings = require('./svgo-settings.js');
 
 // create progress bar defaults
 const progressBar = new cliProgress.SingleBar({
 	format: `${colors.cyanBright('{bar}')}    ${colors.magenta('{percentage}%')}    ({value}/{total})`,
 	barCompleteChar: '>',
 	barIncompleteChar: '-',
-	hideCursor: true
+	hideCursor: true,
 });
 
 const svgTemplate = function (fileName, content) {
@@ -31,10 +30,10 @@ const iconStatToString = function (data) {
 };
 
 const generateReadmeFile = function (data) {
-	let readmeTemplate = fs.readFileSync(path.resolve(__dirname, `./readme-template.txt`), 'utf8');
+	let readmeTemplate = fs.readFileSync(path.resolve(__dirname, './readme-template.txt'), 'utf8');
 	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', data.join('\n'));
 
-	fse.outputFileSync(path.resolve(__dirname, `../README.md`), readmeTemplate);
+	fse.outputFileSync(path.resolve(__dirname, '../README.md'), readmeTemplate);
 };
 
 /**
@@ -48,7 +47,7 @@ const getFilesContent = function (iconsInfo, group) {
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
-	let csvArray = [];
+	const csvArray = [];
 
 	// Get files list
 	let files = fg.sync([iconsPath], options);
@@ -61,9 +60,7 @@ const getFilesContent = function (iconsInfo, group) {
 	// Show progress bar
 	progressBar.start(files.length, 0);
 
-
-	files.forEach(filePath => {
-
+	files.forEach((filePath) => {
 		// update progress bar
 		progressBar.increment();
 
@@ -75,36 +72,39 @@ const getFilesContent = function (iconsInfo, group) {
 
 		const fileName = path.basename(filePath, path.extname(filePath));
 		const formattedFileName = (formatter) ? formatter(fileName, filePath) : fileName;
-		const varName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
-		let varNameKey = varName
+		const variableName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		let variableNameKey = variableName;
 		let occurrence = 0;
 
-		if (Object.keys(uniqueFileNames).includes(varName)) {
-			occurrence = uniqueFileNames[varName] + 1;
-			varNameKey = `${varName}${occurrence}`;
+		if (Object.keys(uniqueFileNames).includes(variableName)) {
+			occurrence = uniqueFileNames[variableName] + 1;
+			variableNameKey = `${variableName}${occurrence}`;
 		}
 
-		const svgString = fs.readFileSync(filePath, 'utf8');
-		const svgStr = svgo.optimize(svgString, svgoSettings(attributes));
+		let svgString = fs.readFileSync(filePath, 'utf8');
+		svgString = svgo.optimize(svgString, svgoSettings(attributes));
 
 		// Add name and data
-		uniqueFileNames[varName] = occurrence;
+		uniqueFileNames[variableName] = occurrence;
 
-		const getTemplate = svgTemplate(varNameKey, svgStr.data);
+		const getTemplate = svgTemplate(variableNameKey, svgString.data);
 		fileContent += getTemplate;
 
 		// Write to csv
 		csvArray.push({
-			name: varNameKey,
+			name: variableNameKey,
 			set: group,
-			svg: svgStr.data
+			svg: svgString.data,
 		});
 	});
 
 	// Stop progress bar
 	progressBar.stop();
 
-	return { content: fileContent, csv: csvArray };
+	return {
+		content: fileContent,
+		csv: csvArray,
+	};
 };
 
 /**
@@ -119,25 +119,25 @@ const buildIcons = async function () {
 	await fse.emptyDir(path.resolve(__dirname, '../csv'));
 
 	// Hold all icons info in this array
-	let fullContent = [];
+	const fullContent = [];
 
 	// Hold export content
 	let allIconsExport = '';
 
 	// Hold icon set version, prefix, count, license ..etc
-	let iconsStat = [];
+	const iconsStat = [];
 
-	await manifest.reduce(async (prevPromise, iconsGroup) => {
-		await prevPromise;
+	await manifest.reduce(async (previousPromise, iconsGroup) => {
+		await previousPromise;
 
-		const { name, group, url, version, license, repo: repoUrl } = iconsGroup;
+		const { name, group, url, version, license, repo: repoUrl, icons } = iconsGroup;
 		const iconSetData = {
 			name,
 			url,
 			prefix: group,
 			license,
 			version,
-			count: 0
+			count: 0,
 		};
 
 		console.log('\n\n\n', `Processing ${name} ...`);
@@ -146,48 +146,48 @@ const buildIcons = async function () {
 				const repoLinkData = repoUrl.split('/');
 
 				// Get owner
-				const owner = repoLinkData.slice(-2)[0];
+				const owner = repoLinkData.at(-2);
 
 				// Get repo name
-				const repo = repoLinkData.slice(-1)[0];
+				const repo = repoLinkData.at(-1);
 				const octokit = new Octokit({
-					auth: config.access_token
+					auth: config.access_token,
 				});
 
-				const versionDetails = await octokit.request("GET /repos/{owner}/{repo}/releases/latest", {
+				const versionDetails = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
 					owner,
 					repo,
 				});
 
 				iconSetData.version = versionDetails.data.tag_name.replace('v', '');
-			} catch (e) {
-				console.log(`Unable to get version for ${name}`, e.message);
+			} catch (error) {
+				console.log(`Unable to get version for ${name}`, error.message);
 			}
 		}
 
 		// Create csv write
 		const csvWriter = createCsvWriter({
-			path: path.resolve(__dirname, `../csv/${iconsGroup.group}.csv`),
-			header: ['name', 'set', 'svg']
+			path: path.resolve(__dirname, `../csv/${group}.csv`),
+			header: ['name', 'set', 'svg'],
 		});
 
-
 		uniqueFileNames = {};
-		const iconsContent = { name, count: 0 };
-		let fileContent = `import iconBase from '../../scripts/icon-base';\n`;
-		await iconsGroup.icons.reduce(async (prevPromise, iconsInfo) => {
-			await prevPromise;
-			const { content, csv } = getFilesContent(iconsInfo, iconsGroup.group);
-
+		const iconsContent = {
+			name,
+			count: 0,
+		};
+		let fileContent = 'import iconBase from \'../../scripts/icon-base\';\n';
+		await icons.reduce(async (previousPromise, iconsInfo) => {
+			await previousPromise;
+			const { content, csv } = getFilesContent(iconsInfo, group);
 
 			fileContent += content;
 
 			await csvWriter.writeRecords(csv);
-
 		}, Promise.resolve());
 
 		fse.outputFileSync(
-			path.resolve(__dirname, `../icons/${iconsGroup.group}/index.js`),
+			path.resolve(__dirname, `../icons/${group}/index.js`),
 			fileContent
 		);
 
@@ -200,17 +200,16 @@ const buildIcons = async function () {
 		iconsStat.push(iconStatToString(iconSetData));
 
 		allIconsExport += `export * from './${group}/index';\n`;
-
 	}, Promise.resolve([]));
 
 	// Create icon data file
 	fse.outputFileSync(
-		path.resolve(__dirname, `../icons/content.js`),
+		path.resolve(__dirname, '../icons/content.js'),
 		`export default ${JSON.stringify(fullContent)}`
 	);
 
 	// Create all icons file
-	fse.outputFileSync(path.resolve(__dirname, `../icons/all.js`), allIconsExport);
+	fse.outputFileSync(path.resolve(__dirname, '../icons/all.js'), allIconsExport);
 
 	generateReadmeFile(iconsStat);
 };

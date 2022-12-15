@@ -1,6 +1,8 @@
 const manifest = require('../scripts/manifest.js');
 
-const iconsInitials = manifest.map((item) => item.group.charAt(0).toUpperCase() + item.group.slice(1));
+const iconsInitials = manifest.map((item) => {
+	return item.group.charAt(0).toUpperCase() + item.group.slice(1);
+});
 
 module.exports = {
 	type: 'component',
@@ -9,9 +11,9 @@ module.exports = {
 			return componentName;
 		}
 
-		const iconComponent = iconsInitials.find(initial =>
-			initial.startsWith(componentName.slice(0, 2))
-		);
+		const iconComponent = iconsInitials.find((initial) => {
+			return initial.startsWith(componentName.slice(0, 2));
+		});
 
 		if (iconComponent === undefined) {
 			return;
@@ -30,5 +32,5 @@ module.exports = {
 			name: componentName,
 			from: `@kalimahapps/vue-icons/${iconComponent.toLowerCase()}`,
 		};
-	}
-}
+	},
+};

@@ -1,4 +1,7 @@
 module.exports = {
-	extends: ['eslint:recommended'],
-	plugins: ['prettier']
+	extends: ['@kalimahapps'],
+	rules: {
+		'@typescript-eslint/no-var-requires': 'off',
+		'unicorn/prefer-module': 'off',
+	},
 };

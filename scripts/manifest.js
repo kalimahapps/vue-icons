@@ -1,4 +1,5 @@
-const path = require('path');
+/* eslint-disable max-lines */
+const path = require('node:path');
 
 module.exports = [
 	{
@@ -10,43 +11,43 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/academicons/svg/*.svg'),
-				formatter: fileName => `ai-${fileName}`,
+				formatter: (fileName) => { return `ai-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'an',
 		name: 'Ant Design',
 		license: 'MIT',
-		version: "4.2.1",
+		version: '4.2.1',
 		url: 'https://ant.design/components/icon/',
 		repo: 'https://github.com/ant-design/ant-design-icons',
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/filled/*.svg'),
-				formatter: fileName => `an-filled-${fileName}`,
+				formatter: (fileName) => { return `an-filled-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/outlined/*.svg'),
-				formatter: fileName => `an-outlined-${fileName}`,
+				formatter: (fileName) => { return `an-outlined-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
-				formatter: fileName => `an-twotone-${fileName}`,
+				formatter: (fileName) => { return `an-twotone-${fileName}`; },
 				attributes: {
-					twotone: true
-				}
-			}
-		]
+					twotone: true,
+				},
+			},
+		],
 	},
 	{
 		group: 'bs',
@@ -57,11 +58,11 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/bootstrap-icons/icons/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `bs-${name}`;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		group: 'bx',
@@ -73,26 +74,26 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/boxicons/svg/logos/*.svg'),
-				formatter: fileName => `bx-${fileName.replace('bxl-', '')}`,
+				formatter: (fileName) => { return `bx-${fileName.replace('bxl-', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/boxicons/svg/regular/*.svg'),
-				formatter: fileName => `bx-${fileName.replace('bx-', '')}`,
+				formatter: (fileName) => { return `bx-${fileName.replace('bx-', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/boxicons/svg/solid/*.svg'),
-				formatter: fileName => `bx-solid-${fileName.replace('bxs-', '')}`,
+				formatter: (fileName) => { return `bx-solid-${fileName.replace('bxs-', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
-		]
+		],
 	},
 	{
 		group: 'ca',
@@ -103,16 +104,16 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/carbon/packages/icons/src/svg/32/*.svg'),
-				formatter: fileName => {
+				formatter: (fileName) => {
 					// Remove double dashes
-					fileName = fileName.replace(/--/g, '-');
-					return `ca-${fileName}`;
+					const cleanedFileName = fileName.replaceAll('--', '-');
+					return `ca-${cleanedFileName}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'by',
@@ -123,26 +124,26 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/bytesize/dist/icons/*.svg'),
-				formatter: fileName => `by-${fileName}`
-			}
-		]
+				formatter: (fileName) => { return `by-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'ci',
 		name: 'Circum',
-		version: "2.0.0",
+		version: '2.0.0',
 		license: 'MPL-2.0',
 		url: 'https://circumicons.com/',
 		repo: 'https://github.com/Klarr-Agency/Circum-icons',
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/circum/svg/*.svg'),
-				formatter: fileName => `ci-${fileName.replaceAll('_', '-')}`,
+				formatter: (fileName) => { return `ci-${fileName.replaceAll('_', '-')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'cd',
@@ -153,9 +154,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/codicons/src/icons/*.svg'),
-				formatter: fileName => `co-${fileName}`,
-			}
-		]
+				formatter: (fileName) => { return `co-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'co',
@@ -166,26 +167,26 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/coreui/svg/brand/*.svg'),
-				formatter: fileName => `co-brand-${fileName.replace('cib-', '')}`,
+				formatter: (fileName) => { return `co-brand-${fileName.replace('cib-', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/coreui/svg/flag/*.svg'),
-				formatter: fileName => `co-flag-${fileName.replace('cif-', '')}`,
+				formatter: (fileName) => { return `co-flag-${fileName.replace('cif-', '')}`; },
 				attributes: {
-					multicolor: true
-				}
+					multicolor: true,
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/coreui/svg/free/*.svg'),
-				formatter: fileName => `co-${fileName.replace('cil-', '')}`,
+				formatter: (fileName) => { return `co-${fileName.replace('cil-', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
-		]
+		],
 	},
 	{
 		group: 'cg',
@@ -196,12 +197,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/css-gg/icons/svg/*.svg'),
-				formatter: fileName => `cg-${fileName}`,
+				formatter: (fileName) => { return `cg-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'de',
@@ -212,18 +213,18 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/devicons/icons/**/*.svg'),
-				formatter: fileName => `de-${fileName}`,
+				formatter: (fileName) => { return `de-${fileName}`; },
 				attributes: {
-					multicolor: true
-				}
+					multicolor: true,
+				},
 			},
-		]
+		],
 	},
 	{
 		group: 'fl',
 		name: 'FluentUI System',
 		license: 'MIT',
-		version: "1.1.186",
+		version: '1.1.186',
 		repo: 'https://github.com/microsoft/fluentui-system-icons',
 		url: 'https://github.com/microsoft/fluentui-system-icons',
 		icons: [
@@ -232,72 +233,79 @@ module.exports = [
 				formatter: (fileName, filePath) => {
 					const folderName = path.basename(path.join(filePath, '..', '..'));
 
-					return fileName.replace(/ic_fluent_(.+)_(12|16|20|24|28|32|48)_(.+)/g, (match, name, size, type) => {
-						// const cleanName = name.replaceAll(/_/g, '-');
-						const cleanName = folderName.replaceAll(/\s/g, '-');
-						if (type.toLowerCase() === 'regular') {
-							return `fl-${cleanName}`;
+					return fileName.replaceAll(
+						/ic_fluent_(.+)_(12|16|20|24|28|32|48)_(.+)/g,
+						(match, name, size, type) => {
+							// const cleanName = name.replaceAll(/_/g, '-');
+							const cleanName = folderName.replaceAll(/\s/g, '-');
+							if (type.toLowerCase() === 'regular') {
+								return `fl-${cleanName}`;
+							}
+							return `fl-${type}-${cleanName}`;
 						}
-						return `fl-${type}-${cleanName}`;
-					});
+					);
 				},
 				attributes: {
-					pathfill: 'currentColor'
+					pathfill: 'currentColor',
 				},
 				filesFilter: (filesList) => {
 					// Filter files list to get the highest resolution from each icon folder
 
 					// Group files based on parent folder name
-					const groupedFiles = filesList.reduce((acc, filePath) => {
+					const groupedFiles = filesList.reduce((accumulator, filePath) => {
 						const folderName = path.basename(path.join(filePath, '..', '..'));
 
 						// Clean up folder name
-						const cleanedFolderName = folderName.replace("/\s/g", '-').toLowerCase();
-						if (!acc[cleanedFolderName]) {
-							acc[cleanedFolderName] = [];
+						// eslint-disable-next-line no-useless-escape
+						const cleanedFolderName = folderName.replace('/\s/g', '-').toLowerCase();
+						if (!accumulator[cleanedFolderName]) {
+							accumulator[cleanedFolderName] = [];
 						}
 
-						acc[cleanedFolderName].push(filePath);
-						return acc;
+						accumulator[cleanedFolderName].push(filePath);
+						return accumulator;
 					}, {});
 
 					const sizes = ['48', '32', '24', '20', '16', '12'];
 
 					// Loop through each group and return the file with the highest resolution
-					const finalFilesList = Object.keys(groupedFiles).reduce((acc, groupName) => {
-						let files = groupedFiles[groupName];
+					const finalFilesList = Object.keys(groupedFiles)
+						.reduce((accumulator, groupName) => {
+							let files = groupedFiles[groupName];
 
-						let sizeFound = 0;
+							let sizeFound = 0;
 
-						// Sort files in reverse alphabetically 
-						files = files.sort((a, b) => b.localeCompare(a));
+							// Sort files in reverse alphabetically
+							files = files.sort((a, b) => {
+								return b.localeCompare(a);
+							});
 
-						// Find the highest resolution inside the group
-						for (let i = 0; i < sizes.length; i++) {
-							const size = sizes[i];
-							const file = files.find(file => file.includes(size));
-							if (file) {
-								sizeFound = size;
-								break;
+							// Find the highest resolution inside the group
+							for (const size of sizes) {
+								const file = files.find((file) => {
+									return file.includes(size);
+								});
+								if (file) {
+									sizeFound = size;
+									break;
+								}
 							}
-						}
 
-						// Get the file with the highest resolution
-						files.forEach(filePath => {
-							const fileName = path.basename(filePath);
-							if (!fileName.includes(`_${sizeFound}_`)) {
-								return;
-							}
-							acc.push(filePath);
-						});
-						return acc;
-					}, []);
-
+							// Get the file with the highest resolution
+							files.forEach((filePath) => {
+								const fileName = path.basename(filePath);
+								if (!fileName.includes(`_${sizeFound}_`)) {
+									return;
+								}
+								accumulator.push(filePath);
+							});
+							return accumulator;
+						}, []);
 
 					return finalFilesList;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		group: 'fa',
@@ -308,26 +316,26 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/font-awesome/svgs/regular/*.svg'),
-				formatter: name => `fa-reg-${name}`,
+				formatter: (name) => { return `fa-reg-${name}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/font-awesome/svgs/brands/*.svg'),
-				formatter: name => `fa-bands-${name}`,
+				formatter: (name) => { return `fa-bands-${name}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/font-awesome/svgs/solid/*.svg'),
-				formatter: name => `fa-${name}`,
+				formatter: (name) => { return `fa-${name}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'fe',
@@ -338,11 +346,11 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/feather/icons/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `fe-${name}`;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		group: 'gv',
@@ -353,18 +361,18 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/govicons/raw-svg/*.svg'),
-				formatter: fileName => `gv-${fileName}`,
+				formatter: (fileName) => { return `gv-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'he',
 		name: 'Healthicons',
 		license: 'MIT',
-		version: "0.1.0",
+		version: '0.1.0',
 		repo: 'https://github.com/resolvetosavelives/healthicons',
 		url: 'https://healthicons.org/',
 		icons: [
@@ -374,36 +382,36 @@ module.exports = [
 					const folderName = path.basename(path.dirname(filePath));
 
 					if (folderName !== 'blood') {
-						return `he-outline-${fileName.replaceAll("_", "-")}`;
+						return `he-outline-${fileName.replaceAll('_', '-')}`;
 					}
 
 					const abbreviationToFull = {
-						'a_n': 'a-negative',
-						'a_p': 'a-positive',
-						'ab_n': 'ab-negative',
-						'ab_p': 'ab-positive',
-						'b_n': 'b-negative',
-						'b_p': 'b-positive',
-						'o_n': 'o-negative',
-						'o_p': 'o-positive',
-						'rh_n': 'rh-negative',
-						'rh_p': 'rh-positive'
-					}
+						a_n: 'a-negative',
+						a_p: 'a-positive',
+						ab_n: 'ab-negative',
+						ab_p: 'ab-positive',
+						b_n: 'b-negative',
+						b_p: 'b-positive',
+						o_n: 'o-negative',
+						o_p: 'o-positive',
+						rh_n: 'rh-negative',
+						rh_p: 'rh-positive',
+					};
 
 					// Replace blood group abbreviations with full names using an array
-					const abbr = Object.keys(abbreviationToFull).find(abbreviation => {
+					const abbr = Object.keys(abbreviationToFull).find((abbreviation) => {
 						return fileName.endsWith(abbreviation);
 					});
 
 					if (abbr === undefined) {
-						return `he-outline-${fileName.replaceAll("_", "-")}`;
+						return `he-outline-${fileName.replaceAll('_', '-')}`;
 					}
 
 					const full = abbreviationToFull[abbr];
-					const newFileName = fileName.replace(abbr, full).replaceAll("_", "-");
+					const newFileName = fileName.replace(abbr, full).replaceAll('_', '-');
 
 					return `he-outline-${newFileName}`;
-				}
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/healthicons/public/icons/svg/filled/**/*.svg'),
@@ -411,41 +419,41 @@ module.exports = [
 					const folderName = path.basename(path.dirname(filePath));
 
 					if (folderName !== 'blood') {
-						return `he-filled-${fileName.replaceAll("_", "-")}`;
+						return `he-filled-${fileName.replaceAll('_', '-')}`;
 					}
 
 					const abbreviationToFull = {
-						'a_n': 'a-negative',
-						'a_p': 'a-positive',
-						'ab_n': 'ab-negative',
-						'ab_p': 'ab-positive',
-						'b_n': 'b-negative',
-						'b_p': 'b-positive',
-						'o_n': 'o-negative',
-						'o_p': 'o-positive',
-						'rh_n': 'rh-negative',
-						'rh_p': 'rh-positive'
-					}
+						a_n: 'a-negative',
+						a_p: 'a-positive',
+						ab_n: 'ab-negative',
+						ab_p: 'ab-positive',
+						b_n: 'b-negative',
+						b_p: 'b-positive',
+						o_n: 'o-negative',
+						o_p: 'o-positive',
+						rh_n: 'rh-negative',
+						rh_p: 'rh-positive',
+					};
 
 					// Replace blood group abbreviations with full names using an array
-					const abbr = Object.keys(abbreviationToFull).find(abbreviation => {
+					const abbr = Object.keys(abbreviationToFull).find((abbreviation) => {
 						return fileName.endsWith(abbreviation);
 					});
 
 					if (abbr === undefined) {
-						return `he-filled-${fileName.replaceAll("_", "-")}`;
+						return `he-filled-${fileName.replaceAll('_', '-')}`;
 					}
 
 					const full = abbreviationToFull[abbr];
-					const newFileName = fileName.replace(abbr, full).replaceAll("_", "-");
+					const newFileName = fileName.replace(abbr, full).replaceAll('_', '-');
 
 					return `he-filled-${newFileName}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'hi',
@@ -456,17 +464,17 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/hero/src/24/outline/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `hi-${name}`;
-				}
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/hero/src/24/solid/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `hi-solid-${name}`;
-				}
-			}
-		]
+				},
+			},
+		],
 	},
 	{
 		group: 'ja',
@@ -477,16 +485,16 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/jamicons/icons/*-f.svg'),
-				formatter: fileName => `ja-fill-${fileName.replace('-f', '')}`,
+				formatter: (fileName) => { return `ja-fill-${fileName.replace('-f', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/jamicons/icons/!(*-f).svg'),
-				formatter: fileName => `ja-${fileName}`
-			}
-		]
+				formatter: (fileName) => { return `ja-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'ic',
@@ -497,9 +505,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/iconoir/icons/*.svg'),
-				formatter: fileName => `ic-${fileName}`
-			}
-		]
+				formatter: (fileName) => { return `ic-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'io',
@@ -510,32 +518,32 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-sharp.svg'),
-				formatter: name => {
-					return 'io-sharp-' + name.replace('-sharp', '');
+				formatter: (name) => {
+					return `io-sharp-${name.replace('-sharp', '')}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-outline.svg'),
-				formatter: name => {
-					return 'io-outline-' + name.replace('-outline', '');
+				formatter: (name) => {
+					return `io-outline-${name.replace('-outline', '')}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/ionicons/src/svg/!(*-outline|*-sharp).svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `io-${name}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'la',
@@ -546,31 +554,31 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/line-awesome/svg/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `la-${name}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'li',
 		name: 'Linearicons',
 		license: 'CC BY-SA 4.0',
-		version: "-",
+		version: '-',
 		url: 'https://linearicons.com/free',
 		repo: 'https://github.com/cjpatoilo/linearicons',
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/linearicons/dist/svg/*.svg'),
-				formatter: fileName => `li-${fileName}`,
+				formatter: (fileName) => { return `li-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'mi',
@@ -581,13 +589,13 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/majesticons/line/*.svg'),
-				formatter: fileName => `mi-${fileName.replace('-line', '')}`,
+				formatter: (fileName) => { return `mi-${fileName.replace('-line', '')}`; },
 			},
 			{
 				path: path.resolve(__dirname, '../packages/majesticons/solid/*.svg'),
-				formatter: fileName => `mi-solid-${fileName}`,
-			}
-		]
+				formatter: (fileName) => { return `mi-solid-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'ma',
@@ -598,12 +606,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/maki-icons/icons/*.svg'),
-				formatter: fileName => `ma-${fileName}`,
+				formatter: (fileName) => { return `ma-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'md',
@@ -620,7 +628,7 @@ module.exports = [
 					const iconTypeFolder = path.basename(path.dirname(filePath));
 
 					// Replace underscore to dash
-					const iconName = twoLevelsUp.replace(/_/g, '-');
+					const iconName = twoLevelsUp.replaceAll('_', '-');
 					const iconType = iconTypeFolder.replace('materialicons', '');
 
 					if (iconType.length === 0) {
@@ -629,10 +637,10 @@ module.exports = [
 					return `md-${iconType}-${iconName}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'mc',
@@ -643,9 +651,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/mingcute/svg/**/*.svg'),
-				formatter: fileName => `mc-${fileName.replaceAll('_', '-')}`,
-			}
-		]
+				formatter: (fileName) => { return `mc-${fileName.replaceAll('_', '-')}`; },
+			},
+		],
 	},
 	{
 		group: 'oc',
@@ -656,14 +664,14 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/octicons/icons/*-24.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `oc-${name.replace('-24', '')}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'ow',
@@ -674,9 +682,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/openwebicons/svg/*.svg'),
-				formatter: fileName => `ow-${fileName}`,
-			}
-		]
+				formatter: (fileName) => { return `ow-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'ph',
@@ -687,47 +695,47 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/regular/*.svg'),
-				formatter: fileName => `ph-${fileName}`,
+				formatter: (fileName) => { return `ph-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/bold/*.svg'),
-				formatter: fileName => `ph-bold-${fileName.replace('-bold', '')}`,
+				formatter: (fileName) => { return `ph-bold-${fileName.replace('-bold', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/duotone/*.svg'),
-				formatter: fileName => `ph-duotone-${fileName.replace('-duotone', '')}`,
+				formatter: (fileName) => { return `ph-duotone-${fileName.replace('-duotone', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/fill/*.svg'),
-				formatter: fileName => `ph-fill-${fileName.replace('-fill', '')}`,
+				formatter: (fileName) => { return `ph-fill-${fileName.replace('-fill', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/light/*.svg'),
-				formatter: fileName => `ph-light-${fileName.replace('-light', '')}`,
+				formatter: (fileName) => { return `ph-light-${fileName.replace('-light', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/phosphor/assets/thin/*.svg'),
-				formatter: fileName => `ph-thin-${fileName.replace('-thin', '')}`,
+				formatter: (fileName) => { return `ph-thin-${fileName.replace('-thin', '')}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
-		]
+		],
 	},
 	{
 		group: 'px',
@@ -738,9 +746,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/pixelarticons/svg/*.svg'),
-				formatter: fileName => `px-${fileName}`
-			}
-		]
+				formatter: (fileName) => { return `px-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'pr',
@@ -751,12 +759,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/primeicons/raw-svg/*.svg'),
-				formatter: fileName => `pr-${fileName}`,
+				formatter: (fileName) => { return `pr-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 're',
@@ -767,14 +775,14 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/remix/icons/**/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `re-${name}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'si',
@@ -785,12 +793,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/simple-icons/icons/*.svg'),
-				formatter: fileName => `si-${fileName}`,
+				formatter: (fileName) => { return `si-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'ta',
@@ -801,12 +809,14 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/tabler/icons/*.svg'),
-				formatter: fileName => `ta-${fileName}`,
+				formatter: (fileName) => {
+					return `ta-${fileName}`;
+				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'th',
@@ -818,14 +828,14 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/themify/svg/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `th-${name}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'ti',
@@ -836,23 +846,23 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/typicons/src/svg/*-outline.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `ti-outline-${name.replace('-outline', '')}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
+					fill: 'currentColor',
+				},
 			},
 			{
 				path: path.resolve(__dirname, '../packages/typicons/src/svg/!(*-outline).svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `ti-${name}`;
 				},
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'un',
@@ -863,12 +873,12 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/unicons/svg/line/*.svg'),
-				formatter: fileName => `un-${fileName}`,
+				formatter: (fileName) => { return `un-${fileName}`; },
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
+					fill: 'currentColor',
+				},
+			},
+		],
 	},
 	{
 		group: 'ui',
@@ -879,9 +889,9 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/uiw-icons/icon/*.svg'),
-				formatter: fileName => `ui-${fileName}`
-			}
-		]
+				formatter: (fileName) => { return `ui-${fileName}`; },
+			},
+		],
 	},
 	{
 		group: 'vs',
@@ -892,14 +902,14 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/vscode/icons/*.svg'),
-				formatter: name => {
+				formatter: (name) => {
 					return `vs-${name}`;
 				},
 				attributes: {
-					multicolor: true
-				}
-			}
-		]
+					multicolor: true,
+				},
+			},
+		],
 	},
 	{
 		group: 'wi',
@@ -911,9 +921,9 @@ module.exports = [
 			{
 				path: path.resolve(__dirname, '../packages/weather-icons/svg/*.svg'),
 				attributes: {
-					fill: 'currentColor'
-				}
-			}
-		]
-	}
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
 ];

@@ -1,6 +1,37 @@
 import { h } from 'vue';
 import { parseSync as svgToJson } from 'svgson';
 
+/**
+ * Convert a style string to an object. Also, replace
+ * stroke and fill color with currentColor if they are
+ * set
+ *
+ * @param  {string} styleString Style string to convert to an object
+ * @return {object}             Style object
+ */
+const styleToObject = function (styleString) {
+	return styleString.split(';').reduce((accumulator, item) => {
+		let [key, value] = item.split(':');
+
+		if (key === 'fill' && value !== 'none') {
+			value = 'currentColor';
+		}
+
+		if (key === 'stroke' && value !== 'none') {
+			value = 'currentColor';
+		}
+
+		accumulator[key] = value;
+		return accumulator;
+	}, {});
+};
+
+/**
+ *
+ * @param  {Array}  props Element props
+ * @param  {string} svg   svg string
+ * @return {object}       The icon component
+ */
 export default function (props, svg) {
 	const svgJsonParsed = svgToJson(svg);
 
@@ -9,60 +40,39 @@ export default function (props, svg) {
 	svgJsonParsed.attributes.xmlns = 'http://www.w3.org/2000/svg';
 
 	const { multicolor, pathfill, twotone } = svgJsonParsed.attributes;
-	/**
-	 * Convert a style string to an object. Also, replace
-	 * stroke and fill color with currentColor if they are
-	 * set
-	 *
-	 * @param {string} styleString Style string to convert to an object
-	 * @returns
-	 */
-	const styleToObject = function (styleString) {
-		return styleString.split(';').reduce((acc, item) => {
-			let [key, value] = item.split(':');
-
-			if (key === 'fill' && value !== 'none') {
-				value = 'currentColor';
-			}
-
-			if (key === 'stroke' && value !== 'none') {
-				value = 'currentColor';
-			}
-
-			acc[key] = value;
-			return acc;
-		}, {});
-	};
 
 	const updateStyle = function (attributes) {
-		const { fill, stroke } = attributes;
+		const { fill, stroke, style } = attributes;
 
 		const canFill = !twotone && fill && ['none', 'white', '#fff'].includes(fill) === false;
 
 		if (twotone === 'true' && fill === undefined) {
 			attributes.fill = 'currentColor';
-		}
-		else if (canFill || pathfill !== undefined) {
-			attributes.fill = typeof props.color !== 'undefined' ? props.color : 'currentColor';
-		}
-
-		if (typeof stroke !== 'undefined' && stroke !== 'none') {
-			attributes.stroke = typeof props.color !== 'undefined' ? props.color : 'currentColor';
+		} else if (canFill || pathfill !== undefined) {
+			attributes.fill = props.color === undefined ? 'currentColor' : props.color;
 		}
 
-		if (typeof attributes.style !== 'undefined') {
-			const style = styleToObject(attributes.style);
-			attributes = { ...attributes, ...style };
+		if (stroke !== undefined && stroke !== 'none') {
+			attributes.stroke = props.color === undefined ? 'currentColor' : props.color;
+		}
+
+		if (style !== undefined) {
+			const styleObject = styleToObject(style);
+			attributes = {
+				...attributes,
+				...styleObject,
+			};
 			attributes.style = '';
 		}
 
 		return attributes;
 	};
+
 	/**
 	 * Render a Vue component recursively
 	 *
-	 * @param {object} element Element object including attributes, children .. etc
-	 * @returns {string} svg string
+	 * @param  {object} element Element object including attributes, children .. etc
+	 * @return {string}         svg string
 	 */
 	const createElement = function (element) {
 		const { name, attributes, children } = element;
@@ -72,13 +82,15 @@ export default function (props, svg) {
 		}
 
 		if (Array.isArray(children)) {
+			const { attributes } = element;
+
 			// If node name is title then skip looping over children
 			// as this will cause to display invalid vnode error
 			if (name === 'title') {
-				return h(name, element.attributes);
+				return h(name, attributes);
 			}
 
-			return h(name, element.attributes, children.map(createElement));
+			return h(name, attributes, children.map(createElement));
 		}
 		return h(name, element.attributes);
 	};

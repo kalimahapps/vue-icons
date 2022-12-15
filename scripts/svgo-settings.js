@@ -8,22 +8,23 @@ module.exports = (attributes) => {
 					inlineStyles: {
 						onlyMatchedOnce: false,
 					},
-				}
-			}
+				},
+			},
 		},
 		{
-			name: 'removeXMLNS', active: false
+			name: 'removeXMLNS',
+			active: false,
 		},
 		{
 			name: 'removeAttrs',
 			params: {
-				attrs: "(data-.*|svg^class|svg^id)"
-			}
+				attrs: '(data-.*|svg^class|svg^id)',
+			},
 		},
 		{
 			name: 'removeInkscapeData',
 			type: 'perItem',
-			fn: (ast, params, info) => {
+			fn: (ast, parameters, info) => {
 				return {
 					element: {
 						enter: (node) => {
@@ -38,26 +39,28 @@ module.exports = (attributes) => {
 
 							// Split and remove inkscape styles
 							const styles = node.attributes.style.split(';');
-							const filteredStyles = styles.filter(style => !style.includes('inkscape'));
+							const filteredStyles = styles.filter((style) => {
+								return !style.includes('inkscape');
+							});
 							node.attributes.style = filteredStyles.join(';');
 							return node;
-						}
-					}
-				}
-			}
-		}
+						},
+					},
+				};
+			},
+		},
 	];
 
 	if (attributes) {
 		plugins.push({
 			name: 'addAttributesToSVGElement',
 			params: {
-				attributes: [attributes]
-			}
+				attributes: [attributes],
+			},
 		});
 	}
 
 	return {
-		plugins
-	}
+		plugins,
+	};
 };
