@@ -82,7 +82,7 @@ export default defineConfig({
     vue(),
     Components({
       resolvers: [
-        VueIconsResolver(),
+        VueIconsResolver,
       ],
     })
   ],
