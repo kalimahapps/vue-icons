@@ -29,9 +29,34 @@ const iconStatToString = function (data) {
 	return `[${data.name}](${data.url})|${data.prefix}|${data.license}|${data.version}|${data.count}`;
 };
 
+/**
+ * Generate a JSON file with the latest version of each icon
+ *
+ * @param {Array} data Array of objects with icon stats
+ */
+const generateVersionLog = function (data) {
+	const versionsData = {};
+	data.forEach((iconStat) => {
+		versionsData[iconStat.name] = iconStat.version;
+	});
+
+	fse.outputJSONSync(path.resolve(__dirname, './versions.json'), versionsData);
+};
+
+/**
+ * Generate a readme file from a template
+ *
+ * @param {Array} data Array of objects with icon stats
+ */
 const generateReadmeFile = function (data) {
 	let readmeTemplate = fs.readFileSync(path.resolve(__dirname, './readme-template.txt'), 'utf8');
-	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', data.join('\n'));
+
+	// create string
+	const dataStrings = data.map((iconStat) => {
+		return iconStatToString(iconStat);
+	});
+
+	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', dataStrings.join('\n'));
 
 	fse.outputFileSync(path.resolve(__dirname, '../README.md'), readmeTemplate);
 };
@@ -197,7 +222,7 @@ const buildIcons = async function () {
 		fullContent.push(iconsContent);
 
 		iconSetData.count += iconsContent.count;
-		iconsStat.push(iconStatToString(iconSetData));
+		iconsStat.push(iconSetData);
 
 		allIconsExport += `export * from './${group}/index';\n`;
 	}, Promise.resolve([]));
@@ -212,5 +237,6 @@ const buildIcons = async function () {
 	fse.outputFileSync(path.resolve(__dirname, '../icons/all.js'), allIconsExport);
 
 	generateReadmeFile(iconsStat);
+	generateVersionLog(iconsStat);
 };
 buildIcons();
