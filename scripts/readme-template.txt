@@ -58,7 +58,7 @@ pnpm add @kalimahapps/vue-icons
 import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
 export default {
 	components: {
-		BsCalendar4Range 
+		BsCalendar4Range
 	}
 };
 </script>
@@ -69,7 +69,7 @@ export default {
 <br>
 
 ## Using resolvers with [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
-vue-icons provides a resolver that can be used with unplugin-vue-components so you don't have to add `import IconName from '@kalimahapps/vue-icons/iconSet'` for every icon you want to use. 
+vue-icons provides a resolver that can be used with unplugin-vue-components so you don't have to add `import IconName from '@kalimahapps/vue-icons/iconSet'` for every icon you want to use.
 
 ```js
 // vite.config.js
@@ -82,7 +82,7 @@ export default defineConfig({
     vue(),
     Components({
       resolvers: [
-        VueIconsResolver(),
+        VueIconsResolver,
       ],
     })
   ],
@@ -107,6 +107,10 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.1.3
+  - Updated icon packages
+  - Updated dev dependencies
+
 - 1.0.6
   - Fixed bugs
   - Add 2 icon sets (bytesize, codicons)
@@ -130,7 +134,7 @@ Icon Set|Prefix|License|Version|Count
 
 - 0.0.7
   - Update icons set
-  
+
 - 0.0.2
   - Initial Release
 
@@ -144,6 +148,9 @@ A Vue 3 tooltip component using popper.js
 ### [Vite inherit attrs](https://www.npmjs.com/package/vite-plugin-vue-setup-inherit-attrs)
 A vite plugin that adds support for inheritAttrs in vue-setup
 
+
+### [KalimahApps Eslint Config](https://www.npmjs.com/package/@kalimahapps/eslint-config)
+Comprehensive eslint rules for vue projects with typescript
 
 <br>
 <br>
