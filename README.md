@@ -92,7 +92,7 @@ export default defineConfig({
 <br>
 
 ## 📚 Demo
-To view the full list of icons, search and copy the import statement, check the demo: https://kalimah-apps.github.io/vue-icons/
+To view the full list of icons, search and copy the import statement, check the demo: https://vue-icons.kalimah-apps.com/
 
 <br>
 <br>
