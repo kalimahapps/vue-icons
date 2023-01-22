@@ -107,6 +107,9 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.1.5
+  - Add missing export "he" to package.json
+
 - 1.1.3
   - Updated icon packages
   - Updated dev dependencies

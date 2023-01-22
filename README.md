@@ -146,6 +146,9 @@ To view the full list of icons, search and copy the import statement, check the 
 <br>
 
 ## 🧮 Version History
+- 1.1.5
+  - Add missing export "he" to package.json
+
 - 1.1.3
   - Updated icon packages
   - Updated dev dependencies
