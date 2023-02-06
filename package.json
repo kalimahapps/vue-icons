@@ -1,14 +1,14 @@
 {
   "name": "@kalimahapps/vue-icons",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "55,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/kalimah-apps/vue-icons.git"
+    "url": "https://github.com/kalimahapps/vue-icons.git"
   },
   "bugs": {
-    "url": "https://github.com/kalimah-apps/vue-icons/issues"
+    "url": "https://github.com/kalimahapps/vue-icons/issues"
   },
   "homepage": "https://vue-icons.kalimah-apps.com/",
   "exports": {
