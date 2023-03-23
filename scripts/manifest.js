@@ -154,7 +154,7 @@ module.exports = [
 		icons: [
 			{
 				path: path.resolve(__dirname, '../packages/codicons/src/icons/*.svg'),
-				formatter: (fileName) => { return `co-${fileName}`; },
+				formatter: (fileName) => { return `cd-${fileName}`; },
 			},
 		],
 	},

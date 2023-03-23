@@ -94,27 +94,27 @@
 [submodule "packages/circum"]
 	path = packages/circum
 	url = https://github.com/Klarr-Agency/Circum-Icons.git
-[submodule "packages/phosphor"]
-	path = packages/phosphor
-	url = https://github.com/phosphor-icons/phosphor-icons.git
 [submodule "packages/css-gg"]
 	path = packages/css-gg
 	url = https://github.com/astrit/css.gg.git
 [submodule "packages/healthicons"]
 	path = packages/healthicons
-	url = git@github.com:resolvetosavelives/healthicons.git
+	url = https://github.com/resolvetosavelives/healthicons.git
 [submodule "packages/mingcute"]
 	path = packages/mingcute
-	url = git@github.com:Richard9394/MingCute.git
+	url = https://github.com/Richard9394/MingCute.git
 [submodule "packages/iconoir"]
 	path = packages/iconoir
-	url = git@github.com:iconoir-icons/iconoir.git
+	url = https://github.com/iconoir-icons/iconoir.git
 [submodule "packages/majesticons"]
 	path = packages/majesticons
-	url = git@github.com:halfmage/majesticons.git
+	url = https://github.com/halfmage/majesticons.git
 [submodule "packages/bytesize"]
 	path = packages/bytesize
-	url = git@github.com:danklammer/bytesize-icons.git
+	url = https://github.com/danklammer/bytesize-icons.git
 [submodule "packages/codicons"]
 	path = packages/codicons
-	url = git@github.com:microsoft/vscode-codicons.git
+	url = https://github.com/microsoft/vscode-codicons.git
+[submodule "packages/phosphor"]
+	path = packages/phosphor
+	url = https://github.com/phosphor-icons/core.git

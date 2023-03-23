@@ -107,6 +107,12 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.2.0
+  - Updated icon packages
+  - Updated dev dependencies
+  - Added tests
+  - Added missing 'cd' to package.json
+
 - 1.1.5
   - Add missing export "he" to package.json
 

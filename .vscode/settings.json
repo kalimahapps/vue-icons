@@ -47,6 +47,8 @@
 	"editor.formatOnSave": true,
 	"editor.autoIndent": "advanced",
 	"git.showPushSuccessNotification": true,
+	"git.detectSubmodules": false,
+	"git.ignoreSubmodules": true,
 	"editor.snippetSuggestions": "bottom",
 	"workbench.editor.enablePreview": true,
 	"workbench.editor.enablePreviewFromQuickOpen": true,

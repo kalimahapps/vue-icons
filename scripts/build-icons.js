@@ -56,6 +56,13 @@ const generateReadmeFile = function (data) {
 		return iconStatToString(iconStat);
 	});
 
+	// Add one row for total count
+	const total = data.reduce((accumulator, current) => {
+		return accumulator + current.count;
+	}, 0);
+
+	dataStrings.push(`Total| | | | ${total}`);
+
 	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', dataStrings.join('\n'));
 
 	fse.outputFileSync(path.resolve(__dirname, '../README.md'), readmeTemplate);
@@ -138,6 +145,7 @@ const getFilesContent = function (iconsInfo, group) {
  * Then it will loop through all icons directories
  * and extract svg files, then write it to icons directory.
  */
+// eslint-disable-next-line max-lines-per-function
 const buildIcons = async function () {
 	// Empty directory first
 	await fse.emptyDir(path.resolve(__dirname, '../icons'));
@@ -201,6 +209,7 @@ const buildIcons = async function () {
 			name,
 			count: 0,
 		};
+
 		let fileContent = 'import iconBase from \'../../scripts/icon-base\';\n';
 		await icons.reduce(async (previousPromise, iconsInfo) => {
 			await previousPromise;
