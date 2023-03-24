@@ -38,31 +38,37 @@
 <br>
 <br>
 
+<h2 align="center">
+<a href="https://vue-icons.kalimah-apps.com/">Icons Demo</a>
+</h2>
+<br>
+<br>
+
 ## 💽 Installation
-### NPM
-```bash
-npm install @kalimahapps/vue-icons
-```
 ### PNPM
 ```bash
 pnpm add @kalimahapps/vue-icons
 ```
 
+### NPM
+```bash
+npm install @kalimahapps/vue-icons
+```
+<br>
+<br>
+
 ## 🔧 Usage
 
 ```vue
 <template>
-	<div class="button"><BsCalendar4Range /> Select Date</div>
+	<div class="button">
+    <BsCalendar4Range /> Select Date
+  </div>
 </template>
-<script>
+
+<script setup>
 import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
-export default {
-	components: {
-		BsCalendar4Range
-	}
-};
 </script>
-<style></style>
 ```
 
 <br>
@@ -90,6 +96,50 @@ export default defineConfig({
 ```
 <br>
 <br>
+
+## Styling
+You can change the color and size of the icons by adding style or class to the icon component.
+
+```vue
+<template>
+	<div class="button">
+		<BsCalendar4Range class="icon" />
+
+		<span>Select Date</span>
+	</div>
+</template>
+
+<script setup>
+import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
+</script>
+
+<style scoped lang="scss">
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #000000;
+  cursor: pointer;
+
+  /* Change color and size of the icon */
+  .icon {
+    color: #c9330a;
+    font-size: 1.3em;
+    margin-right: 0.5em;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+</style>
+```
+
+<br><br>
 
 ## 📚 Demo
 To view the full list of icons, search and copy the import statement, check the demo: https://vue-icons.kalimah-apps.com/
