@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-55,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+60,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@
 ## ✨ Features
 - Tree-shaking. Only the icons you use will be included in your bundle
 - Easy to use. No need for import statement if used through resolvers with vite.
-- 55,000+ icons from popular icon sets
+- 60,000+ icons from popular icon sets
 - Stylable. You can change color and size of the icons
 - Built for vue3
 - Optimized with SVGO
@@ -38,31 +38,35 @@
 <br>
 <br>
 
+<h2 align="center">
+<a href="https://vue-icons.kalimah-apps.com/">Icons Demo</a>
+</h2>
+<br>
+<br>
+
 ## 💽 Installation
-### NPM
-```bash
-npm install @kalimahapps/vue-icons
-```
 ### PNPM
 ```bash
 pnpm add @kalimahapps/vue-icons
+```
+
+### NPM
+```bash
+npm install @kalimahapps/vue-icons
 ```
 
 ## 🔧 Usage
 
 ```vue
 <template>
-	<div class="button"><BsCalendar4Range /> Select Date</div>
+	<div class="button">
+    <BsCalendar4Range /> Select Date
+  </div>
 </template>
-<script>
-import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
-export default {
-	components: {
-		BsCalendar4Range
-	}
-};
+
+<script setup>
+import { BsCalendar4Range } from '@kalimahapps/vue-icons';
 </script>
-<style></style>
 ```
 
 <br>
@@ -91,6 +95,50 @@ export default defineConfig({
 <br>
 <br>
 
+## Styling
+You can change the color and size of the icons by adding style or class to the icon component.
+
+```vue
+<template>
+	<div class="button">
+		<BsCalendar4Range class="icon" />
+
+		<span>Select Date</span>
+	</div>
+</template>
+
+<script setup>
+import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
+</script>
+
+<style scoped lang="scss">
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: #000000;
+  cursor: pointer;
+
+  /* Change color and size of the icon */
+  .icon {
+    color: #c9330a;
+    font-size: 1.3em;
+    margin-right: 0.5em;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+</style>
+```
+
+<br><br>
+
 ## 📚 Demo
 To view the full list of icons, search and copy the import statement, check the demo: https://vue-icons.kalimah-apps.com/
 
@@ -107,6 +155,22 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.3.0
+  - Add global import. No need to add a set name like `@kalimahapps/vue-icons/bs`. All icons now can be imported using `@kalimahapps/vue-icons`
+  - Add typescript types
+  - Add new icon sets
+    - FontAudio
+    - Akar
+    - Charm Icons
+    - CoolIcons
+    - GitLab SVGs
+    - Humble Icons
+    - Lucide
+    - Quill
+    - Radix
+    - System UIcons
+  - Refactor code
+
 - 1.2.0
   - Updated icon packages
   - Updated dev dependencies

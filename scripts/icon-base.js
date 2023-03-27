@@ -27,6 +27,7 @@ const styleToObject = function (styleString) {
 };
 
 /**
+ * Create an icon component
  *
  * @param  {Array}  props Element props
  * @param  {string} svg   svg string
@@ -35,11 +36,21 @@ const styleToObject = function (styleString) {
 export default function (props, svg) {
 	const svgJsonParsed = svgToJson(svg);
 
+	const { multicolor, pathfill, twotone, width, height, viewBox } = svgJsonParsed.attributes;
+
 	svgJsonParsed.attributes.width = '1em';
 	svgJsonParsed.attributes.height = '1em';
 	svgJsonParsed.attributes.xmlns = 'http://www.w3.org/2000/svg';
 
-	const { multicolor, pathfill, twotone } = svgJsonParsed.attributes;
+	// If viewbox is not set, set it to the width and height of the svg
+	if (viewBox === undefined) {
+		// Make sure that width and height are set
+		if (width === undefined || height === undefined) {
+			throw new Error('Width and height must be set if viewBox is not set');
+		}
+
+		svgJsonParsed.attributes.viewBox = `0 0 ${width} ${height}`;
+	}
 
 	const updateStyle = function (attributes) {
 		const { fill, stroke, style } = attributes;

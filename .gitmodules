@@ -118,3 +118,36 @@
 [submodule "packages/phosphor"]
 	path = packages/phosphor
 	url = https://github.com/phosphor-icons/core.git
+[submodule "packages/akar"]
+	path = packages/akar
+	url = https://github.com/artcoholic/akar-icons.git
+[submodule "packages/lucide"]
+	path = packages/lucide
+	url = https://github.com/lucide-icons/lucide.git
+[submodule "packages/coolicons"]
+	path = packages/coolicons
+	url = https://github.com/krystonschwarze/coolicons.git
+[submodule "packages/charm"]
+	path = packages/charm
+	url = https://github.com/jaynewey/charm-icons.git
+[submodule "packages/humble"]
+	path = packages/humble
+	url = https://github.com/zraly/humbleicons.git
+[submodule "packages/system-uicons"]
+	path = packages/system-uicons
+	url = https://github.com/CoreyGinnivan/system-uicons.git
+[submodule "packages/radix-ui"]
+	path = packages/radix-ui
+	url = https://github.com/radix-ui/icons.git
+[submodule "packages/gitlab"]
+	path = packages/gitlab
+	url = https://gitlab.com/gitlab-org/gitlab-svgs.git
+[submodule "packages/quill"]
+	path = packages/quill
+	url = https://github.com/yourtempo/tempo-quill-icons.git
+[submodule "packages/mono"]
+	path = packages/mono
+	url = https://github.com/mono-company/mono-icons.git
+[submodule "packages/fontaudio"]
+	path = packages/fontaudio
+	url = https://github.com/fefanto/fontaudio.git

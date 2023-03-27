@@ -3,6 +3,25 @@ const path = require('node:path');
 
 module.exports = [
 	{
+		group: 'ad',
+		name: 'FontAudio',
+		license: 'MIT',
+		url: 'https://github.com/fefanto/fontaudio',
+		repo: 'https://github.com/fefanto/fontaudio',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/fontaudio/svgs/*.svg'),
+				formatter: (fileName) => {
+					const cleanFileName = fileName.replace(/^fad-/u, '');
+					return `ad-${cleanFileName.toLowerCase()}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
 		group: 'ai',
 		name: 'Academicons',
 		license: 'SIL OFL 1.1',
@@ -12,6 +31,24 @@ module.exports = [
 			{
 				path: path.resolve(__dirname, '../packages/academicons/svg/*.svg'),
 				formatter: (fileName) => { return `ai-${fileName}`; },
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
+		group: 'ak',
+		name: 'Akar',
+		license: 'MIT',
+		url: 'https://akaricons.com/',
+		repo: 'https://github.com/artcoholic/akar-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/akar/src/svg/*.svg'),
+				formatter: (fileName) => {
+					return `ak-${fileName}`;
+				},
 				attributes: {
 					fill: 'currentColor',
 				},
@@ -108,6 +145,42 @@ module.exports = [
 					// Remove double dashes
 					const cleanedFileName = fileName.replaceAll('--', '-');
 					return `ca-${cleanedFileName}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
+		group: 'ch',
+		name: 'Charm Icons',
+		license: 'MIT',
+		url: 'https://codepen.io/jaynewey/full/LYROoGJ',
+		repo: 'https://github.com/jaynewey/charm-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/charm/icons/*.svg'),
+				formatter: (fileName) => {
+					return `ch-${fileName.replaceAll('_', '-')}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
+		group: 'cl',
+		name: 'CoolIcons',
+		license: 'CC 4.0',
+		url: 'https://coolicons.cool/',
+		repo: 'https://github.com/krystonschwarze/coolicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/coolicons/coolicons SVG/**/*.svg'),
+				formatter: (fileName) => {
+					return `co-${fileName.toLowerCase()}`;
 				},
 				attributes: {
 					fill: 'currentColor',
@@ -353,6 +426,25 @@ module.exports = [
 		],
 	},
 	{
+		group: 'gl',
+		name: 'GitLab',
+		license: 'MIT',
+		version: '3.31.0',
+		url: 'http://gitlab-org.gitlab.io/gitlab-svgs/',
+		repo: 'https://gitlab.com/gitlab-org/gitlab-svgs/-/tree/main',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/gitlab/sprite_icons/*.svg'),
+				formatter: (fileName) => {
+					return `gl-${fileName.replaceAll('_', '-')}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
 		group: 'gv',
 		name: 'Govicons',
 		license: 'SIL OFL 1.1',
@@ -477,6 +569,24 @@ module.exports = [
 		],
 	},
 	{
+		group: 'hu',
+		name: 'Humble Icons',
+		license: 'MIT',
+		url: 'https://humbleicons.com/',
+		repo: 'https://github.com/zraly/humbleicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/humble/icons/*.svg'),
+				formatter: (fileName) => {
+					return `hu-${fileName.replaceAll('_', '-')}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
 		group: 'ja',
 		name: 'Jamicons',
 		license: 'MIT',
@@ -581,6 +691,24 @@ module.exports = [
 		],
 	},
 	{
+		group: 'lu',
+		name: 'Lucide',
+		license: 'ISC',
+		url: 'https://lucide.dev/',
+		repo: 'https://github.com/lucide-icons/lucide',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/lucide/icons/*.svg'),
+				formatter: (fileName) => {
+					return `lu-${fileName}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
 		group: 'mi',
 		name: 'Majesticons',
 		license: 'MIT',
@@ -613,6 +741,7 @@ module.exports = [
 			},
 		],
 	},
+
 	{
 		group: 'md',
 		name: 'Material Design',
@@ -767,6 +896,45 @@ module.exports = [
 		],
 	},
 	{
+		group: 'qu',
+		name: 'Quill',
+		version: '1.0.0',
+		license: 'MIT',
+		url: 'https://www.figma.com/community/file/1034432054377533052/Quill-Iconset',
+		repo: 'https://github.com/yourtempo/tempo-quill-icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/quill/icons/*.svg'),
+				formatter: (fileName) => {
+					const cleanFileName = fileName.replaceAll(' ', '-');
+					return `qu-${cleanFileName.replaceAll('_', '-')}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
+		group: 'ra',
+		name: 'Radix',
+		license: 'MIT',
+		version: '1.3.0',
+		url: 'https://icons.radix-ui.com/',
+		repo: 'https://github.com/radix-ui/icons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/radix-ui/packages/radix-icons/icons/*.svg'),
+				formatter: (fileName) => {
+					return `ra-${fileName.replaceAll('_', '-')}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
 		group: 're',
 		name: 'Remix',
 		license: 'Apache 2.0',
@@ -794,6 +962,25 @@ module.exports = [
 			{
 				path: path.resolve(__dirname, '../packages/simple-icons/icons/*.svg'),
 				formatter: (fileName) => { return `si-${fileName}`; },
+				attributes: {
+					fill: 'currentColor',
+				},
+			},
+		],
+	},
+	{
+		group: 'su',
+		name: 'System UIcons',
+		license: 'Unlicense',
+		version: '-',
+		url: 'https://www.systemuicons.com/',
+		repo: 'https://github.com/CoreyGinnivan/system-uicons',
+		icons: [
+			{
+				path: path.resolve(__dirname, '../packages/system-uicons/src/images/icons/*.svg'),
+				formatter: (fileName) => {
+					return `su-${fileName.replaceAll('_', '-')}`;
+				},
 				attributes: {
 					fill: 'currentColor',
 				},

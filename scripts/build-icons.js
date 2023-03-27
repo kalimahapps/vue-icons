@@ -160,6 +160,8 @@ const buildIcons = async function () {
 	// Hold icon set version, prefix, count, license ..etc
 	const iconsStat = [];
 
+	const startTime = Date.now();
+
 	await manifest.reduce(async (previousPromise, iconsGroup) => {
 		await previousPromise;
 
@@ -220,9 +222,16 @@ const buildIcons = async function () {
 			await csvWriter.writeRecords(csv);
 		}, Promise.resolve());
 
+		// Output file
 		fse.outputFileSync(
 			path.resolve(__dirname, `../icons/${group}/index.js`),
 			fileContent
+		);
+
+		// Output file type
+		fse.outputFileSync(
+			path.resolve(__dirname, `../icons/${group}/index.d.ts`),
+			`declare module '@kalimahapps/vue-icons/${group}';`
 		);
 
 		iconsContent.count += Object.keys(uniqueFileNames).length;
@@ -243,9 +252,36 @@ const buildIcons = async function () {
 	);
 
 	// Create all icons file
-	fse.outputFileSync(path.resolve(__dirname, '../icons/all.js'), allIconsExport);
+	fse.outputFileSync(
+		path.resolve(__dirname, '../icons/all.js'),
+		allIconsExport
+	);
+
+	// Create type file for all icons file
+	fse.outputFileSync(
+		path.resolve(__dirname, '../icons/all.d.ts'),
+		"declare module '@kalimahapps/vue-icons';"
+	);
 
 	generateReadmeFile(iconsStat);
 	generateVersionLog(iconsStat);
+
+	const endTime = Date.now();
+	const timeTaken = endTime - startTime;
+
+	console.log(`\n\n\nTime taken: ${formatTimeTaken(timeTaken / 1000)}`);
+};
+
+/**
+ * Format time taken to process icons
+ *
+ * @param  {string} time Time taken to process icons in milliseconds
+ * @return {string}      Formatted time taken
+ */
+const formatTimeTaken = (time) => {
+	const minutes = Math.floor((time % 3600) / 60);
+	const seconds = Math.floor(time % 60);
+
+	return `${minutes}m ${seconds}s`;
 };
 buildIcons();
