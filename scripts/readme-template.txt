@@ -156,7 +156,7 @@ Icon Set|Prefix|License|Version|Count
 
 ## 🧮 Version History
 - 1.3.0
-  - Add global import. No need to add a set name like `@kalimahapps/vue-icons/bs`. All icons now can be imported using `@kalimahapps/vue-icons`
+  - Add global import. No need to add a set name like `@kalimahapps/vue-icons`. All icons now can be imported using `@kalimahapps/vue-icons`
   - Add typescript types
   - Add new icon sets
     - FontAudio

@@ -108,7 +108,7 @@ You can change the color and size of the icons by adding style or class to the i
 </template>
 
 <script setup>
-import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
+import { BsCalendar4Range } from '@kalimahapps/vue-icons';
 </script>
 
 <style scoped lang="scss">
