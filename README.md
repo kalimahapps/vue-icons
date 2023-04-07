@@ -11,6 +11,9 @@
 </p>
 
 <p align="center">
+<a target="_blank" href="https://www.npmjs.com/package/@kalimahapps/eslint-config">
+  <img src="https://img.shields.io/badge/ESLint%20Config-kalimahapps-blue">
+</a>
 <a target="_blank" href="https://www.npmjs.com/package/@kalimahapps/vue-icons">
   <img src="https://img.shields.io/npm/v/@kalimahapps/vue-icons.svg">
 </a>
