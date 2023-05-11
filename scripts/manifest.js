@@ -180,7 +180,7 @@ module.exports = [
 			{
 				path: path.resolve(__dirname, '../packages/coolicons/coolicons SVG/**/*.svg'),
 				formatter: (fileName) => {
-					return `co-${fileName.toLowerCase()}`;
+					return `cl-${fileName.toLowerCase()}`;
 				},
 				attributes: {
 					fill: 'currentColor',
@@ -297,7 +297,7 @@ module.exports = [
 		group: 'fl',
 		name: 'FluentUI System',
 		license: 'MIT',
-		version: '1.1.186',
+		version: '1.1.201',
 		repo: 'https://github.com/microsoft/fluentui-system-icons',
 		url: 'https://github.com/microsoft/fluentui-system-icons',
 		icons: [
@@ -429,7 +429,7 @@ module.exports = [
 		group: 'gl',
 		name: 'GitLab',
 		license: 'MIT',
-		version: '3.31.0',
+		version: '3.46.0',
 		url: 'http://gitlab-org.gitlab.io/gitlab-svgs/',
 		repo: 'https://gitlab.com/gitlab-org/gitlab-svgs/-/tree/main',
 		icons: [
@@ -750,17 +750,15 @@ module.exports = [
 		repo: 'https://github.com/google/material-design-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/material-design/src/**/**/24px.svg'),
+				path: path.resolve(__dirname, '../packages/material-design/svg/**/*.svg'),
 				formatter: (fileName, filePath) => {
-					// Get two levels up from the file path using node
-					const twoLevelsUp = path.basename(path.join(filePath, '..', '..'));
 					const iconTypeFolder = path.basename(path.dirname(filePath));
 
-					// Replace underscore to dash
-					const iconName = twoLevelsUp.replaceAll('_', '-');
-					const iconType = iconTypeFolder.replace('materialicons', '');
+					// Replace underscores to dashes
+					const iconName = fileName.replaceAll('_', '-');
+					const iconType = iconTypeFolder.replaceAll('_', '-');
 
-					if (iconType.length === 0) {
+					if (iconType === 'filled') {
 						return `md-${iconName}`;
 					}
 					return `md-${iconType}-${iconName}`;

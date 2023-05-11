@@ -76,9 +76,6 @@
 [submodule "packages/unicons"]
 	path = packages/unicons
 	url = https://github.com/Iconscout/unicons.git
-[submodule "packages/material-design"]
-	path = packages/material-design
-	url = https://github.com/google/material-design-icons.git
 [submodule "packages/tabler"]
 	path = packages/tabler
 	url = https://github.com/tabler/tabler-icons.git
@@ -151,3 +148,6 @@
 [submodule "packages/fontaudio"]
 	path = packages/fontaudio
 	url = https://github.com/fefanto/fontaudio.git
+[submodule "packages/material-design"]
+	path = packages/material-design
+	url = https://github.com/marella/material-design-icons.git

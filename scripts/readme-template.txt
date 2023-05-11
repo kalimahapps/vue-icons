@@ -111,7 +111,7 @@ You can change the color and size of the icons by adding style or class to the i
 </template>
 
 <script setup>
-import { BsCalendar4Range } from '@kalimahapps/vue-icons/bs';
+import { BsCalendar4Range } from '@kalimahapps/vue-icons';
 </script>
 
 <style scoped lang="scss">
@@ -158,8 +158,14 @@ Icon Set|Prefix|License|Version|Count
 <br>
 
 ## 🧮 Version History
+- 1.4.0
+  - breaking change: fix CoolIcons prefix. It had the same prefix as coreicons `co` but not it is corrected to be `cl`.
+  - breaking change: Replace official material design repo with a generated one for SVG only.
+  - fix: add missing 'ad' entry in package.json
+  - chore: Update all icons
+
 - 1.3.0
-  - Add global import. No need to add a set name like `@kalimahapps/vue-icons`. All icons now can be imported using `@kalimahapps/vue-icons`
+  - Add global import. No need to add a set name like `@kalimahapps/vue-icons/bs`. All icons now can be imported using `@kalimahapps/vue-icons`
   - Add typescript types
   - Add new icon sets
     - FontAudio

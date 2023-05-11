@@ -2,7 +2,7 @@
   "name": "@kalimahapps/vue-icons",
   "description": "60,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
   "author": "khr2003",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "homepage": "https://vue-icons.kalimah-apps.com/",
   "repository": {
     "type": "git",
@@ -83,6 +83,7 @@
       "types": "./icons/all.d.ts",
       "import": "./icons/all.js"
     },
+    "./ad": "./icons/ad/index.js",
     "./ai": "./icons/ai/index.js",
     "./au": "./icons/au/index.js",
     "./ak": "./icons/ak/index.js",
