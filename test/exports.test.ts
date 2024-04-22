@@ -23,6 +23,10 @@ test('That package.json contains all the exports from icons folder', () => {
 	});
 
 	icons.forEach((icon) => {
+		// Ignore .d.ts files
+		if (icon.includes('.d.ts')) {
+			return;
+		}
 		expect(exportsKeys, `Missing ${icon} in package.json exports`).to.include(icon);
 	});
 });
