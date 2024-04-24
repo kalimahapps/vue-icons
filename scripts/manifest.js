@@ -614,8 +614,19 @@ module.exports = [
 		url: 'https://iconoir.com/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/iconoir/icons/*.svg'),
-				formatter: (fileName) => { return `ic-${fileName}`; },
+				path: path.resolve(__dirname, '../packages/iconoir/icons/regular/*.svg'),
+				formatter: (fileName) => {
+					return `ic-${fileName}`;
+				},
+			},
+			{
+				path: path.resolve(__dirname, '../packages/iconoir/icons/solid/*.svg'),
+				formatter: (fileName) => {
+					return `ic-solid-${fileName}`;
+				},
+				attributes: {
+					fill: 'currentColor',
+				},
 			},
 		],
 	},

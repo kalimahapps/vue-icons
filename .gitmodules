@@ -112,9 +112,6 @@
 [submodule "packages/codicons"]
 	path = packages/codicons
 	url = https://github.com/microsoft/vscode-codicons.git
-[submodule "packages/phosphor"]
-	path = packages/phosphor
-	url = https://github.com/phosphor-icons/core.git
 [submodule "packages/akar"]
 	path = packages/akar
 	url = https://github.com/artcoholic/akar-icons.git
@@ -151,3 +148,6 @@
 [submodule "packages/material-design"]
 	path = packages/material-design
 	url = https://github.com/marella/material-design-icons.git
+[submodule "packages/phosphor"]
+	path = packages/phosphor
+	url = https://github.com/phosphor-icons/core.git
