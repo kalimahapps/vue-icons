@@ -1,5 +1,5 @@
 import { h } from 'vue';
-import { parseSync as svgToJson } from 'svgson';
+import { parse } from 'svg-parser';
 
 /**
  * Convert a style string to an object. Also, replace
@@ -33,14 +33,15 @@ const styleToObject = function (styleString) {
  * @param  {string} svg   svg string
  * @return {object}       The icon component
  */
-export default function (props, svg) {
-	const svgJsonParsed = svgToJson(svg);
+export default function (iconProperties, svg) {
+	const svgJsonParsed = parse(svg);
+	const svgElement = svgJsonParsed.children[0];
 
-	const { multicolor, pathfill, twotone, width, height, viewBox } = svgJsonParsed.attributes;
+	const { multicolor, pathfill, twotone, width, height, viewBox } = svgElement.properties;
 
-	svgJsonParsed.attributes.width = '1em';
-	svgJsonParsed.attributes.height = '1em';
-	svgJsonParsed.attributes.xmlns = 'http://www.w3.org/2000/svg';
+	svgElement.properties.width = '1em';
+	svgElement.properties.height = '1em';
+	svgElement.properties.xmlns = 'http://www.w3.org/2000/svg';
 
 	// If viewbox is not set, set it to the width and height of the svg
 	if (viewBox === undefined) {
@@ -49,34 +50,35 @@ export default function (props, svg) {
 			throw new Error('Width and height must be set if viewBox is not set');
 		}
 
-		svgJsonParsed.attributes.viewBox = `0 0 ${width} ${height}`;
+		svgElement.properties.viewBox = `0 0 ${width} ${height}`;
 	}
 
-	const updateStyle = function (attributes) {
-		const { fill, stroke, style } = attributes;
+	/* eslint {complexity: [error, 12]} */
+	const updateStyle = function (properties) {
+		const { fill, stroke, style } = properties;
 
 		const canFill = !twotone && fill && ['none', 'white', '#fff'].includes(fill) === false;
 
 		if (twotone === 'true' && fill === undefined) {
-			attributes.fill = 'currentColor';
+			properties.fill = 'currentColor';
 		} else if (canFill || pathfill !== undefined) {
-			attributes.fill = props.color === undefined ? 'currentColor' : props.color;
+			properties.fill = iconProperties.color === undefined ? 'currentColor' : iconProperties.color;
 		}
 
 		if (stroke !== undefined && stroke !== 'none') {
-			attributes.stroke = props.color === undefined ? 'currentColor' : props.color;
+			properties.stroke = iconProperties.color === undefined ? 'currentColor' : iconProperties.color;
 		}
 
 		if (style !== undefined) {
 			const styleObject = styleToObject(style);
-			attributes = {
-				...attributes,
+			properties = {
+				...properties,
 				...styleObject,
 			};
-			attributes.style = '';
+			properties.style = '';
 		}
 
-		return attributes;
+		return properties;
 	};
 
 	/**
@@ -86,26 +88,26 @@ export default function (props, svg) {
 	 * @return {string}         svg string
 	 */
 	const createElement = function (element) {
-		const { name, attributes, children } = element;
+		const { tagName, properties, children } = element;
 
 		if (multicolor !== 'true') {
-			element.attributes = updateStyle(attributes);
+			element.properties = updateStyle(properties);
 		}
 
-		if (Array.isArray(children)) {
-			const { attributes } = element;
+		if (children.length > 0) {
+			const { properties } = element;
 
 			// If node name is title then skip looping over children
 			// as this will cause to display invalid vnode error
-			if (name === 'title') {
-				return h(name, attributes);
+			if (tagName === 'title') {
+				return h(tagName, properties);
 			}
 
-			return h(name, attributes, children.map(createElement));
+			return h(tagName, properties, children.map(createElement));
 		}
-		return h(name, element.attributes);
+		return h(tagName, element.properties);
 	};
 
 	// use an array to return multiple root nodes
-	return createElement(svgJsonParsed);
+	return createElement(svgElement);
 }
