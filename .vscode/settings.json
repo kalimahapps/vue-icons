@@ -44,18 +44,7 @@
     "git.inputValidationLength": 100,
     "git.inputValidationSubjectLength": 70,
     "search.exclude": {
-        "**/node_modules": true,
-        "**/vendor": true,
-        "**/bower_components": true,
-        "**/.git": true,
-        "**/tests": true,
-        "**/.vscode": true,
-        "**/out/**": true,
-        "package-lock.json": true,
-        "**/dist": true,
-        "**/build": true,
-        "**/coverage": true,
-        "**/docs": true
+        "packages": true
     },
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.profiles.windows": {

@@ -1,3 +1,20 @@
 {
-    "extends": "https://raw.githubusercontent.com/kalimahapps/configs/main/.vscode/settings.json"
+    "extends": "https://raw.githubusercontent.com/kalimahapps/configs/main/.vscode/settings.json",
+    "settings": {
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/vendor": true,
+            "**/bower_components": true,
+            "**/.git": true,
+            "**/tests": true,
+            "**/.vscode": true,
+            "**/out/**": true,
+            "package-lock.json": true,
+            "**/dist": true,
+            "**/build": true,
+            "**/coverage": true,
+            "**/docs": true,
+            "packages": true
+        }
+    }
 }
