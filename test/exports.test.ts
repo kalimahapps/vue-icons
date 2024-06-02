@@ -6,6 +6,33 @@ import packageJson from '../package.json';
 import * as VueIcons from '@kalimahapps/vue-icons';
 
 describe('Exports', () => {
+	test('That package.json contains all the exports from icons folder', () => {
+		const filePath = fileURLToPath(import.meta.url);
+		const directoryPath = path.dirname(filePath);
+
+		// Get icons folder path
+		const iconsPath = path.join(directoryPath, '../icons');
+
+		let icons = fs.readdirSync(iconsPath);
+		const { exports } = packageJson;
+
+		icons = icons.map((icon) => {
+			return icon.replace('.js', '');
+		});
+
+		const exportsKeys = Object.keys(exports).map((key) => {
+			return key.replace('./', '');
+		});
+
+		for (const icon of icons) {
+		// Ignore .d.ts files
+			if (icon.includes('.d.ts')) {
+				return;
+			}
+			expect(exportsKeys, `Missing ${icon} in package.json exports`).to.include(icon);
+		}
+	});
+
 	test('That exported icons are correct', () => {
 		// import icons-list.json file from test folder
 		const filePath = fileURLToPath(import.meta.url);
@@ -41,33 +68,6 @@ describe('Exports', () => {
 			// if the file does not exist, create it
 			const icons = Object.keys(VueIcons);
 			fs.writeFileSync(iconsListPath, JSON.stringify(icons));
-		}
-	});
-
-	test('That package.json contains all the exports from icons folder', () => {
-		const filePath = fileURLToPath(import.meta.url);
-		const directoryPath = path.dirname(filePath);
-
-		// Get icons folder path
-		const iconsPath = path.join(directoryPath, '../icons');
-
-		let icons = fs.readdirSync(iconsPath);
-		const { exports } = packageJson;
-
-		icons = icons.map((icon) => {
-			return icon.replace('.js', '');
-		});
-
-		const exportsKeys = Object.keys(exports).map((key) => {
-			return key.replace('./', '');
-		});
-
-		for (const icon of icons) {
-		// Ignore .d.ts files
-			if (icon.includes('.d.ts')) {
-				return;
-			}
-			expect(exportsKeys, `Missing ${icon} in package.json exports`).to.include(icon);
 		}
 	});
 });
