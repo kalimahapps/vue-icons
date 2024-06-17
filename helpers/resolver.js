@@ -1,10 +1,11 @@
-const manifest = require('../scripts/manifest.js');
+// const manifest = require('../scripts/manifest.js');
+import manifest from '../scripts/manifest.js';
 
 const iconsInitials = manifest.map((item) => {
 	return item.group.charAt(0).toUpperCase() + item.group.slice(1);
 });
 
-module.exports = {
+export default {
 	type: 'component',
 	resolve: (componentName) => {
 		if (componentName === undefined) {

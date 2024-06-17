@@ -1,7 +1,11 @@
 /* eslint-disable max-lines */
-const path = require('node:path');
+// const path = require('node:path');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirectoryPath = path.dirname(currentFilePath);
 
-module.exports = [
+export default [
 	{
 		group: 'ad',
 		name: 'FontAudio',
@@ -10,7 +14,7 @@ module.exports = [
 		repo: 'https://github.com/fefanto/fontaudio',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/fontaudio/svgs/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/fontaudio/svgs/*.svg'),
 				formatter: (fileName) => {
 					const cleanFileName = fileName.replace(/^fad-/u, '');
 					return `ad-${cleanFileName.toLowerCase()}`;
@@ -29,7 +33,7 @@ module.exports = [
 		repo: 'https://github.com/jpswalsh/academicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/academicons/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/academicons/svg/*.svg'),
 				formatter: (fileName) => { return `ai-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -45,7 +49,7 @@ module.exports = [
 		repo: 'https://github.com/artcoholic/akar-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/akar/src/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/akar/src/svg/*.svg'),
 				formatter: (fileName) => {
 					return `ak-${fileName}`;
 				},
@@ -64,21 +68,21 @@ module.exports = [
 		repo: 'https://github.com/ant-design/ant-design-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/filled/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ant-design/packages/icons-svg/svg/filled/*.svg'),
 				formatter: (fileName) => { return `an-filled-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/outlined/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ant-design/packages/icons-svg/svg/outlined/*.svg'),
 				formatter: (fileName) => { return `an-outlined-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
 				formatter: (fileName) => { return `an-twotone-${fileName}`; },
 				attributes: {
 					twotone: true,
@@ -94,7 +98,7 @@ module.exports = [
 		repo: 'https://github.com/twbs/icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/bootstrap-icons/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/bootstrap-icons/icons/*.svg'),
 				formatter: (name) => {
 					return `bs-${name}`;
 				},
@@ -110,21 +114,21 @@ module.exports = [
 		version: '2.1.4',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/boxicons/svg/logos/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/boxicons/svg/logos/*.svg'),
 				formatter: (fileName) => { return `bx-${fileName.replace('bxl-', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/boxicons/svg/regular/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/boxicons/svg/regular/*.svg'),
 				formatter: (fileName) => { return `bx-${fileName.replace('bx-', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/boxicons/svg/solid/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/boxicons/svg/solid/*.svg'),
 				formatter: (fileName) => { return `bx-solid-${fileName.replace('bxs-', '')}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -140,7 +144,7 @@ module.exports = [
 		repo: 'https://github.com/carbon-design-system/carbon',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/carbon/packages/icons/src/svg/32/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/carbon/packages/icons/src/svg/32/*.svg'),
 				formatter: (fileName) => {
 					// Remove double dashes
 					const cleanedFileName = fileName.replaceAll('--', '-');
@@ -160,7 +164,7 @@ module.exports = [
 		repo: 'https://github.com/jaynewey/charm-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/charm/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/charm/icons/*.svg'),
 				formatter: (fileName) => {
 					return `ch-${fileName.replaceAll('_', '-')}`;
 				},
@@ -178,7 +182,7 @@ module.exports = [
 		repo: 'https://github.com/krystonschwarze/coolicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/coolicons/coolicons SVG/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/coolicons/coolicons SVG/**/*.svg'),
 				formatter: (fileName) => {
 					return `cl-${fileName.toLowerCase()}`;
 				},
@@ -196,7 +200,7 @@ module.exports = [
 		repo: 'https://github.com/danklammer/bytesize-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/bytesize/dist/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/bytesize/dist/icons/*.svg'),
 				formatter: (fileName) => { return `by-${fileName}`; },
 			},
 		],
@@ -210,7 +214,7 @@ module.exports = [
 		repo: 'https://github.com/Klarr-Agency/Circum-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/circum/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/circum/svg/*.svg'),
 				formatter: (fileName) => { return `ci-${fileName.replaceAll('_', '-')}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -226,7 +230,7 @@ module.exports = [
 		repo: 'https://github.com/microsoft/vscode-codicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/codicons/src/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/codicons/src/icons/*.svg'),
 				formatter: (fileName) => { return `cd-${fileName}`; },
 			},
 		],
@@ -239,21 +243,21 @@ module.exports = [
 		repo: 'https://github.com/coreui/coreui-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/coreui/svg/brand/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/coreui/svg/brand/*.svg'),
 				formatter: (fileName) => { return `co-brand-${fileName.replace('cib-', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/coreui/svg/flag/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/coreui/svg/flag/*.svg'),
 				formatter: (fileName) => { return `co-flag-${fileName.replace('cif-', '')}`; },
 				attributes: {
 					multicolor: true,
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/coreui/svg/free/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/coreui/svg/free/*.svg'),
 				formatter: (fileName) => { return `co-${fileName.replace('cil-', '')}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -269,7 +273,7 @@ module.exports = [
 		repo: 'https://github.com/astrit/css.gg',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/css-gg/icons/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/css-gg/icons/svg/*.svg'),
 				formatter: (fileName) => { return `cg-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -285,7 +289,7 @@ module.exports = [
 		repo: 'https://github.com/devicons/devicon',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/devicons/icons/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/devicons/icons/**/*.svg'),
 				formatter: (fileName) => { return `de-${fileName}`; },
 				attributes: {
 					multicolor: true,
@@ -302,7 +306,7 @@ module.exports = [
 		url: 'https://github.com/microsoft/fluentui-system-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/fluentui-system/assets/*/SVG/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/fluentui-system/assets/*/SVG/*.svg'),
 				formatter: (fileName, filePath) => {
 					const folderName = path.basename(path.join(filePath, '..', '..'));
 
@@ -365,13 +369,13 @@ module.exports = [
 							}
 
 							// Get the file with the highest resolution
-							files.forEach((filePath) => {
+							for (const filePath of files) {
 								const fileName = path.basename(filePath);
 								if (!fileName.includes(`_${sizeFound}_`)) {
-									return;
+									continue;
 								}
 								accumulator.push(filePath);
-							});
+							}
 							return accumulator;
 						}, []);
 
@@ -388,21 +392,21 @@ module.exports = [
 		license: 'CC BY 4.0',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/font-awesome/svgs/regular/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/font-awesome/svgs/regular/*.svg'),
 				formatter: (name) => { return `fa-reg-${name}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/font-awesome/svgs/brands/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/font-awesome/svgs/brands/*.svg'),
 				formatter: (name) => { return `fa-bands-${name}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/font-awesome/svgs/solid/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/font-awesome/svgs/solid/*.svg'),
 				formatter: (name) => { return `fa-${name}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -418,7 +422,7 @@ module.exports = [
 		url: 'https://feathericons.com/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/feather/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/feather/icons/*.svg'),
 				formatter: (name) => {
 					return `fe-${name}`;
 				},
@@ -434,7 +438,7 @@ module.exports = [
 		repo: 'https://gitlab.com/gitlab-org/gitlab-svgs/-/tree/main',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/gitlab/sprite_icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/gitlab/sprite_icons/*.svg'),
 				formatter: (fileName) => {
 					return `gl-${fileName.replaceAll('_', '-')}`;
 				},
@@ -452,7 +456,7 @@ module.exports = [
 		url: 'http://govicons.io/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/govicons/raw-svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/govicons/raw-svg/*.svg'),
 				formatter: (fileName) => { return `gv-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -469,7 +473,7 @@ module.exports = [
 		url: 'https://healthicons.org/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/healthicons/public/icons/svg/outline/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/healthicons/public/icons/svg/outline/**/*.svg'),
 				formatter: (fileName, filePath) => {
 					const folderName = path.basename(path.dirname(filePath));
 
@@ -506,7 +510,7 @@ module.exports = [
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/healthicons/public/icons/svg/filled/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/healthicons/public/icons/svg/filled/**/*.svg'),
 				formatter: (fileName, filePath) => {
 					const folderName = path.basename(path.dirname(filePath));
 
@@ -555,13 +559,13 @@ module.exports = [
 		repo: 'https://github.com/tailwindlabs/heroicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/hero/src/24/outline/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/hero/src/24/outline/*.svg'),
 				formatter: (name) => {
 					return `hi-${name}`;
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/hero/src/24/solid/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/hero/src/24/solid/*.svg'),
 				formatter: (name) => {
 					return `hi-solid-${name}`;
 				},
@@ -576,7 +580,7 @@ module.exports = [
 		repo: 'https://github.com/zraly/humbleicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/humble/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/humble/icons/*.svg'),
 				formatter: (fileName) => {
 					return `hu-${fileName.replaceAll('_', '-')}`;
 				},
@@ -594,14 +598,14 @@ module.exports = [
 		repo: 'https://github.com/michaelampr/jam',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/jamicons/icons/*-f.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/jamicons/icons/*-f.svg'),
 				formatter: (fileName) => { return `ja-fill-${fileName.replace('-f', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/jamicons/icons/!(*-f).svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/jamicons/icons/!(*-f).svg'),
 				formatter: (fileName) => { return `ja-${fileName}`; },
 			},
 		],
@@ -614,13 +618,13 @@ module.exports = [
 		url: 'https://iconoir.com/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/iconoir/icons/regular/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/iconoir/icons/regular/*.svg'),
 				formatter: (fileName) => {
 					return `ic-${fileName}`;
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/iconoir/icons/solid/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/iconoir/icons/solid/*.svg'),
 				formatter: (fileName) => {
 					return `ic-solid-${fileName}`;
 				},
@@ -638,7 +642,7 @@ module.exports = [
 		license: 'MIT',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-sharp.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ionicons/src/svg/*-sharp.svg'),
 				formatter: (name) => {
 					return `io-sharp-${name.replace('-sharp', '')}`;
 				},
@@ -647,7 +651,7 @@ module.exports = [
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ionicons/src/svg/*-outline.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ionicons/src/svg/*-outline.svg'),
 				formatter: (name) => {
 					return `io-outline-${name.replace('-outline', '')}`;
 				},
@@ -656,7 +660,7 @@ module.exports = [
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/ionicons/src/svg/!(*-outline|*-sharp).svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/ionicons/src/svg/!(*-outline|*-sharp).svg'),
 				formatter: (name) => {
 					return `io-${name}`;
 				},
@@ -674,7 +678,7 @@ module.exports = [
 		repo: 'https://github.com/icons8/line-awesome',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/line-awesome/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/line-awesome/svg/*.svg'),
 				formatter: (name) => {
 					return `la-${name}`;
 				},
@@ -693,7 +697,7 @@ module.exports = [
 		repo: 'https://github.com/cjpatoilo/linearicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/linearicons/dist/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/linearicons/dist/svg/*.svg'),
 				formatter: (fileName) => { return `li-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -709,7 +713,7 @@ module.exports = [
 		repo: 'https://github.com/lucide-icons/lucide',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/lucide/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/lucide/icons/*.svg'),
 				formatter: (fileName) => {
 					return `lu-${fileName}`;
 				},
@@ -727,11 +731,11 @@ module.exports = [
 		repo: 'https://github.com/halfmage/majesticons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/majesticons/line/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/majesticons/line/*.svg'),
 				formatter: (fileName) => { return `mi-${fileName.replace('-line', '')}`; },
 			},
 			{
-				path: path.resolve(__dirname, '../packages/majesticons/solid/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/majesticons/solid/*.svg'),
 				formatter: (fileName) => { return `mi-solid-${fileName}`; },
 			},
 		],
@@ -744,7 +748,7 @@ module.exports = [
 		repo: 'https://github.com/mapbox/maki',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/maki-icons/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/maki-icons/icons/*.svg'),
 				formatter: (fileName) => { return `ma-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -761,7 +765,7 @@ module.exports = [
 		repo: 'https://github.com/google/material-design-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/material-design/svg/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/material-design/svg/**/*.svg'),
 				formatter: (fileName, filePath) => {
 					const iconTypeFolder = path.basename(path.dirname(filePath));
 
@@ -788,7 +792,7 @@ module.exports = [
 		url: 'https://www.mingcute.com/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/mingcute/svg/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/mingcute/svg/**/*.svg'),
 				formatter: (fileName) => { return `mc-${fileName.replaceAll('_', '-')}`; },
 			},
 		],
@@ -801,7 +805,7 @@ module.exports = [
 		url: 'https://github.com/primer/octicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/octicons/icons/*-24.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/octicons/icons/*-24.svg'),
 				formatter: (name) => {
 					return `oc-${name.replace('-24', '')}`;
 				},
@@ -819,7 +823,7 @@ module.exports = [
 		repo: 'https://github.com/pfefferle/openwebicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/openwebicons/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/openwebicons/svg/*.svg'),
 				formatter: (fileName) => { return `ow-${fileName}`; },
 			},
 		],
@@ -832,42 +836,42 @@ module.exports = [
 		repo: 'https://github.com/phosphor-icons/phosphor-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/regular/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/regular/*.svg'),
 				formatter: (fileName) => { return `ph-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/bold/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/bold/*.svg'),
 				formatter: (fileName) => { return `ph-bold-${fileName.replace('-bold', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/duotone/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/duotone/*.svg'),
 				formatter: (fileName) => { return `ph-duotone-${fileName.replace('-duotone', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/fill/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/fill/*.svg'),
 				formatter: (fileName) => { return `ph-fill-${fileName.replace('-fill', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/light/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/light/*.svg'),
 				formatter: (fileName) => { return `ph-light-${fileName.replace('-light', '')}`; },
 				attributes: {
 					fill: 'currentColor',
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/phosphor/assets/thin/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/phosphor/assets/thin/*.svg'),
 				formatter: (fileName) => { return `ph-thin-${fileName.replace('-thin', '')}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -883,7 +887,7 @@ module.exports = [
 		repo: 'https://github.com/halfmage/pixelarticons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/pixelarticons/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/pixelarticons/svg/*.svg'),
 				formatter: (fileName) => { return `px-${fileName}`; },
 			},
 		],
@@ -896,7 +900,7 @@ module.exports = [
 		repo: 'https://github.com/primefaces/primeicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/primeicons/raw-svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/primeicons/raw-svg/*.svg'),
 				formatter: (fileName) => { return `pr-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -913,7 +917,7 @@ module.exports = [
 		repo: 'https://github.com/yourtempo/tempo-quill-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/quill/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/quill/icons/*.svg'),
 				formatter: (fileName) => {
 					const cleanFileName = fileName.replaceAll(' ', '-');
 					return `qu-${cleanFileName.replaceAll('_', '-')}`;
@@ -933,7 +937,7 @@ module.exports = [
 		repo: 'https://github.com/radix-ui/icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/radix-ui/packages/radix-icons/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/radix-ui/packages/radix-icons/icons/*.svg'),
 				formatter: (fileName) => {
 					return `ra-${fileName.replaceAll('_', '-')}`;
 				},
@@ -951,7 +955,7 @@ module.exports = [
 		repo: 'https://github.com/Remix-Design/RemixIcon',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/remix/icons/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/remix/icons/**/*.svg'),
 				formatter: (name) => {
 					return `re-${name}`;
 				},
@@ -969,7 +973,7 @@ module.exports = [
 		repo: 'https://github.com/simple-icons/simple-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/simple-icons/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/simple-icons/icons/*.svg'),
 				formatter: (fileName) => { return `si-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -986,7 +990,7 @@ module.exports = [
 		repo: 'https://github.com/CoreyGinnivan/system-uicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/system-uicons/src/images/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/system-uicons/src/images/icons/*.svg'),
 				formatter: (fileName) => {
 					return `su-${fileName.replaceAll('_', '-')}`;
 				},
@@ -1004,7 +1008,7 @@ module.exports = [
 		repo: 'https://github.com/tabler/tabler-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/tabler/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/tabler/icons/*.svg'),
 				formatter: (fileName) => {
 					return `ta-${fileName}`;
 				},
@@ -1023,7 +1027,7 @@ module.exports = [
 		repo: 'https://github.com/kalimah-apps/Themify-Icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/themify/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/themify/svg/*.svg'),
 				formatter: (name) => {
 					return `th-${name}`;
 				},
@@ -1041,7 +1045,7 @@ module.exports = [
 		url: 'https://www.s-ings.com/typicons/',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/typicons/src/svg/*-outline.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/typicons/src/svg/*-outline.svg'),
 				formatter: (name) => {
 					return `ti-outline-${name.replace('-outline', '')}`;
 				},
@@ -1050,7 +1054,7 @@ module.exports = [
 				},
 			},
 			{
-				path: path.resolve(__dirname, '../packages/typicons/src/svg/!(*-outline).svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/typicons/src/svg/!(*-outline).svg'),
 				formatter: (name) => {
 					return `ti-${name}`;
 				},
@@ -1068,7 +1072,7 @@ module.exports = [
 		repo: 'https://github.com/Iconscout/unicons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/unicons/svg/line/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/unicons/svg/line/*.svg'),
 				formatter: (fileName) => { return `un-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
@@ -1084,7 +1088,7 @@ module.exports = [
 		repo: 'https://github.com/uiwjs/icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/uiw-icons/icon/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/uiw-icons/icon/*.svg'),
 				formatter: (fileName) => { return `ui-${fileName}`; },
 			},
 		],
@@ -1097,7 +1101,7 @@ module.exports = [
 		repo: 'https://github.com/vscode-icons/vscode-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/vscode/icons/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/vscode/icons/*.svg'),
 				formatter: (name) => {
 					return `vs-${name}`;
 				},
@@ -1115,7 +1119,7 @@ module.exports = [
 		repo: 'https://github.com/erikflowers/weather-icons',
 		icons: [
 			{
-				path: path.resolve(__dirname, '../packages/weather-icons/svg/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/weather-icons/svg/*.svg'),
 				attributes: {
 					fill: 'currentColor',
 				},

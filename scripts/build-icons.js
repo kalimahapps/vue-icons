@@ -1,25 +1,20 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const fg = require('fast-glob');
-const fse = require('fs-extra');
-const changeCase = require('change-case');
-const { pascalCase, pascalCaseTransformMerge } = changeCase;
-const cliProgress = require('cli-progress');
-const colors = require('ansi-colors');
-const { Octokit } = require('octokit');
-const svgo = require('svgo');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const config = require('../config.js');
-const manifest = require('./manifest.js');
-const svgoSettings = require('./svgo-settings.js');
+import fs from 'node:fs';
+import path from 'node:path';
+import fg from 'fast-glob';
+import fse from 'fs-extra';
+import { Octokit } from 'octokit';
+import svgo from 'svgo';
+import { createObjectCsvWriter as createCsvWriter } from 'csv-writer';
+import config from '../config.js';
+import manifest from './manifest.js';
+import svgoSettings from './svgo-settings.js';
+import changeCase from 'change-case';
+import { fileURLToPath } from 'node:url';
+import { createProgressBar, createHeader } from '@kalimahapps/cli-progress';
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirectoryPath = path.dirname(currentFilePath);
 
-// create progress bar defaults
-const progressBar = new cliProgress.SingleBar({
-	format: `${colors.cyanBright('{bar}')}    ${colors.magenta('{percentage}%')}    ({value}/{total})`,
-	barCompleteChar: '>',
-	barIncompleteChar: '-',
-	hideCursor: true,
-});
+const { pascalCase, pascalCaseTransformMerge } = changeCase;
 
 const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,\`${content}\`)\n`;
@@ -36,11 +31,13 @@ const iconStatToString = function (data) {
  */
 const generateVersionLog = function (data) {
 	const versionsData = {};
-	data.forEach((iconStat) => {
+	for (const iconStat of data) {
 		versionsData[iconStat.name] = iconStat.version;
-	});
+	}
 
-	fse.outputJSONSync(path.resolve(__dirname, './versions.json'), versionsData);
+	fse.outputJSONSync(path.resolve(currentDirectoryPath, './versions.json'), versionsData, {
+		spaces: '\t',
+	});
 };
 
 /**
@@ -49,7 +46,7 @@ const generateVersionLog = function (data) {
  * @param {Array} data Array of objects with icon stats
  */
 const generateReadmeFile = function (data) {
-	let readmeTemplate = fs.readFileSync(path.resolve(__dirname, './readme-template.txt'), 'utf8');
+	let readmeTemplate = fs.readFileSync(path.resolve(currentDirectoryPath, './readme-template.txt'), 'utf8');
 
 	// create string
 	const dataStrings = data.map((iconStat) => {
@@ -65,7 +62,7 @@ const generateReadmeFile = function (data) {
 
 	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', dataStrings.join('\n'));
 
-	fse.outputFileSync(path.resolve(__dirname, '../README.md'), readmeTemplate);
+	fse.outputFileSync(path.resolve(currentDirectoryPath, '../README.md'), readmeTemplate);
 };
 
 /**
@@ -74,6 +71,7 @@ const generateReadmeFile = function (data) {
  */
 let uniqueFileNames = {};
 
+/* eslint complexity: ["error", 9] */
 const getFilesContent = function (iconsInfo, group) {
 	let { path: iconsPath, formatter, options = {}, filesFilter, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
@@ -90,16 +88,17 @@ const getFilesContent = function (iconsInfo, group) {
 	}
 
 	// Show progress bar
-	progressBar.start(files.length, 0);
+	const progressBar = createProgressBar();
+	progressBar.setTotal(files.length);
 
-	files.forEach((filePath) => {
+	for (const filePath of files) {
 		// update progress bar
 		progressBar.increment();
 
 		// Ignore files that are bigger than 80kb
 		const fileSize = fs.statSync(filePath).size / 1024;
 		if (fileSize > 80) {
-			return;
+			continue;
 		}
 
 		const fileName = path.basename(filePath, path.extname(filePath));
@@ -128,7 +127,7 @@ const getFilesContent = function (iconsInfo, group) {
 			set: group,
 			svg: svgString.data,
 		});
-	});
+	}
 
 	// Stop progress bar
 	progressBar.stop();
@@ -148,8 +147,8 @@ const getFilesContent = function (iconsInfo, group) {
 // eslint-disable-next-line max-lines-per-function
 const buildIcons = async function () {
 	// Empty directory first
-	await fse.emptyDir(path.resolve(__dirname, '../icons'));
-	await fse.emptyDir(path.resolve(__dirname, '../csv'));
+	await fse.emptyDir(path.resolve(currentDirectoryPath, '../icons'));
+	await fse.emptyDir(path.resolve(currentDirectoryPath, '../csv'));
 
 	// Hold all icons info in this array
 	const fullContent = [];
@@ -166,6 +165,7 @@ const buildIcons = async function () {
 		await previousPromise;
 
 		const { name, group, url, version, license, repo: repoUrl, icons } = iconsGroup;
+
 		const iconSetData = {
 			name,
 			url,
@@ -175,7 +175,7 @@ const buildIcons = async function () {
 			count: 0,
 		};
 
-		console.log('\n\n\n', `Processing ${name} ...`);
+		createHeader(`Processing ${name}`);
 		if (version === undefined) {
 			try {
 				const repoLinkData = repoUrl.split('/');
@@ -202,7 +202,7 @@ const buildIcons = async function () {
 
 		// Create csv write
 		const csvWriter = createCsvWriter({
-			path: path.resolve(__dirname, `../csv/${group}.csv`),
+			path: path.resolve(currentDirectoryPath, `../csv/${group}.csv`),
 			header: ['name', 'set', 'svg'],
 		});
 
@@ -212,7 +212,7 @@ const buildIcons = async function () {
 			count: 0,
 		};
 
-		let fileContent = 'import iconBase from \'../../scripts/icon-base\';\n';
+		let fileContent = 'import iconBase from \'../../scripts/icon-base.js\';\n';
 		await icons.reduce(async (previousPromise, iconsInfo) => {
 			await previousPromise;
 			const { content, csv } = getFilesContent(iconsInfo, group);
@@ -224,13 +224,13 @@ const buildIcons = async function () {
 
 		// Output file
 		fse.outputFileSync(
-			path.resolve(__dirname, `../icons/${group}/index.js`),
+			path.resolve(currentDirectoryPath, `../icons/${group}/index.js`),
 			fileContent
 		);
 
 		// Output file type
 		fse.outputFileSync(
-			path.resolve(__dirname, `../icons/${group}/index.d.ts`),
+			path.resolve(currentDirectoryPath, `../icons/${group}/index.d.ts`),
 			`declare module '@kalimahapps/vue-icons/${group}';`
 		);
 
@@ -247,19 +247,19 @@ const buildIcons = async function () {
 
 	// Create icon data file
 	fse.outputFileSync(
-		path.resolve(__dirname, '../icons/content.js'),
+		path.resolve(currentDirectoryPath, '../icons/content.js'),
 		`export default ${JSON.stringify(fullContent)}`
 	);
 
 	// Create all icons file
 	fse.outputFileSync(
-		path.resolve(__dirname, '../icons/all.js'),
+		path.resolve(currentDirectoryPath, '../icons/all.js'),
 		allIconsExport
 	);
 
 	// Create type file for all icons file
 	fse.outputFileSync(
-		path.resolve(__dirname, '../icons/all.d.ts'),
+		path.resolve(currentDirectoryPath, '../icons/all.d.ts'),
 		"declare module '@kalimahapps/vue-icons';"
 	);
 

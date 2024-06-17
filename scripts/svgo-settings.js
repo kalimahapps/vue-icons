@@ -1,4 +1,4 @@
-module.exports = (attributes) => {
+export default (attributes) => {
 	const plugins = [
 		{
 			name: 'preset-default',
@@ -7,6 +7,9 @@ module.exports = (attributes) => {
 					removeViewBox: false,
 					inlineStyles: {
 						onlyMatchedOnce: false,
+					},
+					convertPathData: {
+						removeUseless: false,
 					},
 				},
 			},

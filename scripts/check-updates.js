@@ -1,21 +1,18 @@
-const { compareVersions } = require('compare-versions');
-const { Octokit } = require('octokit');
-const cliProgress = require('cli-progress');
-const colors = require('ansi-colors');
-const config = require('../config.js');
-const currentVersions = require('./versions.json');
-const manifest = require('./manifest.js');
+import { compareVersions } from 'compare-versions';
+import { Octokit } from 'octokit';
+import config from '../config.js';
+import manifest from './manifest.js';
+import { createProgressBar } from '@kalimahapps/cli-progress';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirectoryPath = path.dirname(currentFilePath);
+const currentVersionsPath = path.resolve(currentDirectoryPath, './versions.json');
+const currentVersions = JSON.parse(fs.readFileSync(currentVersionsPath, 'utf8'));
 
-// create progress bar defaults
-const progressBar = new cliProgress.SingleBar({
-	format: `${colors.cyanBright('{bar}')}    ${colors.magenta('{percentage}%')}    ({value}/{total})`,
-	barCompleteChar: '>',
-	barIncompleteChar: '-',
-	hideCursor: true,
-});
-
-// Show progress bar
-progressBar.start(manifest.length, 0);
+const progressBar = createProgressBar();
+progressBar.setTotal(manifest.length);
 
 const startCheck = async function () {
 	const updates = [];
@@ -51,8 +48,6 @@ const startCheck = async function () {
 			const latestVersion = versionDetails.data.tag_name.replace('v', '');
 			const currentVersion = currentVersions[name];
 
-			/* 	console.log(`Current version: ${currentVersion}`);
-		console.log(`Latest version: ${latestVersion}`); */
 			if (compareVersions(latestVersion, currentVersion) === 1) {
 				// console.log(`New version available for ${name}!`);
 				updates.push({
@@ -72,11 +67,6 @@ const startCheck = async function () {
 	} else {
 		console.log('\nNo updates available!');
 	}
-
-	/* await manifest.reduce(async (previousPromise, iconsGroup) => {
-		await previousPromise;
-
-	}, Promise.resolve([])); */
 
 	// Stop progress bar
 	progressBar.stop();
