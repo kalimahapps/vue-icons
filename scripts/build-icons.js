@@ -138,6 +138,25 @@ const getFilesContent = function (iconsInfo, group) {
 	};
 };
 
+const createTypeFile = function (group, uniqueFileNames) {
+	const content = [
+		'import { Component } from "vue";',
+		`declare module '@kalimahapps/vue-icons/${group}' {`,
+	];
+	const keys = Object.keys(uniqueFileNames);
+
+	const components = [];
+	for (const key of keys) {
+		components.push(`export const ${key}: Component;`);
+	}
+
+	content.push(components.join('\n'), '}');
+	fse.outputFileSync(
+		path.resolve(currentDirectoryPath, `../icons/${group}/index.d.ts`),
+		content.join('\n')
+	);
+};
+
 /**
  * Entry function to build icons.
  * At first it will empty icons folder.
@@ -154,7 +173,10 @@ const buildIcons = async function () {
 	const fullContent = [];
 
 	// Hold export content
-	let allIconsExport = '';
+	const allIconsExport = [];
+
+	// Hold types for all icons
+	const allIconsTypes = [];
 
 	// Hold icon set version, prefix, count, license ..etc
 	const iconsStat = [];
@@ -229,10 +251,12 @@ const buildIcons = async function () {
 		);
 
 		// Output file type
-		fse.outputFileSync(
-			path.resolve(currentDirectoryPath, `../icons/${group}/index.d.ts`),
-			`declare module '@kalimahapps/vue-icons/${group}';`
-		);
+		createTypeFile(group, uniqueFileNames);
+
+		// fse.outputFileSync(
+		// 	path.resolve(currentDirectoryPath, `../icons/${group}/index.d.ts`),
+		// 	`declare module '@kalimahapps/vue-icons/${group}';`
+		// );
 
 		iconsContent.count += Object.keys(uniqueFileNames).length;
 		iconsContent.group = group;
@@ -242,7 +266,8 @@ const buildIcons = async function () {
 		iconSetData.count += iconsContent.count;
 		iconsStat.push(iconSetData);
 
-		allIconsExport += `export * from './${group}/index';\n`;
+		allIconsExport.push(`export * from './${group}/index.js';`);
+		allIconsTypes.push(`export * from '@kalimahapps/vue-icons/${group}';`);
 	}, Promise.resolve([]));
 
 	// Create icon data file
@@ -254,13 +279,13 @@ const buildIcons = async function () {
 	// Create all icons file
 	fse.outputFileSync(
 		path.resolve(currentDirectoryPath, '../icons/all.js'),
-		allIconsExport
+		allIconsExport.join('\n')
 	);
 
 	// Create type file for all icons file
 	fse.outputFileSync(
 		path.resolve(currentDirectoryPath, '../icons/all.d.ts'),
-		"declare module '@kalimahapps/vue-icons';"
+		allIconsTypes.join('\n')
 	);
 
 	generateReadmeFile(iconsStat);
