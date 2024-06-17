@@ -1,7 +1,9 @@
 {
 	"cSpell.allowCompoundWords": true,
 	"cSpell.language": "en,en-US",
-	"cSpell.words": ["kalimahapps"],
+	"cSpell.words": [
+		"kalimahapps"
+	],
 	"css.validate": false,
 	"editor.autoIndent": "advanced",
 	"editor.codeActionsOnSave": {
