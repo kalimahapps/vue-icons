@@ -158,29 +158,29 @@ Icon Set|Prefix|License|Version|Count
 [Ant Design](https://ant.design/components/icon/)|an|MIT|4.2.1|831
 [Bootstrap Icons](https://icons.getbootstrap.com/)|bs|MIT|1.11.3|2050
 [Boxicons](https://boxicons.com/)|bx|CC 4.0|2.1.4|1632
-[Carbon](https://carbondesignsystem.com/)|ca|Apache-2.0|11.55.0|2102
+[Carbon](https://carbondesignsystem.com/)|ca|Apache-2.0|11.59.0|2102
 [Charm Icons](https://codepen.io/jaynewey/full/LYROoGJ)|ch|MIT|0.18.0|261
 [CoolIcons](https://coolicons.cool/)|cl|CC 4.0|4.1|442
 [Bytesize](https://danklammer.com/bytesize-icons/)|by|MIT|1.4|101
 [Circum](https://circumicons.com/)|ci|MPL-2.0|2.0.0|288
-[Codicons](https://microsoft.github.io/vscode-codicons/dist/codicon.html)|cd|MIT|0.0.35|461
+[Codicons](https://microsoft.github.io/vscode-codicons/dist/codicon.html)|cd|MIT|0.0.36|461
 [Core UI Icons](https://coreui.io/icons/)|co|CC 4.0|3.0.1|1569
 [css.gg](https://css.gg/)|cg|MIT|2.1.1|704
 [Devicons](https://devicon.dev/)|de|MIT|2.16.0|1516
 [FluentUI System](https://github.com/microsoft/fluentui-system-icons)|fl|MIT|1.1.201|5240
 [Font Awesome](https://fontawesome.com/)|fa|CC BY 4.0|6.5.2|2045
-[Feather](https://feathericons.com/)|fe|MIT|4.29.1|287
+[Feather](https://feathericons.com/)|fe|MIT|4.29.2|287
 [GitLab](http://gitlab-org.gitlab.io/gitlab-svgs/)|gl|MIT|3.46.0|405
 [Govicons](http://govicons.io/)|gv|SIL OFL 1.1|1.6.0|136
 [Healthicons](https://healthicons.org/)|he|MIT|0.1.0|1278
 [Hero](https://heroicons.com/)|hi|MIT|2.1.3|592
 [Humble Icons](https://humbleicons.com/)|hu|MIT|1.10.0|247
 [Jamicons](https://jam-icons.com/)|ja|MIT|3.1.0|940
-[Iconoir](https://iconoir.com/)|ic|MIT|7.6.0|1573
-[IonIcons](https://ionic.io/ionicons)|io|MIT|7.3.1|1355
+[Iconoir](https://iconoir.com/)|ic|MIT|7.7.0|1573
+[IonIcons](https://ionic.io/ionicons)|io|MIT|7.4.0|1355
 [Line Awesome](https://icons8.com/line-awesome)|la|MIT|1.2.1|1544
 [Linearicons](https://linearicons.com/free)|li|CC BY-SA 4.0|-|170
-[Lucide](https://lucide.dev/)|lu|ISC|0.372.0|1456
+[Lucide](https://lucide.dev/)|lu|ISC|0.395.0|1456
 [Majesticons](https://www.majesticons.com/)|mi|MIT|2.1.2|760
 [Maki](https://labs.mapbox.com/maki-icons)|ma|CC0 1.0 Universal|8.0.0|213
 [Material Design](https://fonts.google.com/icons)|md|Apache-2.0|4.0.0|10609
@@ -192,15 +192,15 @@ Icon Set|Prefix|License|Version|Count
 [Prime Icons](https://github.com/primefaces/primeicons)|pr|MIT|7.0.0|313
 [Quill](https://www.figma.com/community/file/1034432054377533052/Quill-Iconset)|qu|MIT|1.0.0|133
 [Radix](https://icons.radix-ui.com/)|ra|MIT|1.3.0|318
-[Remix](https://remixicon.com/)|re|Apache 2.0|4.2.0|2860
-[Simple Icons](https://simpleicons.org/)|si|CC0 1.0|11.13.0|3122
+[Remix](https://remixicon.com/)|re|Apache 2.0|4.3.0|2860
+[Simple Icons](https://simpleicons.org/)|si|CC0 1.0|12.3.0|3122
 [System UIcons](https://www.systemuicons.com/)|su|Unlicense|-|430
-[Tabler](https://tabler-icons.io/)|ta|MIT|3.2.0|4158
+[Tabler](https://tabler-icons.io/)|ta|MIT|3.6.0|4158
 [Themify](https://themify.me/themify-icons)|th|SIL Open Font License (OFL)|1.0.1|352
 [Typicons](https://www.s-ings.com/typicons/)|ti|CC BY-SA 4.0|2.1.2|336
 [Unicons](https://iconscout.com/unicons/explore/line)|un|IconScout Simple License|3.0.0|1206
 [uiw icons](https://uiwjs.github.io/icons/)|ui|MIT|2.6.10|214
-[VSCode](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)|vs|MIT|12.7.0|1254
+[VSCode](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)|vs|MIT|12.8.0|1254
 [Weather Icons](https://erikflowers.github.io/weather-icons/)|wi|SIL OFL 1.1|2.0.10|219
 Total| | | | 69391
 
@@ -208,9 +208,6 @@ Total| | | | 69391
 <br>
 
 ## 🧮 Version History
-- 1.4.1
-  - chore: update all icon packages
-
 - 1.4.0
   - breaking change: fix CoolIcons prefix. It had the same prefix as coreicons `co` but not it is corrected to be `cl`.
   - breaking change: Replace official material design repo with a generated one for SVG only.
