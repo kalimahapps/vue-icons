@@ -1,7 +1,7 @@
 import eslintConfig from '@kalimahapps/eslint-config';
 export default [
 	{
-		ignores: ['icons'],
+		ignores: ['packages', 'icons', 'csv'],
 	},
 	...eslintConfig,
 ];
