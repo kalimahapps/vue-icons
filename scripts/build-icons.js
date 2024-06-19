@@ -41,31 +41,6 @@ const generateVersionLog = function (data) {
 };
 
 /**
- * Generate a readme file from a template
- *
- * @param {Array} data Array of objects with icon stats
- */
-const generateReadmeFile = function (data) {
-	let readmeTemplate = fs.readFileSync(path.resolve(currentDirectoryPath, './readme-template.txt'), 'utf8');
-
-	// create string
-	const dataStrings = data.map((iconStat) => {
-		return iconStatToString(iconStat);
-	});
-
-	// Add one row for total count
-	const total = data.reduce((accumulator, current) => {
-		return accumulator + current.count;
-	}, 0);
-
-	dataStrings.push(`Total| | | | ${total}`);
-
-	readmeTemplate = readmeTemplate.replace('[[:icons-list:]]', dataStrings.join('\n'));
-
-	fse.outputFileSync(path.resolve(currentDirectoryPath, '../README.md'), readmeTemplate);
-};
-
-/**
  * Hold an object with all icons and their occurrences
  * to ensure that we don't have duplicate icons
  */
@@ -169,9 +144,6 @@ const buildIcons = async function () {
 	await fse.emptyDir(path.resolve(currentDirectoryPath, '../icons'));
 	await fse.emptyDir(path.resolve(currentDirectoryPath, '../csv'));
 
-	// Hold all icons info in this array
-	const fullContent = [];
-
 	// Hold export content
 	const allIconsExport = [];
 
@@ -229,12 +201,8 @@ const buildIcons = async function () {
 		});
 
 		uniqueFileNames = {};
-		const iconsContent = {
-			name,
-			count: 0,
-		};
 
-		let fileContent = 'import iconBase from \'../../scripts/icon-base.js\';\n';
+		let fileContent = 'import iconBase from \'@kalimahapps/vue-icons/icon-base\';\n';
 		await icons.reduce(async (previousPromise, iconsInfo) => {
 			await previousPromise;
 			const { content, csv } = getFilesContent(iconsInfo, group);
@@ -253,17 +221,9 @@ const buildIcons = async function () {
 		// Output file type
 		createTypeFile(group, uniqueFileNames);
 
-		// fse.outputFileSync(
-		// 	path.resolve(currentDirectoryPath, `../icons/${group}/index.d.ts`),
-		// 	`declare module '@kalimahapps/vue-icons/${group}';`
-		// );
+		iconSetData.count += Object.keys(uniqueFileNames).length;
+		iconSetData.group = group;
 
-		iconsContent.count += Object.keys(uniqueFileNames).length;
-		iconsContent.group = group;
-
-		fullContent.push(iconsContent);
-
-		iconSetData.count += iconsContent.count;
 		iconsStat.push(iconSetData);
 
 		allIconsExport.push(`export * from './${group}/index.js';`);
@@ -273,7 +233,7 @@ const buildIcons = async function () {
 	// Create icon data file
 	fse.outputFileSync(
 		path.resolve(currentDirectoryPath, '../icons/content.js'),
-		`export default ${JSON.stringify(fullContent)}`
+		`export default ${JSON.stringify(iconsStat)}`
 	);
 
 	// Create all icons file
@@ -288,7 +248,6 @@ const buildIcons = async function () {
 		allIconsTypes.join('\n')
 	);
 
-	generateReadmeFile(iconsStat);
 	generateVersionLog(iconsStat);
 
 	const endTime = Date.now();
