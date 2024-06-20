@@ -330,6 +330,13 @@ export default [
 
 					// Group files based on parent folder name
 					const groupedFiles = filesList.reduce((accumulator, filePath) => {
+						const fileName = path.basename(filePath);
+
+						// ignore light icons
+						if (fileName.includes('_light.svg')) {
+							return accumulator;
+						}
+
 						const folderName = path.basename(path.join(filePath, '..', '..'));
 
 						// Clean up folder name

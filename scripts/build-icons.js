@@ -20,10 +20,6 @@ const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,\`${content}\`)\n`;
 };
 
-const iconStatToString = function (data) {
-	return `[${data.name}](${data.url})|${data.prefix}|${data.license}|${data.version}|${data.count}`;
-};
-
 /**
  * Generate a JSON file with the latest version of each icon
  *
@@ -165,6 +161,7 @@ const buildIcons = async function () {
 			url,
 			prefix: group,
 			license,
+			repo: repoUrl,
 			version,
 			count: 0,
 		};

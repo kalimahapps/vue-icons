@@ -2,7 +2,7 @@
 	"name": "@kalimahapps/vue-icons",
 	"description": "60,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"author": "khr2003",
-	"version": "1.5.2",
+	"version": "1.6.0",
 	"homepage": "https://vue-icons.kalimah-apps.com/",
 	"repository": {
 		"type": "git",
@@ -18,7 +18,7 @@
 		"check-updates": "node ./scripts/check-updates.js",
 		"coverage": "vitest run --coverage",
 		"test": "vitest",
-		"update-submodules": "git submodule update --init --recursive"
+		"update-submodules": "git submodule update --remote --depth 1"
 	},
 	"dependencies": {
 		"svg-parser": "^2.0.4"
