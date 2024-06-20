@@ -151,3 +151,6 @@
 [submodule "packages/phosphor"]
 	path = packages/phosphor
 	url = https://github.com/phosphor-icons/core.git
+[submodule "packages/material-design-icons"]
+	path = packages/material-design-icons
+	url = https://github.com/google/material-design-icons.git

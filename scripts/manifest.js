@@ -763,7 +763,6 @@ export default [
 			},
 		],
 	},
-
 	{
 		group: 'md',
 		name: 'Material Design',
@@ -772,21 +771,93 @@ export default [
 		repo: 'https://github.com/google/material-design-icons',
 		icons: [
 			{
-				path: path.resolve(currentDirectoryPath, '../packages/material-design/svg/**/*.svg'),
+				path: path.resolve(currentDirectoryPath, '../packages/material-design-icons/src/**/*.svg'),
 				formatter: (fileName, filePath) => {
-					const iconTypeFolder = path.basename(path.dirname(filePath));
+					// File path consists of {name}/materialicons{type}/{size}px.svg
+					const folderName = path.basename(path.dirname(filePath));
+					let iconType = folderName.replace('materialicons', '');
+					const iconName = path.basename(path.join(filePath, '..', '..'));
 
-					// Replace underscores to dashes
-					const iconName = fileName.replaceAll('_', '-');
-					const iconType = iconTypeFolder.replaceAll('_', '-');
-
-					if (iconType === 'filled') {
-						return `md-${iconName}`;
+					/* Previous versions did not use google material design icon types
+					* but rather a git repo where twotone icons where named as two-tone
+					* So we need to convert twotone to two-tone to make backward compatible
+					*/
+					if (iconType === 'twotone') {
+						iconType = 'two-tone';
 					}
-					return `md-${iconType}-${iconName}`;
+
+					const finalFileName = iconType === '' ? `md-${iconName}` : `md-${iconType}-${iconName}`;
+
+					return finalFileName;
 				},
 				attributes: {
 					fill: 'currentColor',
+				},
+
+				/* eslint complexity:[error, 9] */
+				filesFilter: (filesList) => {
+					// console.log('filesList:', filesList.slice(0, 10));
+					// const newFilesList = filesList.slice(0, 500);
+
+					/* Filter files list to get the highest resolution from each icon folder
+					* Group files based on parent folder name
+					* The result would be an object with the icon name and type as key, and
+					* the value would be an array of file paths
+					* {
+					* 	'{icon-name}-{icon-type}': ['path/to/file-1.svg', 'path/to/file-2.svg']
+					* } */
+					const groupedFiles = {};
+					for (const filePath of filesList) {
+						const iconName = path.basename(path.join(filePath, '..', '..'));
+						const iconType = path.basename(path.dirname(filePath)).replace('materialicons', '');
+
+						const key = iconType === '' ? `${iconName}` : `${iconType}-${iconName}`;
+						if (!groupedFiles[key]) {
+							groupedFiles[key] = [];
+						}
+
+						groupedFiles[key].push(filePath);
+					};
+
+					// Sizes to look for in the file name
+					const sizes = ['24', '20'];
+
+					const finalFilesList = [];
+
+					// Loop through each group and return the file with the highest resolution
+					for (const groupName of Object.keys(groupedFiles)) {
+						let files = groupedFiles[groupName];
+
+						let sizeFound = 0;
+
+						// Sort files in reverse alphabetically so
+						// that the highest resolution is first
+						files = files.sort((a, b) => {
+							return b.localeCompare(a);
+						});
+
+						// Find the highest resolution inside the group
+						for (const size of sizes) {
+							const file = files.find((file) => {
+								return file.includes(size);
+							});
+							if (file) {
+								sizeFound = size;
+								break;
+							}
+						}
+
+						// Get the file with the highest resolution
+						for (const filePath of files) {
+							const fileName = path.basename(filePath);
+							if (!fileName.includes(sizeFound)) {
+								continue;
+							}
+							finalFilesList.push(filePath);
+						}
+					};
+
+					return finalFilesList;
 				},
 			},
 		],
