@@ -64,8 +64,9 @@ describe('Exports', () => {
 				console.log('The following icons are missing from the exported icons:');
 				console.table(diff2);
 			}
-			expect(diff, 'The exported icons are not correct').to.be.empty;
-			expect(diff2, 'The exported icons are not correct').to.be.empty;
+			expect(diff, `The exported icons are not correct. Found ${diff.length} missing icons in icons-list.json`)
+				.to.be.empty;
+			expect(diff2, `The exported icons are not correct. Found ${diff2.length} missing icons in the exported icons`).to.be.empty;
 		} else {
 			// if the file does not exist, create it
 			const icons = Object.keys(VueIcons);
