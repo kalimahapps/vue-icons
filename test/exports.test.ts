@@ -56,11 +56,13 @@ describe('Exports', () => {
 			});
 
 			if (diff.length > 0) {
-				console.log('The following icons are missing from icons-list.json:', diff);
+				console.log('The following icons are missing from icons-list.json:');
+				console.table(diff);
 			}
 
 			if (diff2.length > 0) {
-				console.log('The following icons are missing from the exported icons:', diff2);
+				console.log('The following icons are missing from the exported icons:');
+				console.table(diff2);
 			}
 			expect(diff, 'The exported icons are not correct').to.be.empty;
 			expect(diff2, 'The exported icons are not correct').to.be.empty;
