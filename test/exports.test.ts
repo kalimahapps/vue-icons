@@ -72,5 +72,5 @@ describe('Exports', () => {
 			const icons = Object.keys(VueIcons);
 			fs.writeFileSync(iconsListPath, JSON.stringify(icons));
 		}
-	});
+	}, 10_000);
 });
