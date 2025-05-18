@@ -1,4 +1,3 @@
-// const manifest = require('../scripts/manifest.js');
 import manifest from '../scripts/manifest.js';
 
 const iconsInitials = manifest.map((item) => {
@@ -31,7 +30,7 @@ export default {
 		// Component is an vue-icons component
 		return {
 			name: componentName,
-			from: `@kalimahapps/vue-icons/${iconComponent.toLowerCase()}`,
+			from: '@kalimahapps/vue-icons',
 		};
 	},
 };
