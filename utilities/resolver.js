@@ -1,6 +1,6 @@
-import manifest from '../scripts/manifest.js';
+import content from '@kalimahapps/vue-icons/content';
 
-const iconsInitials = manifest.map((item) => {
+const iconsInitials = content.map((item) => {
 	return item.group.charAt(0).toUpperCase() + item.group.slice(1);
 });
 
