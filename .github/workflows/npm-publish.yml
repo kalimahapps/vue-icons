@@ -20,7 +20,6 @@ jobs:
       - name: Setup pnpm and install dependencies
         uses: pnpm/action-setup@v4
         with:
-         version: 9.15
          run_install: true
 
       - name: Building the project
