@@ -598,26 +598,6 @@ export default [
 		],
 	},
 	{
-		group: 'ja',
-		name: 'Jamicons',
-		license: 'MIT',
-		url: 'https://jam-icons.com/',
-		repo: 'https://github.com/michaelampr/jam',
-		icons: [
-			{
-				path: path.resolve(currentDirectoryPath, '../packages/jamicons/icons/*-f.svg'),
-				formatter: (fileName) => { return `ja-fill-${fileName.replace('-f', '')}`; },
-				attributes: {
-					fill: 'currentColor',
-				},
-			},
-			{
-				path: path.resolve(currentDirectoryPath, '../packages/jamicons/icons/!(*-f).svg'),
-				formatter: (fileName) => { return `ja-${fileName}`; },
-			},
-		],
-	},
-	{
 		group: 'ic',
 		name: 'Iconoir',
 		license: 'MIT',
@@ -1086,10 +1066,15 @@ export default [
 		repo: 'https://github.com/tabler/tabler-icons',
 		icons: [
 			{
-				path: path.resolve(currentDirectoryPath, '../packages/tabler/icons/*.svg'),
-				formatter: (fileName) => {
-					return `ta-${fileName}`;
+				path: path.resolve(currentDirectoryPath, '../packages/tabler/icons/filled/*.svg'),
+				formatter: (fileName) => { return `ta-filled-${fileName}`; },
+				attributes: {
+					fill: 'currentColor',
 				},
+			},
+			{
+				path: path.resolve(currentDirectoryPath, '../packages/tabler/icons/outline/*.svg'),
+				formatter: (fileName) => { return `ta-outline-${fileName}`; },
 				attributes: {
 					fill: 'currentColor',
 				},

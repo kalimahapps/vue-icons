@@ -46,9 +46,6 @@
 [submodule "packages/govicons"]
 	path = packages/govicons
 	url = https://github.com/540co/govicons.git
-[submodule "packages/jamicons"]
-	path = packages/jamicons
-	url = https://github.com/michaelampr/jam.git
 [submodule "packages/linearicons"]
 	path = packages/linearicons
 	url = https://github.com/cjpatoilo/linearicons.git
@@ -145,9 +142,6 @@
 [submodule "packages/fontaudio"]
 	path = packages/fontaudio
 	url = https://github.com/fefanto/fontaudio.git
-[submodule "packages/material-design"]
-	path = packages/material-design
-	url = https://github.com/marella/material-design-icons.git
 [submodule "packages/phosphor"]
 	path = packages/phosphor
 	url = https://github.com/phosphor-icons/core.git
