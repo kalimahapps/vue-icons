@@ -23,6 +23,9 @@ jobs:
          version: latest
          run_install: true
 
+      - name: Building the project
+        run: pnpm build-icons
+
       - name: Publish package
         run: pnpm publish
         env:
