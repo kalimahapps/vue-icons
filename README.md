@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-60,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
+70,000+ SVG icons from popular icon sets that you can add seamlessly to your vue projects
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@
 ## ✨ Features
 - Tree-shaking. Only the icons you use will be included in your bundle
 - Easy to use. No need for import statement if used through resolvers with vite.
-- 60,000+ icons from popular icon sets
+- 70,000+ icons from popular icon sets
 - Stylable. You can change color and size of the icons
 - Built for vue3
 - Optimized with SVGO

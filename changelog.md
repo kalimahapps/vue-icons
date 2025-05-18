@@ -1,4 +1,11 @@
 ## 🧮 Version History
+- 1.8.0
+  - breaking change: Removed JamIcons icon set. It is not maintained anymore.
+  - breaking change: Updated tablr with new namespace (filled and outline).
+  - breaking change: All icons are not exported from the main entry point when using resolver. For example, `import { BsIcon } from '@kalimahapps/vue-icons/bs'` will be `import { BsIcon } from '@kalimahapps/vue-icons'`. This is a minimal breaking change as it will only affect the type definitions.
+  - chore: Update all icons
+  - chore: Update all icon packages
+
 - 1.4.1
   - chore: update all icon packages
 

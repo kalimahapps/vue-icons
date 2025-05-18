@@ -33,7 +33,9 @@
 		"json",
 		"jsonc",
 		"json5",
-		"vue"
+		"vue",
+		"yml",
+		"yaml"
 	],
 	"files.autoSave": "onFocusChange",
 	"files.eol": "\n",
@@ -101,5 +103,6 @@
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
-	"eslint.useFlatConfig": true
+	"eslint.useFlatConfig": true,
+	"fileNestingUpdater.autoUpdate": true
 }
