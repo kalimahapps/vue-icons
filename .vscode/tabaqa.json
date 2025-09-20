@@ -16,6 +16,10 @@
 			"**/docs": true,
 			"packages": true
 		},
-		"eslint.useFlatConfig": true
+		"eslint.useFlatConfig": true,
+		"files.exclude": {
+			"**/packages/**": true,
+			"**/node_modules/**": true,
+		}
 	}
 }

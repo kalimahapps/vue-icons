@@ -2,6 +2,9 @@
 - Run `pnpm check-updates` to see if there are any repo updates
 - Run `pnpm update-submodules` to update submodules (icon fonts packages)
 - Run `pnpm build-icons` to build icons
+- Run `pnpm build-module` to build nuxt module
+- Run `pnpm build-plugin` to build vite plugin
+
 
 # Testing
 - Run `pnpm test` to run all tests

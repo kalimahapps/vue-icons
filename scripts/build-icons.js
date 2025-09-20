@@ -8,13 +8,77 @@ import { createObjectCsvWriter as createCsvWriter } from 'csv-writer';
 import config from '../config.js';
 import manifest from './manifest.js';
 import svgoSettings from './svgo-settings.js';
-import changeCase from 'change-case';
 import { fileURLToPath } from 'node:url';
 import { createProgressBar, createHeader } from '@kalimahapps/cli-progress';
+import * as changeCase from 'change-case';
+
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirectoryPath = path.dirname(currentFilePath);
+const { pascalCase, kebabCase, splitSeparateNumbers } = changeCase;
 
-const { pascalCase, pascalCaseTransformMerge } = changeCase;
+// Used to iterate over the initial split result and separate numbers.
+const SPLIT_SEPARATE_NUMBER_RE = /(\d)\p{Ll}|(\p{L})\d/u;
+
+/**
+ * ChangeCase split function does not split certain words correctly.
+ * for example: 'an-outlined-open-a-i', 'an-outlined-harmony-o-s', 'bx-sort-a-z', 'a-b-off'
+ * would be correct when converting to PascalCase:
+ * 'AnOutlinedOpenAI', 'AnOutlinedHarmonyOS', 'BxSortAZ', 'ABOff'
+ * but then when converted back they are incorrect:
+ * 'an-outlined-open-ai', 'an-outlined-harmony-os', 'bx-sort-az', 'a-boff'
+ * This custom function fixes these issues. It uses character by character
+ * approach instead of regex.
+ *
+ * @see https://github.com/blakeembrey/change-case/issues/362
+ *
+ * @param  {string}   value The string to process
+ * @return {string[]}       The split words
+ */
+const splitCustom = function (value) {
+	const chars = value.trim();
+	if (!chars) {
+		return [];
+	}
+
+	const result = [];
+	let currentWord = '';
+
+	for (const char of chars) {
+		const isUppercase = char >= 'A' && char <= 'Z';
+
+		if (!isUppercase) {
+			// Add non-uppercase character to current word
+			currentWord += char;
+			continue;
+		}
+
+		// Handle uppercase character - start a new word
+		if (currentWord) {
+			result.push(currentWord);
+		}
+		currentWord = char;
+	}
+
+	// Don't forget the last word
+	if (currentWord) {
+		result.push(currentWord);
+	}
+
+	return result;
+};
+
+const splitSeparateNumbersCustom = function(value){
+	const words = splitCustom(value);
+	for (let index = 0; index < words.length; index++) {
+		const word = words[index];
+		const match = SPLIT_SEPARATE_NUMBER_RE.exec(word);
+		if (match) {
+			const offset = match.index + (match[1] ?? match[2]).length;
+			words.splice(index, 1, word.slice(0, offset), word.slice(offset));
+		}
+	}
+	return words;
+};
 
 const svgTemplate = function (fileName, content) {
 	return `export const ${fileName}=props=>iconBase(props,\`${content}\`)\n`;
@@ -41,10 +105,11 @@ const generateVersionLog = function (data) {
  * to ensure that we don't have duplicate icons
  */
 let uniqueFileNames = {};
+const allIconsNames = [];
 
-/* eslint complexity: ["error", 9] */
+/* eslint complexity: ["warn", 10] */
 const getFilesContent = function (iconsInfo, group) {
-	let { path: iconsPath, formatter, options = {}, filesFilter, attributes = {} } = iconsInfo;
+	let { path: iconsPath, formatter, options = {},	filesFilter, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
@@ -74,7 +139,11 @@ const getFilesContent = function (iconsInfo, group) {
 
 		const fileName = path.basename(filePath, path.extname(filePath));
 		const formattedFileName = (formatter) ? formatter(fileName, filePath) : fileName;
-		const variableName = pascalCase(formattedFileName, { transform: pascalCaseTransformMerge });
+		const variableName = pascalCase(formattedFileName, {
+			mergeAmbiguousCharacters: true,
+			split: splitSeparateNumbers,
+		});
+
 		let variableNameKey = variableName;
 		let occurrence = 0;
 
@@ -88,6 +157,13 @@ const getFilesContent = function (iconsInfo, group) {
 
 		// Add name and data
 		uniqueFileNames[variableName] = occurrence;
+
+		// Add to all icons names
+		// replace the first dash with colon since it is the group name
+		const replacedFirstDash = kebabCase(variableNameKey, {
+			split: splitSeparateNumbersCustom,
+		}).replace('-', ':');
+		allIconsNames.push(replacedFirstDash);
 
 		const getTemplate = svgTemplate(variableNameKey, svgString.data);
 		fileContent += getTemplate;
@@ -229,8 +305,8 @@ const buildIcons = async function () {
 
 	// Create icon data file
 	fse.outputFileSync(
-		path.resolve(currentDirectoryPath, '../icons/content.js'),
-		`export default ${JSON.stringify(iconsStat)}`
+		path.resolve(currentDirectoryPath, '../icons/content.json'),
+		JSON.stringify(iconsStat)
 	);
 
 	// Create all icons file
@@ -243,6 +319,12 @@ const buildIcons = async function () {
 	fse.outputFileSync(
 		path.resolve(currentDirectoryPath, '../icons/all.d.ts'),
 		allIconsTypes.join('\n')
+	);
+
+	// Create all icons names file
+	fse.outputFileSync(
+		path.resolve(currentDirectoryPath, '../icons/icons-list.json'),
+		JSON.stringify(allIconsNames)
 	);
 
 	generateVersionLog(iconsStat);

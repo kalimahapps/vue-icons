@@ -40,7 +40,7 @@
 	"files.autoSave": "onFocusChange",
 	"files.eol": "\n",
 	"files.exclude": {
-		"out": false
+		"**/packages/**": true
 	},
 	"files.trimTrailingWhitespace": true,
 	"git.inputValidationLength": 100,
@@ -104,5 +104,8 @@
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
 	"eslint.useFlatConfig": true,
-	"fileNestingUpdater.autoUpdate": true
+	"fileNestingUpdater.autoUpdate": true,
+	"github.copilot.advanced": {
+		"authProvider": "github"
+	}
 }
