@@ -1,4 +1,10 @@
 ## 🧮 Version History
+- 1.9.0
+  - breaking change: Updated icons names that has numbers in their names (consecutive numbers are treated as a word)
+  - feat: Added nuxt module and vite plugin to automatically import icons
+  - feat: Added `vue-icon` component
+  - chore: Updated deps
+
 - 1.8.0
   - breaking change: Removed JamIcons icon set. It is not maintained anymore.
   - breaking change: Updated tablr with new namespace (filled and outline).
