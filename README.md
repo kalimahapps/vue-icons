@@ -37,6 +37,8 @@
 - Stylable. You can change color and size of the icons
 - Built for vue3
 - Optimized with SVGO
+- MCP Server to integrate into your client
+- VSCode Extension for auto-completion and preview
 
 <br>
 <br>
