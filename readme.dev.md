@@ -4,7 +4,7 @@
 - Run `pnpm build-icons` to build icons
 - Run `pnpm build-module` to build nuxt module
 - Run `pnpm build-plugin` to build vite plugin
-
+- Run `pnpm mcp:build` to build mcp server
 
 # Testing
 - Run `pnpm test` to run all tests

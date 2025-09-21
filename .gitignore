@@ -24,3 +24,5 @@ icons
 *.njsproj
 *.sln
 *.sw?
+
+mcp/*.js

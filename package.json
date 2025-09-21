@@ -2,7 +2,7 @@
 	"name": "@kalimahapps/vue-icons",
 	"description": "70,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"author": "khr2003",
-	"version": "1.9.1",
+	"version": "1.9.2",
 	"homepage": "https://vue-icons.kalimah-apps.com/",
 	"repository": {
 		"type": "git",
@@ -20,12 +20,18 @@
 		"build-plugin": "tsc vite-plugin/index.ts --outDir vite-plugin/dist/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck",
 		"check-updates": "node ./scripts/check-updates.js",
 		"coverage": "vitest run --coverage",
+		"mcp:build": "tsc mcp/bin.ts --target es2021 --module esnext --moduleResolution Bundler --noEmitOnError false --skipLibCheck",
+		"mcp:build:watch": "tsc mcp/bin.ts --watch",
+		"mcp:dev": "tsx mcp/bin.js",
+		"mcp:inspect": "set DANGEROUSLY_OMIT_AUTH=true && pnpx @modelcontextprotocol/inspector pnpm run mcp:dev",
 		"test": "vitest",
 		"update-submodules": "git submodule update --remote --depth 1"
 	},
 	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.18.1",
 		"@typescript-eslint/parser": "^8.39.0",
 		"change-case": "^5.4.4",
+		"fuse.js": "^7.1.0",
 		"magic-string": "^0.30.17",
 		"svg-parser": "^2.0.4",
 		"vue-eslint-parser": "^10.2.0"
@@ -42,6 +48,7 @@
 	"devDependencies": {
 		"@kalimahapps/cli-progress": "^1.0.4",
 		"@kalimahapps/eslint-config": "^1.2.93",
+		"@types/node": "^24.5.2",
 		"@vitest/coverage-c8": "^0.33.0",
 		"@vue/test-utils": "^2.4.6",
 		"compare-versions": "^5.0.3",
@@ -52,10 +59,12 @@
 		"happy-dom": "^17.4.7",
 		"octokit": "^4.1.3",
 		"svgo": "^3.2.0",
+		"tsx": "^4.20.5",
 		"typescript": "^5.9.2",
 		"vite": "^7.0.6",
 		"vitest": "^3.2.4",
-		"vue": "^3.4.29"
+		"vue": "^3.4.29",
+		"zod": "^3.25.76"
 	},
 	"keywords": [
 		"icons",
@@ -159,11 +168,15 @@
 		"./content": "./icons/content.json",
 		"./icon-base": "./utilities/icon-base.js"
 	},
+	"bin": {
+		"mcp": "./mcp/bin.js"
+	},
 	"files": [
 		"icons",
 		"utilities",
 		"vite-plugin",
-		"README.md"
+		"README.md",
+		"mcp"
 	],
 	"engines": {
 		"node": ">=14.16"

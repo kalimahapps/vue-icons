@@ -170,7 +170,7 @@ const getFilesContent = function (iconsInfo, group) {
 
 		// Write to csv
 		csvArray.push({
-			name: variableNameKey,
+			name: replacedFirstDash,
 			set: group,
 			svg: svgString.data,
 		});
