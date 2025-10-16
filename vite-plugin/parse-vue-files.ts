@@ -196,7 +196,7 @@ const parseVueFiles = function(code: string){
 	const usedIcons = new Set<string>();
 	const modifications: Modification[] = [];
 	const { ast } = vueParser.parseForESLint(code, {
-		ecmaVersion: 2020,
+		ecmaVersion: 'latest',
 		sourceType: 'module',
 		parser: {
 			ts: '@typescript-eslint/parser',
@@ -237,6 +237,7 @@ const parseVueFiles = function(code: string){
 			importStatement = `<script setup>\n${importStatement}</script>\n`;
 		}
 		magicString.prependLeft(start, importStatement);
+		console.log(magicString.toString());
 	}
 
 	return magicString;

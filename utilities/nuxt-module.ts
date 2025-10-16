@@ -5,6 +5,7 @@ export default defineNuxtModule({
 	 meta: {
 		name: '@kalimahapps/vue-icons',
 		configKey: 'vue-icons',
+		docs: 'https://vue-icons.kalimah-apps.com/nuxt-vite.html',
 	},
 	setup(options, nuxt) {
 		addComponent({

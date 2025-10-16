@@ -2,7 +2,7 @@
 	"name": "@kalimahapps/vue-icons",
 	"description": "70,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"author": "khr2003",
-	"version": "1.9.2",
+	"version": "1.9.3",
 	"homepage": "https://vue-icons.kalimah-apps.com/",
 	"repository": {
 		"type": "git",
@@ -48,6 +48,7 @@
 	"devDependencies": {
 		"@kalimahapps/cli-progress": "^1.0.4",
 		"@kalimahapps/eslint-config": "^1.2.93",
+		"@nuxt/kit": "^4.1.2",
 		"@types/node": "^24.5.2",
 		"@vitest/coverage-c8": "^0.33.0",
 		"@vue/test-utils": "^2.4.6",
