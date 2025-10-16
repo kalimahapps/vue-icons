@@ -237,7 +237,6 @@ const parseVueFiles = function(code: string){
 			importStatement = `<script setup>\n${importStatement}</script>\n`;
 		}
 		magicString.prependLeft(start, importStatement);
-		console.log(magicString.toString());
 	}
 
 	return magicString;
