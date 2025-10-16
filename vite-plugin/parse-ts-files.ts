@@ -54,7 +54,7 @@ const parseTSFiles = (code: string) => {
 	const modifications: Modification[] = [];
 	const ast = tsParser.parse(code, {
 		sourceType: 'module',
-		ecmaVersion: 2020,
+		ecmaVersion: 'latest',
 		range: true,
 	});
 
