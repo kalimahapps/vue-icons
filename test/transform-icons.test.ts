@@ -1,7 +1,7 @@
 import { expect, test, describe } from 'vitest';
 import * as ChangeCase from 'change-case';
 import * as VueIcons from '@kalimahapps/vue-icons';
-import iconsList from '../icons/icons-list.json' with { type: 'json' };
+import iconsList from '../icons/icons-list-kebab-case.json' with { type: 'json' };
 
 const { pascalCase, splitSeparateNumbers } = ChangeCase;
 

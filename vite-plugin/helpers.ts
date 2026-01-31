@@ -1,24 +1,19 @@
-import iconsList from '@kalimahapps/vue-icons/icons-list' with { type: 'json' };
-import content from '@kalimahapps/vue-icons/content' with { type: 'json' };
+import iconsListKebabCase from '@kalimahapps/vue-icons/icons-list-kebab-case' with { type: 'json' };
+import iconsListPascalCase from '@kalimahapps/vue-icons/icons-list-pascal-case' with { type: 'json' };
 
 const ICONS_PACKAGE_IMPORT_PATH = '@kalimahapps/vue-icons';
 const PASCAL_ICON_REGEX = /^[A-Z][a-z][A-Z]/u;
-
-const iconsPrefixes = new Set(content.map((item) => {
-	return item.prefix;
-}));
 
 const isPascalIconName = function(name: string): boolean {
 	if (!PASCAL_ICON_REGEX.test(name)) {
 		return false;
 	}
 
-	const prefix = name.slice(0, 2).toLowerCase();
-	return iconsPrefixes.has(prefix);
+	return iconsListPascalCase.includes(name);
 };
 
 const isKebabIconName = function(name: string): boolean {
-	return iconsList.includes(name);
+	return iconsListKebabCase.includes(name);
 };
 
 const isIconName = function(name: string): boolean {

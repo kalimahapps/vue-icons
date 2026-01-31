@@ -2,7 +2,7 @@
 	"name": "@kalimahapps/vue-icons",
 	"description": "70,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"author": "khr2003",
-	"version": "1.9.5",
+	"version": "1.9.6-rc.0",
 	"homepage": "https://vue-icons.kalimah-apps.com/",
 	"repository": {
 		"type": "git",
@@ -24,7 +24,7 @@
 		"mcp:build:watch": "tsc mcp/bin.ts --watch",
 		"mcp:dev": "tsx mcp/bin.js",
 		"mcp:inspect": "set DANGEROUSLY_OMIT_AUTH=true && pnpx @modelcontextprotocol/inspector pnpm run mcp:dev",
-		"pre-publishOnly": "pnpm run build-module && pnpm run build-plugin && pnpm run mcp:build",
+		"prepublishOnly": "pnpm build-module && pnpm build-plugin && pnpm mcp:build",
 		"submodules:init": "git submodule update --init --depth 1 --recursive --progress",
 		"submodules:update": "git submodule update --remote --depth 1",
 		"test": "vitest"
@@ -118,7 +118,9 @@
 		"./all": {
 			"import": "./icons/all.js"
 		},
-		"./icons-list": "./icons/icons-list.json",
+		"./icons-list": "./icons/icons-list-kebab-case.json",
+		"./icons-list-kebab-case": "./icons/icons-names-pascal-case.json",
+		"./icons-list-pascal-case": "./icons/icons-names-pascal-case.json",
 		"./VueIcon": {
 			"types": "./utilities/vue-icon.d.ts",
 			"import": "./utilities/VueIcon.vue"

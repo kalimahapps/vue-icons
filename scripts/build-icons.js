@@ -105,7 +105,8 @@ const generateVersionLog = function (data) {
  * to ensure that we don't have duplicate icons
  */
 let uniqueFileNames = {};
-const allIconsNames = [];
+const allIconsNamesKebabCase = [];
+const allIconsNamesPascalCase = [];
 
 /* eslint complexity: ["warn", 10] */
 const getFilesContent = function (iconsInfo, group) {
@@ -163,7 +164,8 @@ const getFilesContent = function (iconsInfo, group) {
 		const replacedFirstDash = kebabCase(variableNameKey, {
 			split: splitSeparateNumbersCustom,
 		}).replace('-', ':');
-		allIconsNames.push(replacedFirstDash);
+		allIconsNamesKebabCase.push(replacedFirstDash);
+		allIconsNamesPascalCase.push(variableNameKey);
 
 		const getTemplate = svgTemplate(variableNameKey, svgString.data);
 		fileContent += getTemplate;
@@ -321,10 +323,16 @@ const buildIcons = async function () {
 		allIconsTypes.join('\n')
 	);
 
-	// Create all icons names file
+	// Create all icons kebab case names file
 	fse.outputFileSync(
-		path.resolve(currentDirectoryPath, '../icons/icons-list.json'),
-		JSON.stringify(allIconsNames)
+		path.resolve(currentDirectoryPath, '../icons/icons-list-kebab-case.json'),
+		JSON.stringify(allIconsNamesKebabCase)
+	);
+
+	// Create all icons pascal case names file
+	fse.outputFileSync(
+		path.resolve(currentDirectoryPath, '../icons/icons-names-pascal-case.json'),
+		JSON.stringify(allIconsNamesPascalCase)
 	);
 
 	generateVersionLog(iconsStat);
