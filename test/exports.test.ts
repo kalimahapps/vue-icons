@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { expect, test, describe } from 'vitest';
-import packageJson from '../package.json';
+import packageJson from '../package.json' with { type: 'json' };
 import * as VueIcons from '@kalimahapps/vue-icons';
 
 describe('Exports', () => {
@@ -25,7 +25,7 @@ describe('Exports', () => {
 		});
 
 		for (const icon of icons) {
-		// Ignore .d.ts files
+			// Ignore .d.ts files
 			if (icon.includes('.d.ts')) {
 				return;
 			}

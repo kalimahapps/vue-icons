@@ -32,7 +32,7 @@ const detectAndReplaceIcons = function(
 		}
 
 		// Traverse child nodes
-		for (const key in node) {
+		for (const key of Object.keys(node)) {
 			const child = (node as any)[key];
 			if (Array.isArray(child)) {
 				for (const item of child) {
@@ -77,7 +77,7 @@ const parseTSFiles = (code: string) => {
 	}
 
 	if (usedIcons.size > 0) {
-		let importStatement = `import { ${[...usedIcons].join(', ')} } from '${ICONS_PACKAGE_IMPORT_PATH}';\n`;
+		const importStatement = `import { ${[...usedIcons].join(', ')} } from '${ICONS_PACKAGE_IMPORT_PATH}';\n`;
 		const [start, end] = ast.range;
 		magicString.prependLeft(start, importStatement);
 	}

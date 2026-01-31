@@ -16,16 +16,18 @@
 	"license": "MIT",
 	"scripts": {
 		"build-icons": "node ./scripts/build-icons.js",
-		"build-module": "tsc utilities/nuxt-module.ts --outDir utilities/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck",
-		"build-plugin": "tsc vite-plugin/index.ts --outDir vite-plugin/dist/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck",
+		"build-module": "tsc utilities/nuxt-module.ts --outDir utilities/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck --declaration",
+		"build-plugin": "tsc vite-plugin/index.ts --outDir vite-plugin/dist/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck --declaration",
 		"check-updates": "node ./scripts/check-updates.js",
 		"coverage": "vitest run --coverage",
 		"mcp:build": "tsc mcp/bin.ts --target es2021 --module esnext --moduleResolution Bundler --noEmitOnError false --skipLibCheck",
 		"mcp:build:watch": "tsc mcp/bin.ts --watch",
 		"mcp:dev": "tsx mcp/bin.js",
 		"mcp:inspect": "set DANGEROUSLY_OMIT_AUTH=true && pnpx @modelcontextprotocol/inspector pnpm run mcp:dev",
-		"test": "vitest",
-		"update-submodules": "git submodule update --remote --depth 1"
+		"pre-publishOnly": "pnpm run build-module && pnpm run build-plugin && pnpm run mcp:build",
+		"submodules:init": "git submodule update --init --depth 1 --recursive --progress",
+		"submodules:update": "git submodule update --remote --depth 1",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.18.1",
@@ -101,8 +103,14 @@
 	"sideEffects": false,
 	"exports": {
 		"./resolver": "./utilities/resolver.js",
-		"./nuxt": "./utilities/nuxt-module.js",
-		"./vite": "./vite-plugin/dist/index.js",
+		"./nuxt": {
+			"types": "./utilities/nuxt-module.d.ts",
+			"import": "./utilities/nuxt-module.js"
+		},
+		"./vite": {
+			"types": "./vite-plugin/dist/index.d.ts",
+			"import": "./vite-plugin/dist/index.js"
+		},
 		".": {
 			"types": "./icons/all.d.ts",
 			"import": "./icons/all.js"

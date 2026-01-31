@@ -2,7 +2,7 @@ import { expect, test, describe } from 'vitest';
 import { defineComponent } from 'vue';
 import { mount } from '@vue/test-utils';
 import {
-	 AdRoundswitchOn,
+	AdRoundswitchOn,
 	AdDigital4,
 	AdLogoProtools,
 	AdHExpand,

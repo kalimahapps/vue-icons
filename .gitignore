@@ -26,3 +26,6 @@ icons
 *.sw?
 
 mcp/*.js
+
+utilities/nuxt-module.d.ts
+utilities/nuxt-module.js

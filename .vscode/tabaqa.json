@@ -1,6 +1,7 @@
 {
 	"extends": "https://raw.githubusercontent.com/kalimahapps/configs/main/.vscode/settings.json",
 	"settings": {
+		"git.detectSubmodules": false,
 		"search.exclude": {
 			"**/node_modules": true,
 			"**/vendor": true,
@@ -19,7 +20,7 @@
 		"eslint.useFlatConfig": true,
 		"files.exclude": {
 			"**/packages/**": true,
-			"**/node_modules/**": true,
+			"**/node_modules/**": true
 		}
 	}
 }
