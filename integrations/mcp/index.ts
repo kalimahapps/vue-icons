@@ -1,7 +1,7 @@
 import Fuse from 'fuse.js';
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import iconsList from '@kalimahapps/vue-icons/icons-list-kebab-case' with { type: 'json' };
+import iconsList from '@kalimahapps/vue-icons/icons-list-kebab-case';
 
 const server = new McpServer({
 	name: 'vue-icons',

@@ -67,7 +67,7 @@ const splitCustom = function (value) {
 	return result;
 };
 
-const splitSeparateNumbersCustom = function(value){
+const splitSeparateNumbersCustom = function (value) {
 	const words = splitCustom(value);
 	for (let index = 0; index < words.length; index++) {
 		const word = words[index];
@@ -331,7 +331,7 @@ const buildIcons = async function () {
 
 	// Create all icons pascal case names file
 	fse.outputFileSync(
-		path.resolve(currentDirectoryPath, '../icons/icons-names-pascal-case.json'),
+		path.resolve(currentDirectoryPath, '../icons/icons-list-pascal-case.json'),
 		JSON.stringify(allIconsNamesPascalCase)
 	);
 

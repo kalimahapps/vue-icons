@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"skipLibCheck": true,
+		"target": "es2022",
+		"declaration": true,
+		"outDir": "../dist/vite-plugin",
+		"rootDir": "./vite-plugin"
+	},
+	"include": ["vite-plugin/**/*.ts", "**/*.d.ts"]
+}

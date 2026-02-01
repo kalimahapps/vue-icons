@@ -1,0 +1,11 @@
+{
+	"compilerOptions": {
+		"module": "esnext",
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"target": "es2022",
+		"declaration": true,
+		"outDir": "../dist/mcp",
+	},
+	"include": ["mcp/**/*.ts", "**/*.d.ts"]
+}

@@ -2,8 +2,8 @@
 import tsParser from '@typescript-eslint/parser';
 import type { Modification } from './types.ts';
 import * as changeCase from 'change-case';
-import { AST_NODE_TYPES } from '@typescript-eslint/utils';
-import type { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/types';
+import type { TSESTree } from '@typescript-eslint/types';
 const { pascalCase } = changeCase;
 import MagicString from 'magic-string';
 import { ICONS_PACKAGE_IMPORT_PATH, isIconName } from './helpers.js';

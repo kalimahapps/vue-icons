@@ -2,7 +2,7 @@
 	"name": "@kalimahapps/vue-icons",
 	"description": "70,000+ SVG icons of popular icon sets that you can add seamlessly to vue projects",
 	"author": "khr2003",
-	"version": "1.9.6-rc.0",
+	"version": "1.9.6-rc.1",
 	"homepage": "https://vue-icons.kalimah-apps.com/",
 	"repository": {
 		"type": "git",
@@ -15,16 +15,16 @@
 	"packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
 	"license": "MIT",
 	"scripts": {
+		"build": "pnpm build:mcp && pnpm build:nuxt-module && pnpm build:vite-plugin",
 		"build-icons": "node ./scripts/build-icons.js",
-		"build-module": "tsc utilities/nuxt-module.ts --outDir utilities/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck --declaration",
-		"build-plugin": "tsc vite-plugin/index.ts --outDir vite-plugin/dist/ --target es2021 --module esnext --moduleResolution node --noEmitOnError false --skipLibCheck --declaration",
+		"build:mcp": "tsc --project integrations/tsconfig.mcp.json",
+		"build:mcp:watch": "tsc --project integrations/tsconfig.mcp.json --watch",
+		"build:nuxt-module": "tsc --project integrations/tsconfig.nuxt.json",
+		"build:vite-plugin": "tsc --project integrations/tsconfig.vite-plugin.json",
 		"check-updates": "node ./scripts/check-updates.js",
 		"coverage": "vitest run --coverage",
-		"mcp:build": "tsc mcp/bin.ts --target es2021 --module esnext --moduleResolution Bundler --noEmitOnError false --skipLibCheck",
-		"mcp:build:watch": "tsc mcp/bin.ts --watch",
-		"mcp:dev": "tsx mcp/bin.js",
-		"mcp:inspect": "set DANGEROUSLY_OMIT_AUTH=true && pnpx @modelcontextprotocol/inspector pnpm run mcp:dev",
-		"prepublishOnly": "pnpm build-module && pnpm build-plugin && pnpm mcp:build",
+		"mcp:dev": "tsx integrations/mcp/bin.ts",
+		"mcp:inspect": "set DANGEROUSLY_OMIT_AUTH=true && pnpx @modelcontextprotocol/inspector pnpm mcp:dev",
 		"submodules:init": "git submodule update --init --depth 1 --recursive --progress",
 		"submodules:update": "git submodule update --remote --depth 1",
 		"test": "vitest"
@@ -49,14 +49,14 @@
 	},
 	"devDependencies": {
 		"@kalimahapps/cli-progress": "^1.0.4",
-		"@kalimahapps/eslint-config": "^1.2.93",
+		"@kalimahapps/eslint-config": "^1.3.0-rc.0",
 		"@nuxt/kit": "^4.1.2",
 		"@types/node": "^24.5.2",
 		"@vitest/coverage-c8": "^0.33.0",
 		"@vue/test-utils": "^2.4.6",
 		"compare-versions": "^5.0.3",
 		"csv-writer": "^1.6.0",
-		"eslint": "^9.32.0",
+		"eslint": "^9.39.2",
 		"fast-glob": "^3.3.3",
 		"fs-extra": "^10.1.0",
 		"happy-dom": "^17.4.7",
@@ -102,14 +102,14 @@
 	],
 	"sideEffects": false,
 	"exports": {
-		"./resolver": "./utilities/resolver.js",
+		"./resolver": "./integrations/unplugin/resolver.js",
 		"./nuxt": {
-			"types": "./utilities/nuxt-module.d.ts",
-			"import": "./utilities/nuxt-module.js"
+			"types": "./dist/nuxt/module.d.ts",
+			"import": "./dist/nuxt/module.js"
 		},
 		"./vite": {
-			"types": "./vite-plugin/dist/index.d.ts",
-			"import": "./vite-plugin/dist/index.js"
+			"types": "./dist/vite-plugin/index.d.ts",
+			"import": "./dist/vite-plugin/index.js"
 		},
 		".": {
 			"types": "./icons/all.d.ts",
@@ -119,11 +119,11 @@
 			"import": "./icons/all.js"
 		},
 		"./icons-list": "./icons/icons-list-kebab-case.json",
-		"./icons-list-kebab-case": "./icons/icons-names-pascal-case.json",
-		"./icons-list-pascal-case": "./icons/icons-names-pascal-case.json",
+		"./icons-list-kebab-case": "./icons/icons-list-kebab-case.json",
+		"./icons-list-pascal-case": "./icons/icons-list-pascal-case.json",
 		"./VueIcon": {
-			"types": "./utilities/vue-icon.d.ts",
-			"import": "./utilities/VueIcon.vue"
+			"types": "./integrations/vue/vue-icon.d.ts",
+			"import": "./integrations/vue/VueIcon.vue"
 		},
 		"./ad": "./icons/ad/index.js",
 		"./ai": "./icons/ai/index.js",
