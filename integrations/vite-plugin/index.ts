@@ -1,8 +1,9 @@
 /* eslint complexity: ["warn", 10] */
-import type { Plugin } from 'vite';
+import type { PluginOption } from 'vite';
 import parseVueFiles from './parse-vue-files.js';
 import parseTsFiles from './parse-ts-files.js';
-const vitePluginVueIcons = function(): Plugin {
+
+const vitePluginVueIcons = function (): PluginOption {
 	return {
 		name: 'vite-plugin-vue-icons',
 		enforce: 'pre',

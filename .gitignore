@@ -6,7 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-config.js
 coverage
 
 csv
@@ -25,7 +24,4 @@ icons
 *.sln
 *.sw?
 
-mcp/*.js
-
-utilities/nuxt-module.d.ts
-utilities/nuxt-module.js
+config.ts

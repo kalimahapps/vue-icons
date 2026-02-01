@@ -2,10 +2,11 @@
 // const path = require('node:path');
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirectoryPath = path.dirname(currentFilePath);
 
-export default [
+const manifest: ManifestEntry[] = [
 	{
 		group: 'ad',
 		name: 'FontAudio',
@@ -85,7 +86,7 @@ export default [
 				path: path.resolve(currentDirectoryPath, '../packages/ant-design/packages/icons-svg/svg/twotone/*.svg'),
 				formatter: (fileName) => { return `an-twotone-${fileName}`; },
 				attributes: {
-					twotone: true,
+					twotone: 'true',
 				},
 			},
 		],
@@ -253,7 +254,7 @@ export default [
 				path: path.resolve(currentDirectoryPath, '../packages/coreui/svg/flag/*.svg'),
 				formatter: (fileName) => { return `co-flag-${fileName.replace('cif-', '')}`; },
 				attributes: {
-					multicolor: true,
+					multicolor: 'true',
 				},
 			},
 			{
@@ -292,7 +293,7 @@ export default [
 				path: path.resolve(currentDirectoryPath, '../packages/devicons/icons/**/*.svg'),
 				formatter: (fileName) => { return `de-${fileName}`; },
 				attributes: {
-					multicolor: true,
+					multicolor: 'true',
 				},
 			},
 		],
@@ -311,10 +312,9 @@ export default [
 					const folderName = path.basename(path.join(filePath, '..', '..'));
 
 					return fileName.replaceAll(
-						/ic_fluent_(.+)_(12|16|20|24|28|32|48)_(.+)/g,
+						/ic_fluent_(?<name>.+)_(?<size>12|16|20|24|28|32|48)_(?<type>.+)/gu,
 						(match, name, size, type) => {
-							// const cleanName = name.replaceAll(/_/g, '-');
-							const cleanName = folderName.replaceAll(/\s/g, '-');
+							const cleanName = folderName.replaceAll(/\s/gu, '-');
 							if (type.toLowerCase() === 'regular') {
 								return `fl-${cleanName}`;
 							}
@@ -329,12 +329,15 @@ export default [
 					// Filter files list to get the highest resolution from each icon folder
 
 					// Group files based on parent folder name
-					const groupedFiles = filesList.reduce((accumulator, filePath) => {
+					const groupedFiles: Record<string, string[]> = {};
+
+					// const groupedFiles = filesList.reduce((accumulator, filePath) => {
+					for (const filePath of filesList) {
 						const fileName = path.basename(filePath);
 
 						// ignore light icons
 						if (fileName.includes('_light.svg')) {
-							return accumulator;
+							continue;
 						}
 
 						const folderName = path.basename(path.join(filePath, '..', '..'));
@@ -342,49 +345,48 @@ export default [
 						// Clean up folder name
 						// eslint-disable-next-line no-useless-escape
 						const cleanedFolderName = folderName.replace('/\s/g', '-').toLowerCase();
-						if (!accumulator[cleanedFolderName]) {
-							accumulator[cleanedFolderName] = [];
+						if (!groupedFiles[cleanedFolderName]) {
+							groupedFiles[cleanedFolderName] = [];
 						}
 
-						accumulator[cleanedFolderName].push(filePath);
-						return accumulator;
-					}, {});
+						groupedFiles[cleanedFolderName].push(filePath);
+					}
 
 					const sizes = ['48', '32', '24', '20', '16', '12'];
 
 					// Loop through each group and return the file with the highest resolution
-					const finalFilesList = Object.keys(groupedFiles)
-						.reduce((accumulator, groupName) => {
-							let files = groupedFiles[groupName];
+					const finalFilesList = [];
 
-							let sizeFound = 0;
+					for (const groupName of Object.keys(groupedFiles)) {
+						let files = groupedFiles[groupName];
 
-							// Sort files in reverse alphabetically
-							files = files.sort((a, b) => {
-								return b.localeCompare(a);
+						let sizeFound = '0';
+
+						// Sort files in reverse alphabetically
+						files = files.toSorted((a, b) => {
+							return b.localeCompare(a);
+						});
+
+						// Find the highest resolution inside the group
+						for (const size of sizes) {
+							const file = files.find((file) => {
+								return file.includes(size);
 							});
-
-							// Find the highest resolution inside the group
-							for (const size of sizes) {
-								const file = files.find((file) => {
-									return file.includes(size);
-								});
-								if (file) {
-									sizeFound = size;
-									break;
-								}
+							if (file) {
+								sizeFound = size;
+								break;
 							}
+						}
 
-							// Get the file with the highest resolution
-							for (const filePath of files) {
-								const fileName = path.basename(filePath);
-								if (!fileName.includes(`_${sizeFound}_`)) {
-									continue;
-								}
-								accumulator.push(filePath);
+						// Get the file with the highest resolution
+						for (const filePath of files) {
+							const fileName = path.basename(filePath);
+							if (!fileName.includes(`_${sizeFound}_`)) {
+								continue;
 							}
-							return accumulator;
-						}, []);
+							finalFilesList.push(filePath);
+						}
+					}
 
 					return finalFilesList;
 				},
@@ -776,9 +778,6 @@ export default [
 
 				/* eslint complexity:[error, 9] */
 				filesFilter: (filesList) => {
-					// console.log('filesList:', filesList.slice(0, 10));
-					// const newFilesList = filesList.slice(0, 500);
-
 					/* Filter files list to get the highest resolution from each icon folder
 					* Group files based on parent folder name
 					* The result would be an object with the icon name and type as key, and
@@ -786,7 +785,7 @@ export default [
 					* {
 					* 	'{icon-name}-{icon-type}': ['path/to/file-1.svg', 'path/to/file-2.svg']
 					* } */
-					const groupedFiles = {};
+					const groupedFiles: Record<string, string[]> = {};
 					for (const filePath of filesList) {
 						const iconName = path.basename(path.join(filePath, '..', '..'));
 						const iconType = path.basename(path.dirname(filePath)).replace('materialicons', '');
@@ -802,17 +801,17 @@ export default [
 					// Sizes to look for in the file name
 					const sizes = ['24', '20'];
 
-					const finalFilesList = [];
+					const finalFilesList: string[] = [];
 
 					// Loop through each group and return the file with the highest resolution
 					for (const groupName of Object.keys(groupedFiles)) {
 						let files = groupedFiles[groupName];
 
-						let sizeFound = 0;
+						let sizeFound = '0';
 
 						// Sort files in reverse alphabetically so
 						// that the highest resolution is first
-						files = files.sort((a, b) => {
+						files = files.toSorted((a, b) => {
 							return b.localeCompare(a);
 						});
 
@@ -821,6 +820,7 @@ export default [
 							const file = files.find((file) => {
 								return file.includes(size);
 							});
+
 							if (file) {
 								sizeFound = size;
 								break;
@@ -1190,3 +1190,5 @@ export default [
 		],
 	},
 ];
+
+export default manifest;

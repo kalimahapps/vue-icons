@@ -10,7 +10,7 @@ defineProps({
 	/**
 	 * The name of the icon to render.
 	 */
-	  name: {
+	name: {
 		type: [String, Function] as PropType<string | Function>,
 		required: true,
 	},

@@ -1,5 +1,6 @@
-export default (attributes) => {
-	const plugins = [
+import type { Config, PluginConfig } from 'svgo';
+const svgoSettings = (attributes: Attributes): Config => {
+	const plugins: PluginConfig[] = [
 		{
 			name: 'preset-default',
 			params: {
@@ -16,7 +17,6 @@ export default (attributes) => {
 		},
 		{
 			name: 'removeXMLNS',
-			active: false,
 		},
 		{
 			name: 'removeAttrs',
@@ -26,18 +26,17 @@ export default (attributes) => {
 		},
 		{
 			name: 'removeInkscapeData',
-			type: 'perItem',
 			fn: (ast, parameters, info) => {
 				return {
 					element: {
 						enter: (node) => {
 							if (node.attributes?.style === undefined) {
-								return node;
+								return;
 							}
 
 							const hasInkscape = node.attributes.style.includes('inkscape');
 							if (!hasInkscape) {
-								return node;
+								return;
 							}
 
 							// Split and remove inkscape styles
@@ -46,7 +45,6 @@ export default (attributes) => {
 								return !style.includes('inkscape');
 							});
 							node.attributes.style = filteredStyles.join(';');
-							return node;
 						},
 					},
 				};
@@ -67,3 +65,5 @@ export default (attributes) => {
 		plugins,
 	};
 };
+
+export default svgoSettings;

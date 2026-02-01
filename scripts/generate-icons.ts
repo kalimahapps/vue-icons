@@ -12,12 +12,23 @@ import { fileURLToPath } from 'node:url';
 import { createProgressBar, createHeader } from '@kalimahapps/cli-progress';
 import * as changeCase from 'change-case';
 
+type IconSet = {
+	name: string;
+	url: string;
+	prefix: string;
+	license: string;
+	repo: string;
+	version?: string;
+	count: number;
+	group: string;
+};
+
 const currentFilePath = fileURLToPath(import.meta.url);
 const currentDirectoryPath = path.dirname(currentFilePath);
 const { pascalCase, kebabCase, splitSeparateNumbers } = changeCase;
 
 // Used to iterate over the initial split result and separate numbers.
-const SPLIT_SEPARATE_NUMBER_RE = /(\d)\p{Ll}|(\p{L})\d/u;
+const SPLIT_SEPARATE_NUMBER_RE = /(?<digit>\d)\p{Ll}|(?<letter>\p{L})\d/u;
 
 /**
  * ChangeCase split function does not split certain words correctly.
@@ -34,7 +45,7 @@ const SPLIT_SEPARATE_NUMBER_RE = /(\d)\p{Ll}|(\p{L})\d/u;
  * @param  {string}   value The string to process
  * @return {string[]}       The split words
  */
-const splitCustom = function (value) {
+const splitCustom = function (value: string): string[] {
 	const chars = value.trim();
 	if (!chars) {
 		return [];
@@ -67,7 +78,7 @@ const splitCustom = function (value) {
 	return result;
 };
 
-const splitSeparateNumbersCustom = function (value) {
+const splitSeparateNumbersCustom = function (value: string): string[] {
 	const words = splitCustom(value);
 	for (let index = 0; index < words.length; index++) {
 		const word = words[index];
@@ -77,19 +88,20 @@ const splitSeparateNumbersCustom = function (value) {
 			words.splice(index, 1, word.slice(0, offset), word.slice(offset));
 		}
 	}
+
 	return words;
 };
 
-const svgTemplate = function (fileName, content) {
+const svgTemplate = function (fileName: string, content: string): string {
 	return `export const ${fileName}=props=>iconBase(props,\`${content}\`)\n`;
 };
 
 /**
  * Generate a JSON file with the latest version of each icon
  *
- * @param {Array} data Array of objects with icon stats
+ * @param {IconSet[]} data Array of objects with icon stats
  */
-const generateVersionLog = function (data) {
+const generateVersionLog = function (data: IconSet[]) {
 	const versionsData = {};
 	for (const iconStat of data) {
 		versionsData[iconStat.name] = iconStat.version;
@@ -105,19 +117,19 @@ const generateVersionLog = function (data) {
  * to ensure that we don't have duplicate icons
  */
 let uniqueFileNames = {};
-const allIconsNamesKebabCase = [];
-const allIconsNamesPascalCase = [];
+const allIconsNamesKebabCase: string[] = [];
+const allIconsNamesPascalCase: string[] = [];
 
 /* eslint complexity: ["warn", 10] */
-const getFilesContent = function (iconsInfo, group) {
-	let { path: iconsPath, formatter, options = {},	filesFilter, attributes = {} } = iconsInfo;
+const getFilesContent = function (iconsInfo: IconGroup, group: string) {
+	let { path: iconsPath, formatter, filesFilter, attributes = {} } = iconsInfo;
 	iconsPath = iconsPath.split(path.sep).join('/');
 
 	let fileContent = '';
 	const csvArray = [];
 
 	// Get files list
-	let files = fg.sync([iconsPath], options);
+	let files = fg.sync([iconsPath]);
 
 	// Do postprocessing on files
 	if (filesFilter) {
@@ -153,8 +165,8 @@ const getFilesContent = function (iconsInfo, group) {
 			variableNameKey = `${variableName}${occurrence}`;
 		}
 
-		let svgString = fs.readFileSync(filePath, 'utf8');
-		svgString = svgo.optimize(svgString, svgoSettings(attributes));
+		const svgString = fs.readFileSync(filePath, 'utf8');
+		const svgOutput = svgo.optimize(svgString, svgoSettings(attributes));
 
 		// Add name and data
 		uniqueFileNames[variableName] = occurrence;
@@ -167,14 +179,14 @@ const getFilesContent = function (iconsInfo, group) {
 		allIconsNamesKebabCase.push(replacedFirstDash);
 		allIconsNamesPascalCase.push(variableNameKey);
 
-		const getTemplate = svgTemplate(variableNameKey, svgString.data);
+		const getTemplate = svgTemplate(variableNameKey, svgOutput.data);
 		fileContent += getTemplate;
 
 		// Write to csv
 		csvArray.push({
 			name: replacedFirstDash,
 			set: group,
-			svg: svgString.data,
+			svg: svgOutput.data,
 		});
 	}
 
@@ -187,7 +199,7 @@ const getFilesContent = function (iconsInfo, group) {
 	};
 };
 
-const createTypeFile = function (group, uniqueFileNames) {
+const createTypeFile = function (group: string, uniqueFileNames: Record<string, number>) {
 	const content = [
 		'import { Component } from "vue";',
 		`declare module '@kalimahapps/vue-icons/${group}' {`,
@@ -207,13 +219,26 @@ const createTypeFile = function (group, uniqueFileNames) {
 };
 
 /**
+ * Format time taken to process icons
+ *
+ * @param  {number} time Time taken to process icons in milliseconds
+ * @return {string}      Formatted time taken
+ */
+const formatTimeTaken = (time: number): string => {
+	const minutes = Math.floor((time % 3600) / 60);
+	const seconds = Math.floor(time % 60);
+
+	return `${minutes}m ${seconds}s`;
+};
+
+/**
  * Entry function to build icons.
  * At first it will empty icons folder.
  * Then it will loop through all icons directories
  * and extract svg files, then write it to icons directory.
  */
 // eslint-disable-next-line max-lines-per-function
-const buildIcons = async function () {
+const buildIcons = async function (): Promise<void> {
 	// Empty directory first
 	await fse.emptyDir(path.resolve(currentDirectoryPath, '../icons'));
 	await fse.emptyDir(path.resolve(currentDirectoryPath, '../csv'));
@@ -225,16 +250,16 @@ const buildIcons = async function () {
 	const allIconsTypes = [];
 
 	// Hold icon set version, prefix, count, license ..etc
-	const iconsStat = [];
+	const iconsStat: IconSet[] = [];
 
 	const startTime = Date.now();
 
-	await manifest.reduce(async (previousPromise, iconsGroup) => {
-		await previousPromise;
-
+	// await manifest.reduce(async (previousPromise, iconsGroup) => {
+	// await previousPromise;
+	for (const iconsGroup of manifest) {
 		const { name, group, url, version, license, repo: repoUrl, icons } = iconsGroup;
 
-		const iconSetData = {
+		const iconSetData: IconSet = {
 			name,
 			url,
 			prefix: group,
@@ -242,6 +267,7 @@ const buildIcons = async function () {
 			repo: repoUrl,
 			version,
 			count: 0,
+			group,
 		};
 
 		createHeader(`Processing ${name}`);
@@ -278,14 +304,13 @@ const buildIcons = async function () {
 		uniqueFileNames = {};
 
 		let fileContent = 'import iconBase from \'@kalimahapps/vue-icons/icon-base\';\n';
-		await icons.reduce(async (previousPromise, iconsInfo) => {
-			await previousPromise;
+		for (const iconsInfo of icons) {
 			const { content, csv } = getFilesContent(iconsInfo, group);
 
 			fileContent += content;
 
 			await csvWriter.writeRecords(csv);
-		}, Promise.resolve());
+		}
 
 		// Output file
 		fse.outputFileSync(
@@ -297,13 +322,12 @@ const buildIcons = async function () {
 		createTypeFile(group, uniqueFileNames);
 
 		iconSetData.count += Object.keys(uniqueFileNames).length;
-		iconSetData.group = group;
 
 		iconsStat.push(iconSetData);
 
 		allIconsExport.push(`export * from './${group}/index.js';`);
 		allIconsTypes.push(`export * from '@kalimahapps/vue-icons/${group}';`);
-	}, Promise.resolve([]));
+	}
 
 	// Create icon data file
 	fse.outputFileSync(
@@ -343,16 +367,4 @@ const buildIcons = async function () {
 	console.log(`\n\n\nTime taken: ${formatTimeTaken(timeTaken / 1000)}`);
 };
 
-/**
- * Format time taken to process icons
- *
- * @param  {string} time Time taken to process icons in milliseconds
- * @return {string}      Formatted time taken
- */
-const formatTimeTaken = (time) => {
-	const minutes = Math.floor((time % 3600) / 60);
-	const seconds = Math.floor(time % 60);
-
-	return `${minutes}m ${seconds}s`;
-};
-buildIcons();
+await buildIcons();
