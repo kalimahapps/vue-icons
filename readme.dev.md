@@ -29,7 +29,6 @@
 - Run `pnpm build:nuxt-module` to build nuxt module
 - Run `pnpm build:vite-plugin` to build vite plugin
 - Run `pnpm build:unplugin` to build unplugin resolver
-- Run `pnpm build:mcp` to build mcp server
 - Run `pnpm build` to run all build scripts
 
 # Testing
